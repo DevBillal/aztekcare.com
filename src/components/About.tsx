@@ -1,120 +1,76 @@
 import { motion } from "framer-motion"
-import { Cpu, Smartphone, ShieldCheck, Wrench } from "lucide-react"
+import { Smartphone, Cpu, ShieldCheck } from "lucide-react"
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-muted/30 relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+    <section id="about" className="py-20 sm:py-28 bg-secondary/30 relative border-t border-border/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Image with Floating Lab Badges */}
+          {/* Left: Authentic Smartphone Repair Image with Hairline Border */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-full lg:w-1/2 relative"
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-6 relative"
           >
-            {/* Top Floating Badge */}
-            <motion.div
-              initial={{ y: -10, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="absolute -top-4 -left-2 sm:-left-4 z-20 bg-card/95 backdrop-blur-md border border-primary/30 rounded-2xl p-3 sm:px-4 sm:py-2.5 shadow-xl flex items-center gap-2.5"
-            >
-              <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <Cpu className="w-4 h-4" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs font-bold text-foreground">IC & Motherboard Certified</div>
-                <p className="text-[10px] text-primary font-medium">Precision Micro-Soldering</p>
-              </div>
-            </motion.div>
-
-            {/* Bottom Floating Badge */}
-            <motion.div
-              initial={{ y: 10, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="absolute -bottom-4 -right-2 sm:-right-4 z-20 bg-card/95 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-3 sm:px-4 sm:py-2.5 shadow-xl flex items-center gap-2.5"
-            >
-              <div className="w-8 h-8 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs font-bold text-foreground">Advanced Diagnostics</div>
-                <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">100% Transparent Servicing</p>
-              </div>
-            </motion.div>
-
-            {/* Main Smartphone Repair Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group cursor-default border border-border/60">
-              <div className="absolute inset-0 bg-primary/10 mix-blend-multiply z-10 group-hover:bg-transparent transition-colors duration-500" />
+            <div className="rounded-2xl overflow-hidden border border-border/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
               <img 
                 src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=1200" 
                 alt="Smartphone and iPhone repair workstation at AZTEK CARE" 
-                className="w-full h-auto object-cover aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                className="w-full h-auto object-cover aspect-[4/3]"
                 loading="lazy"
               />
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-primary/20 rounded-full blur-3xl z-0 group-hover:bg-primary/40 transition-colors duration-500 pointer-events-none" />
-              <div className="absolute -top-6 -right-6 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl z-0 group-hover:bg-cyan-500/40 transition-colors duration-500 pointer-events-none" />
+            </div>
+            
+            {/* Minimal Stat Badge */}
+            <div className="absolute -bottom-4 -right-2 sm:right-4 bg-card border border-border/80 rounded-xl px-4 py-2.5 shadow-md flex items-center gap-3 text-left">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                <Cpu className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-foreground">IC Micro-Soldering</div>
+                <div className="text-[10px] text-muted-foreground">Certified Motherboard Lab</div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Right Column: About Content */}
+          {/* Right: Editorial Narrative */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full lg:w-1/2 space-y-6 text-left"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="lg:col-span-6 space-y-6 text-left"
           >
-            <div className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-semibold text-primary">
-              <Wrench className="w-3.5 h-3.5" />
-              <span>About AZTEK CARE</span>
+            <div>
+              <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
+                About AZTEK CARE
+              </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground">
+                Engineered for quality. <br />
+                <span className="font-normal text-muted-foreground">Trusted across Feni.</span>
+              </h2>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight">
-              Reliable, Efficient, & <br className="hidden sm:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-cyan-400">
-                Technically Advanced.
-              </span>
-            </h2>
-
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              At <strong className="text-foreground font-semibold">AZTEK CARE</strong>, we understand how vital your mobile phone is to your daily life. That's why we've built a dedicated professional smartphone servicing center right here on Mijan Road, Feni.
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              At <strong className="text-foreground font-semibold">AZTEK CARE</strong>, we believe every smartphone deserves master-level care. Located on Mijan Road, Feni, our dedicated servicing facility brings enterprise-grade diagnostic equipment and micro-soldering precision to everyday mobile users.
             </p>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Our engineers specialize across all major <strong className="text-foreground font-semibold">iPhone & Android</strong> brands. Beyond basic screen or battery replacements, our true strength lies in complex micro-soldering: restoring shorted motherboards, power ICs, network basebands, Face ID projectors, and eMMC programming.
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Whether your iPhone suffers from water damage, a shorted power IC, or Face ID failure, or your Android phone has an unbootable CPU, our technicians diagnose the microscopic root cause rather than recommending unnecessary motherboard replacements.
             </p>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              When other shops say a phone is unfixable, our advanced diagnostic tools and microscope repair bench provide the real solution — fast, transparent, and same-day.
-            </p>
-            
-            {/* Stats / Highlights Grid */}
-            <div className="pt-6 grid grid-cols-2 gap-4 border-t border-border/50">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                  <Smartphone className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl sm:text-2xl text-primary">100%</h4>
-                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Smartphone Focus</p>
-                </div>
+            {/* Apple-style Metric Columns */}
+            <div className="pt-6 grid grid-cols-2 gap-6 border-t border-border/60">
+              <div>
+                <h4 className="font-extrabold text-2xl sm:text-3xl text-foreground">100%</h4>
+                <p className="text-xs text-muted-foreground font-medium mt-1 uppercase tracking-wider">Smartphone Focus</p>
               </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xl sm:text-2xl text-primary">Advanced</h4>
-                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Micro-Soldering Lab</p>
-                </div>
+              <div>
+                <h4 className="font-extrabold text-2xl sm:text-3xl text-foreground">Same-Day</h4>
+                <p className="text-xs text-muted-foreground font-medium mt-1 uppercase tracking-wider">Turnaround Time</p>
               </div>
             </div>
           </motion.div>

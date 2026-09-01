@@ -3,65 +3,71 @@ import { Search, ClipboardCheck, Wrench, ShieldCheck } from "lucide-react"
 
 const steps = [
   {
-    title: "1. Diagnosis",
-    description: "We carefully inspect your device using professional tools to identify the exact hardware or software problem.",
-    icon: <Search className="w-8 h-8 text-primary" />,
+    step: "01",
+    title: "Diagnosis",
+    description: "Component inspection under microscope to detect exact hardware or IC fault."
   },
   {
-    title: "2. Approval",
-    description: "We explain the root cause, propose the best solution, and provide a clear cost estimate for your approval before proceeding.",
-    icon: <ClipboardCheck className="w-8 h-8 text-primary" />,
+    step: "02",
+    title: "Transparent Quote",
+    description: "Clear explanation of the problem, fix timeline, and upfront price approval."
   },
   {
-    title: "3. Repair",
-    description: "Our engineers perform the repair using advanced equipment, micro-soldering techniques, and high-quality replacement parts.",
-    icon: <Wrench className="w-8 h-8 text-primary" />,
+    step: "03",
+    title: "Precision Repair",
+    description: "Micro-soldering and part replacement with precision temperature control."
   },
   {
-    title: "4. Quality Check",
-    description: "We run a final, comprehensive quality control check to ensure your device is fully functional before handing it back.",
-    icon: <ShieldCheck className="w-8 h-8 text-primary" />,
+    step: "04",
+    title: "Quality Testing",
+    description: "Multimeter testing and comprehensive functionality check before handover."
   },
 ]
 
 export default function RepairProcess() {
   return (
-    <section id="process" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Our Transparent <span className="text-primary">Repair Process</span>
+    <section id="process" className="py-20 sm:py-28 bg-background relative border-t border-border/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
+            The Repair Workflow
+          </p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+            Simple. Transparent. Fast.
           </h2>
-          <p className="text-muted-foreground text-lg">
-            A simple, four-step journey to get your device back in perfect working condition.
+          <p className="text-sm sm:text-base text-muted-foreground mt-3">
+            A 4-step streamlined process from diagnosis to handover.
           </p>
         </div>
 
-        <div className="relative">
-          {/* Connecting Line */}
-          <div className="absolute top-1/2 left-0 w-full h-1 bg-border/50 -translate-y-1/2 hidden lg:block" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative bg-card border border-border/50 rounded-2xl p-8 text-center hover:border-primary/50 transition-colors shadow-sm group"
-              >
-                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {step.description}
+        {/* 4-Step Minimal Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: index * 0.08 }}
+              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between text-left hover:border-foreground/30 transition-all"
+            >
+              <div>
+                <span className="text-xs font-mono font-bold text-primary tracking-wider block mb-4">
+                  Step {item.step}
+                </span>
+                <h3 className="text-base font-bold text-foreground mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {item.description}
                 </p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   )

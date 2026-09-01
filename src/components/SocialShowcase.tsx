@@ -1,17 +1,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { 
-  Play, 
-  ExternalLink, 
-  Eye, 
-  Video, 
-  Sparkles, 
-  ArrowUpRight,
-  Share2
-} from "lucide-react"
-import { Button } from "./ui/button"
+import { Play, ArrowUpRight } from "lucide-react"
 
-// Custom SVG Icons for authentic brand feel
 function FacebookIcon({ className }: { className?: string }) {
   return (
     <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -36,115 +26,85 @@ function YouTubeIcon({ className }: { className?: string }) {
   )
 }
 
-function TikTokIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-    </svg>
-  )
-}
-
 interface SocialPost {
   id: string
   title: string
-  category: "reels" | "motherboard" | "screen" | "customer"
-  platform: "facebook" | "instagram" | "youtube" | "tiktok"
+  category: "all" | "motherboard" | "screen" | "reels"
+  platform: "facebook" | "instagram" | "youtube"
   platformName: string
-  platformColor: string
-  badgeBg: string
   thumbnail: string
   link: string
   views: string
-  tag: string
 }
 
 const socialPosts: SocialPost[] = [
   {
     id: "1",
-    title: "iPhone 13 Pro Max Motherboard Short & Power IC Micro-Soldering Live Fix",
+    title: "iPhone 13 Pro Max Shorted Motherboard & Power IC Fix",
     category: "motherboard",
     platform: "facebook",
     platformName: "Facebook Video",
-    platformColor: "text-[#1877F2]",
-    badgeBg: "bg-[#1877F2]/10 text-[#1877F2] border-[#1877F2]/30",
     thumbnail: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&q=80&w=600",
     link: "https://facebook.com",
-    views: "12.4K views",
-    tag: "Micro-Soldering"
+    views: "12.4K views"
   },
   {
     id: "2",
-    title: "Samsung S22 Ultra Original 120Hz Display Replacement in Under 35 Mins!",
+    title: "Samsung S22 Ultra 120Hz Screen Calibration & Replacement",
     category: "screen",
     platform: "youtube",
     platformName: "YouTube Shorts",
-    platformColor: "text-[#FF0000]",
-    badgeBg: "bg-[#FF0000]/10 text-[#FF0000] border-[#FF0000]/30",
     thumbnail: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&q=80&w=600",
     link: "https://youtube.com",
-    views: "8.9K views",
-    tag: "Display Fix"
+    views: "8.9K views"
   },
   {
     id: "3",
-    title: "Dead Xiaomi Redmi Note 10 CPU Reballing & eMMC Data Recovery",
+    title: "Dead Xiaomi Redmi Note 10 CPU Reballing with 100% Data Safe",
     category: "reels",
     platform: "instagram",
     platformName: "Instagram Reel",
-    platformColor: "text-[#E4405F]",
-    badgeBg: "bg-[#E4405F]/10 text-[#E4405F] border-[#E4405F]/30",
     thumbnail: "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=600",
     link: "https://instagram.com",
-    views: "15.2K views",
-    tag: "CPU Reball"
+    views: "15.2K views"
   },
   {
     id: "4",
-    title: "iPhone 12 Face ID TrueDepth Dot Projector Repair without Replacing Sensor",
+    title: "iPhone 12 TrueDepth Dot Projector Micro-Soldering Fix",
     category: "motherboard",
-    platform: "tiktok",
-    platformName: "TikTok Reel",
-    platformColor: "text-foreground",
-    badgeBg: "bg-muted text-foreground border-border",
+    platform: "facebook",
+    platformName: "Facebook Watch",
     thumbnail: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&q=80&w=600",
-    link: "https://tiktok.com",
-    views: "22.1K views",
-    tag: "Face ID"
+    link: "https://facebook.com",
+    views: "22.1K views"
   },
   {
     id: "5",
-    title: "Happy Customer Reaction after Dead Phone Data Restored Successfully",
-    category: "customer",
-    platform: "facebook",
-    platformName: "Facebook Watch",
-    platformColor: "text-[#1877F2]",
-    badgeBg: "bg-[#1877F2]/10 text-[#1877F2] border-[#1877F2]/30",
-    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
-    link: "https://facebook.com",
-    views: "6.8K views",
-    tag: "Customer Review"
-  },
-  {
-    id: "6",
-    title: "Step-by-Step Water Damage Treatment & Ultrasonic Cleaning Lab Process",
+    title: "Ultrasonic Cleaning & Water Damage Recovery Protocol",
     category: "reels",
     platform: "youtube",
     platformName: "YouTube Video",
-    platformColor: "text-[#FF0000]",
-    badgeBg: "bg-[#FF0000]/10 text-[#FF0000] border-[#FF0000]/30",
     thumbnail: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600",
     link: "https://youtube.com",
-    views: "10.5K views",
-    tag: "Lab Process"
+    views: "10.5K views"
   },
+  {
+    id: "6",
+    title: "Fast 20-Min Battery Replacement & TrueTone Transfer",
+    category: "screen",
+    platform: "instagram",
+    platformName: "Instagram Reel",
+    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+    link: "https://instagram.com",
+    views: "6.8K views"
+  }
 ]
 
 const categories = [
-  { id: "all", label: "All Posts & Videos" },
-  { id: "motherboard", label: "Motherboard & IC 🔬" },
-  { id: "reels", label: "Fast Repair Reels ⚡" },
-  { id: "screen", label: "Screen & Battery 📱" },
-  { id: "customer", label: "Customer Stories ⭐" },
+  { id: "all", label: "All Media" },
+  { id: "motherboard", label: "Motherboard & IC" },
+  { id: "screen", label: "Screen & Battery" },
+  { id: "reels", label: "Short Reels" },
 ]
 
 export default function SocialShowcase() {
@@ -155,134 +115,70 @@ export default function SocialShowcase() {
     : socialPosts.filter(p => p.category === activeTab)
 
   return (
-    <section id="social" className="py-24 bg-background relative overflow-hidden border-t border-border/40">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="absolute bottom-10 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
-
-      <div className="container mx-auto px-4">
-        {/* Header Title */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-1.5 text-xs font-semibold text-primary mb-4 tracking-wide uppercase">
-            <Video className="w-3.5 h-3.5" />
-            Social Media & Video Hub
+    <section id="social" className="py-20 sm:py-28 bg-background relative border-t border-border/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        {/* Apple-style Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left">
+          <div>
+            <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
+              Media & Live Demonstrations
+            </p>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+              Watch real repairs.
+            </h2>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
-            Watch Real Repairs on <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-cyan-400">
-              Our Social Media Channels
-            </span>
-          </h2>
-
-          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
-            Follow AZTEK CARE on Facebook, Instagram, YouTube & TikTok to see live micro-soldering videos, same-day repair reels, and customer feedback.
-          </p>
-
-          {/* Social Platform Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
-            <a 
-              href="https://facebook.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] border border-[#1877F2]/30 text-xs sm:text-sm font-bold transition-all hover:scale-105"
-            >
-              <FacebookIcon className="w-4 h-4" />
-              <span>Facebook Page</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-            </a>
-
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E4405F]/10 hover:bg-[#E4405F]/20 text-[#E4405F] border border-[#E4405F]/30 text-xs sm:text-sm font-bold transition-all hover:scale-105"
-            >
-              <InstagramIcon className="w-4 h-4" />
-              <span>Instagram Reels</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-            </a>
-
-            <a 
-              href="https://youtube.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FF0000]/10 hover:bg-[#FF0000]/20 text-[#FF0000] border border-[#FF0000]/30 text-xs sm:text-sm font-bold transition-all hover:scale-105"
-            >
-              <YouTubeIcon className="w-4 h-4" />
-              <span>YouTube Channel</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-            </a>
-
-            <a 
-              href="https://tiktok.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-muted hover:bg-muted/80 text-foreground border border-border text-xs sm:text-sm font-bold transition-all hover:scale-105"
-            >
-              <TikTokIcon className="w-4 h-4" />
-              <span>TikTok</span>
-              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-            </a>
+          {/* Clean Segmented Control Filter */}
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-secondary rounded-xl border border-border/60">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveTab(cat.id)}
+                className={`text-xs font-medium px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                  activeTab === cat.id
+                    ? "bg-background text-foreground shadow-xs font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-4xl mx-auto">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveTab(cat.id)}
-              className={`text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl border transition-all duration-200 cursor-pointer ${
-                activeTab === cat.id
-                  ? "bg-primary text-primary-foreground border-primary shadow-md scale-105"
-                  : "bg-card/70 hover:bg-muted border-border text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Video / Post Cards Grid */}
+        {/* Video Cards Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           <AnimatePresence>
             {filteredPosts.map((post) => (
               <motion.div
                 key={post.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35 }}
-                whileHover={{ y: -6 }}
-                className="group relative rounded-2xl bg-card border border-border/70 overflow-hidden shadow-sm hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_15px_35px_rgba(33,150,243,0.15)] flex flex-col justify-between"
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="group rounded-2xl bg-card border border-border/80 overflow-hidden hover:border-foreground/30 transition-all flex flex-col justify-between text-left"
               >
-                {/* Thumbnail with Play & Platform Overlay */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                   <img
                     src={post.thumbnail}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-black/30" />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
-                    <span className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-lg border backdrop-blur-md ${post.badgeBg}`}>
-                      {post.platform === "facebook" && <FacebookIcon className="w-3.5 h-3.5" />}
-                      {post.platform === "instagram" && <InstagramIcon className="w-3.5 h-3.5" />}
-                      {post.platform === "youtube" && <YouTubeIcon className="w-3.5 h-3.5" />}
-                      {post.platform === "tiktok" && <TikTokIcon className="w-3.5 h-3.5" />}
+                  {/* Top Minimal Badge */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-md bg-black/60 text-white backdrop-blur-md">
+                      {post.platform === "facebook" && <FacebookIcon className="w-3 h-3 text-[#1877F2]" />}
+                      {post.platform === "instagram" && <InstagramIcon className="w-3 h-3 text-[#E4405F]" />}
+                      {post.platform === "youtube" && <YouTubeIcon className="w-3 h-3 text-[#FF0000]" />}
                       <span>{post.platformName}</span>
-                    </span>
-
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-black/60 text-white backdrop-blur-sm border border-white/10">
-                      {post.tag}
                     </span>
                   </div>
 
@@ -293,37 +189,32 @@ export default function SocialShowcase() {
                     rel="noopener noreferrer"
                     className="absolute inset-0 flex items-center justify-center z-10"
                   >
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
-                      <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5" />
+                    <div className="w-10 h-10 rounded-full bg-white/90 text-black flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                      <Play className="w-4 h-4 fill-current ml-0.5" />
                     </div>
                   </a>
 
-                  {/* Bottom View Count */}
-                  <div className="absolute bottom-2.5 left-3 z-10 flex items-center gap-1 text-[11px] font-medium text-white/90">
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>{post.views}</span>
+                  {/* Views */}
+                  <div className="absolute bottom-2.5 left-3 z-10 text-[10px] font-medium text-white/80">
+                    {post.views}
                   </div>
                 </div>
 
-                {/* Content Details & Direct Link */}
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <h3 className="font-bold text-sm sm:text-base text-foreground leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                  <h3 className="font-semibold text-xs sm:text-sm text-foreground leading-snug line-clamp-2">
                     {post.title}
                   </h3>
 
-                  <div className="pt-2 border-t border-border/50 flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Share2 className="w-3.5 h-3.5 text-primary" /> AZTEK CARE Official
-                    </span>
-
+                  <div className="pt-3 mt-3 border-t border-border/40 flex items-center justify-between text-xs">
+                    <span className="text-muted-foreground text-[11px]">AZTEK CARE Official</span>
                     <a
                       href={post.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
+                      className="text-primary font-medium flex items-center gap-0.5 hover:underline"
                     >
-                      <span>Watch Post</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Watch</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
@@ -332,35 +223,38 @@ export default function SocialShowcase() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Bottom CTA Banner to Follow */}
-        <div className="mt-16 max-w-4xl mx-auto rounded-3xl bg-card border border-primary/30 p-6 sm:p-8 text-center relative overflow-hidden shadow-lg">
-          <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-2xl pointer-events-none" />
-          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-            Want to see daily mobile repair tips & discounts?
-          </h3>
-          <p className="text-sm text-muted-foreground mb-6 max-w-xl mx-auto">
-            Follow our official social pages to get regular updates on smartphone maintenance, micro-soldering demonstrations, and exclusive servicing offers.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <Button className="gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold rounded-xl text-xs sm:text-sm">
-                <FacebookIcon className="w-4 h-4" />
-                <span>Follow on Facebook</span>
-              </Button>
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <Button className="gap-2 bg-[#E4405F] hover:bg-[#d63351] text-white font-bold rounded-xl text-xs sm:text-sm">
-                <InstagramIcon className="w-4 h-4" />
-                <span>Follow on Instagram</span>
-              </Button>
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-              <Button className="gap-2 bg-[#FF0000] hover:bg-[#cc0000] text-white font-bold rounded-xl text-xs sm:text-sm">
-                <YouTubeIcon className="w-4 h-4" />
-                <span>Subscribe on YouTube</span>
-              </Button>
-            </a>
-          </div>
+        {/* Minimal Social Links Pill */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary hover:bg-secondary/80 text-foreground text-xs font-medium border border-border/70 transition-colors"
+          >
+            <FacebookIcon className="w-3.5 h-3.5 text-[#1877F2]" />
+            <span>Facebook Page</span>
+            <ArrowUpRight className="w-3 h-3 opacity-50" />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary hover:bg-secondary/80 text-foreground text-xs font-medium border border-border/70 transition-colors"
+          >
+            <InstagramIcon className="w-3.5 h-3.5 text-[#E4405F]" />
+            <span>Instagram Reels</span>
+            <ArrowUpRight className="w-3 h-3 opacity-50" />
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary hover:bg-secondary/80 text-foreground text-xs font-medium border border-border/70 transition-colors"
+          >
+            <YouTubeIcon className="w-3.5 h-3.5 text-[#FF0000]" />
+            <span>YouTube Channel</span>
+            <ArrowUpRight className="w-3 h-3 opacity-50" />
+          </a>
         </div>
 
       </div>

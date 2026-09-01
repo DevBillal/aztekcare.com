@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import { Menu, Moon, Sun, Phone, MessageCircle, Cpu, ChevronRight } from "lucide-react"
+import { Menu, Moon, Sun, Phone, MessageCircle, ArrowRight, X } from "lucide-react"
 import { useTheme } from "./ThemeProvider"
 import { Button } from "./ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "./ui/sheet"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -12,10 +11,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      setIsScrolled(window.scrollY > 15)
 
-      const sections = ["home", "services", "about", "process", "reviews", "social", "faq", "location"]
-      const scrollPos = window.scrollY + 120
+      const sections = ["home", "services", "about", "process", "reviews", "social", "faq", "contact"]
+      const scrollPos = window.scrollY + 100
 
       for (const section of sections) {
         const el = document.getElementById(section)
@@ -35,14 +34,13 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: "Home", href: "#home", id: "home" },
     { name: "Services", href: "#services", id: "services" },
     { name: "About", href: "#about", id: "about" },
-    { name: "Repair Process", href: "#process", id: "process" },
+    { name: "Process", href: "#process", id: "process" },
     { name: "Reviews", href: "#reviews", id: "reviews" },
     { name: "Videos", href: "#social", id: "social" },
     { name: "FAQ", href: "#faq", id: "faq" },
-    { name: "Location", href: "#location", id: "location" },
+    { name: "Contact", href: "#contact", id: "contact" },
   ]
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -59,39 +57,31 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 px-2 sm:px-4 md:px-6 pt-2 sm:pt-3">
-      <div
-        className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-card/90 dark:bg-card/85 backdrop-blur-xl border border-border/80 shadow-[0_10px_35px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_35px_rgba(33,150,243,0.1)] px-3 sm:px-6 py-2 sm:py-2.5"
-            : "bg-card/60 dark:bg-card/40 backdrop-blur-md border border-border/40 px-3 sm:px-6 py-2.5 sm:py-3"
+            ? "glass-apple border-b border-black/[0.08] dark:border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+            : "bg-background/80 dark:bg-black/60 backdrop-blur-md border-b border-transparent"
         }`}
       >
-        <div className="flex items-center justify-between">
-          {/* Brand Logo with Glowing Microchip */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-13 sm:h-14 flex items-center justify-between">
+          {/* Apple Minimal Brand Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer"
+            className="flex items-center gap-2 group cursor-pointer"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[0_0_20px_rgba(33,150,243,0.4)] transition-all duration-300">
-              <Cpu className="w-4 h-4 sm:w-5 sm:h-5" />
+            <div className="w-7 h-7 rounded-lg bg-foreground text-background flex items-center justify-center font-black text-xs tracking-tighter transition-transform group-hover:scale-95">
+              AZ
             </div>
-            <div className="flex flex-col">
-              <span className="text-lg sm:text-2xl font-black tracking-tighter leading-none text-foreground">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-                  AZTEK
-                </span>{" "}
-                CARE
-              </span>
-              <span className="text-[8px] sm:text-[9px] font-bold tracking-widest text-muted-foreground uppercase mt-0.5 hidden xs:block">
-                Phone & IC Repair Lab
-              </span>
-            </div>
+            <span className="text-base sm:text-lg font-bold tracking-tight text-foreground">
+              AZTEK<span className="text-muted-foreground font-medium ml-1">CARE</span>
+            </span>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-muted/40 p-1.5 rounded-xl border border-border/40">
+          {/* Minimal Desktop Links */}
+          <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id
               return (
@@ -99,10 +89,10 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-all duration-200 cursor-pointer ${
+                  className={`text-[13px] tracking-tight transition-colors cursor-pointer ${
                     isActive
-                      ? "bg-primary text-primary-foreground shadow-sm scale-105"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? "text-foreground font-semibold"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {link.name}
@@ -112,109 +102,104 @@ export default function Navbar() {
           </nav>
 
           {/* Header Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
-            {/* Theme Toggle Button */}
-            <Button
-              variant="ghost"
-              size="icon"
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Minimal Theme Switcher */}
+            <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               aria-label="Toggle theme"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl hover:bg-muted border border-border/50 text-foreground"
+              className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </Button>
+            </button>
 
             {/* Quick Call Button */}
             <a href="tel:+8801571423908" className="hidden sm:inline-flex">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                className="gap-1.5 border-primary/50 text-primary hover:bg-primary/10 rounded-xl font-semibold h-8 sm:h-9 px-3"
+                className="text-xs font-medium h-8 px-3 text-muted-foreground hover:text-foreground rounded-full"
               >
-                <Phone className="h-3.5 w-3.5" />
-                <span>Call Now</span>
+                <Phone className="h-3.5 w-3.5 mr-1.5 opacity-70" />
+                <span>Call Us</span>
               </Button>
             </a>
 
-            {/* Direct WhatsApp CTA Button */}
+            {/* Primary Apple-style Pill CTA */}
             <a
               href="https://wa.me/8801571423908"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex"
+              className="hidden sm:inline-flex"
             >
               <Button
                 size="sm"
-                className="gap-1.5 bg-[#25D366] hover:bg-[#1ebd59] text-white rounded-xl font-bold shadow-[0_0_15px_rgba(37,211,102,0.3)] h-8 sm:h-9 px-3.5"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-xs h-8 px-3.5 rounded-full shadow-sm transition-all hover:scale-[1.02]"
               >
-                <MessageCircle className="h-4 w-4" />
-                <span>WhatsApp</span>
+                <MessageCircle className="h-3.5 w-3.5 mr-1.5" />
+                <span>Get Quote</span>
               </Button>
             </a>
 
-            {/* Mobile Hamburger Drawer Menu */}
-            <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
-              <SheetTrigger className="lg:hidden">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-border/50"
-                  aria-label="Toggle menu"
-                >
-                  <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[85vw] max-w-[320px] bg-card p-6">
-                <SheetTitle className="text-left font-extrabold text-xl mb-6 flex items-center gap-2">
-                  <Cpu className="w-5 h-5 text-primary" />
-                  <span>AZTEK CARE</span>
-                </SheetTitle>
-                <nav className="flex flex-col gap-1.5">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className={`flex items-center justify-between p-3 rounded-xl font-medium text-sm transition-all cursor-pointer ${
-                        activeSection === link.id
-                          ? "bg-primary text-primary-foreground font-bold shadow-sm"
-                          : "text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronRight className="w-4 h-4 opacity-70" />
-                    </a>
-                  ))}
-                  
-                  <div className="flex flex-col gap-2.5 mt-4 pt-4 border-t border-border">
-                    <a
-                      href="https://wa.me/8801571423908"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setIsMobileOpen(false)}
-                    >
-                      <Button className="w-full gap-2 bg-[#25D366] hover:bg-[#1ebd59] text-white font-bold py-4 rounded-xl text-sm">
-                        <MessageCircle className="h-4 w-4" />
-                        <span>Chat on WhatsApp</span>
-                      </Button>
-                    </a>
-                    <a href="tel:+8801571423908" onClick={() => setIsMobileOpen(false)}>
-                      <Button
-                        variant="outline"
-                        className="w-full gap-2 border-primary text-primary font-bold py-4 rounded-xl text-sm"
-                      >
-                        <Phone className="h-4 w-4" />
-                        <span>Call +880 1571-423908</span>
-                      </Button>
-                    </a>
-                  </div>
-                </nav>
-              </SheetContent>
-            </Sheet>
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-foreground hover:bg-muted/80 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Fullscreen Apple-style Mobile Menu Overlay */}
+      {isMobileOpen && (
+        <div className="fixed inset-0 z-40 md:hidden pt-16 bg-background/95 backdrop-blur-2xl flex flex-col justify-between px-6 pb-8 transition-all animate-in fade-in duration-200">
+          <nav className="flex flex-col gap-1 pt-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`py-3 text-xl font-medium tracking-tight border-b border-border/40 flex items-center justify-between ${
+                  activeSection === link.id
+                    ? "text-foreground font-bold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <span>{link.name}</span>
+                <ArrowRight className="w-4 h-4 opacity-40" />
+              </a>
+            ))}
+          </nav>
+
+          <div className="space-y-3 pt-6">
+            <a
+              href="https://wa.me/8801571423908"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileOpen(false)}
+              className="block"
+            >
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-12 rounded-2xl text-sm shadow-sm">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                <span>Instant WhatsApp Quote</span>
+              </Button>
+            </a>
+
+            <a href="tel:+8801571423908" onClick={() => setIsMobileOpen(false)} className="block">
+              <Button
+                variant="outline"
+                className="w-full border-border text-foreground font-medium h-12 rounded-2xl text-sm"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                <span>Call +880 1571-423908</span>
+              </Button>
+            </a>
+          </div>
+        </div>
+      )}
+    </>
   )
 }

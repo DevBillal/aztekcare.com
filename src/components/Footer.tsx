@@ -1,32 +1,58 @@
-import { MapPin, Phone, MessageCircle } from "lucide-react"
+import { Phone, MessageCircle, Mail, MapPin } from "lucide-react"
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-muted pt-16 pb-8 border-t border-border">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Column 1: Brand */}
-          <div className="space-y-4">
-            <a href="#" className="flex items-center gap-2">
-              <span className="text-2xl font-bold tracking-tighter text-primary">
-                AZTEK <span className="text-foreground">CARE</span>
+    <footer className="bg-secondary/40 text-foreground border-t border-border/60 py-16 pb-24 md:pb-16 text-left">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-border/50">
+          
+          {/* Brand Column */}
+          <div className="lg:col-span-4 space-y-4">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-foreground text-background flex items-center justify-center font-black text-xs">
+                AZ
+              </div>
+              <span className="text-lg font-bold tracking-tight text-foreground">
+                AZTEK<span className="text-muted-foreground font-medium ml-1">CARE</span>
               </span>
-            </a>
-            <p className="text-sm font-semibold italic text-muted-foreground">"Problems Today. Fixed Today."</p>
-            <p className="text-sm text-muted-foreground leading-relaxed mt-4">
-              Professional mobile phone repair and servicing center. Specializing in advanced diagnostics, motherboard repair, and comprehensive solutions.
+            </div>
+            <p className="text-xs font-medium text-muted-foreground italic">
+              "Problems Today. Fixed Today."
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
+              Certified smartphone and iPhone repair lab in Feni, Bangladesh. Dedicated to component-level motherboard micro-soldering, Face ID recovery, and precision servicing.
             </p>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="font-bold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              {['Home', 'Services', 'About', 'Repair Process', 'Reviews', 'Videos', 'FAQ', 'Contact', 'Location'].map((link) => (
+          {/* Directory Column 1: Services */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Core Services
+            </h4>
+            <ul className="space-y-2 text-xs text-muted-foreground">
+              <li>Motherboard & IC Micro-Soldering</li>
+              <li>iPhone Screen & OLED Replacement</li>
+              <li>Face ID & TrueDepth Repair</li>
+              <li>Battery Replacement & Health</li>
+              <li>Dead Boot CPU Reballing</li>
+              <li>Water Damage Ultrasonic Cleaning</li>
+            </ul>
+          </div>
+
+          {/* Directory Column 2: Quick Links */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Navigation
+            </h4>
+            <ul className="space-y-2 text-xs text-muted-foreground">
+              {['Services', 'About', 'Repair Process', 'Reviews', 'Videos', 'FAQ', 'Contact', 'Location'].map((link) => (
                 <li key={link}>
                   <a 
-                    href={link === 'Home' ? '#' : `#${link.toLowerCase().replace(' ', '-')}`} 
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    href={`#${link.toLowerCase().replace(' ', '-')}`} 
+                    className="hover:text-foreground transition-colors"
                   >
                     {link}
                   </a>
@@ -35,63 +61,26 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Services */}
-          <div>
-            <h4 className="font-bold mb-6">Our Services</h4>
-            <ul className="space-y-3">
-              {[
-                'Android Repair', 
-                'iPhone Repair', 
-                'Display Replacement', 
-                'Battery Replacement', 
-                'Face ID Repair', 
-                'Motherboard Repair', 
-                'IC-Level Repair', 
-                'Software & Flashing', 
-                'eMMC Programming'
-              ].map((service) => (
-                <li key={service}>
-                  <a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {service}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Contact Details */}
+          <div className="lg:col-span-3 space-y-3 text-xs text-muted-foreground">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Direct Contact
+            </h4>
+            <p className="leading-relaxed">
+              Alia Madrasha Market, Ground Floor, Shop No. 20, Mijan Road, Feni
+            </p>
+            <p className="font-mono text-foreground">support@aztekcare.com</p>
+            <p className="font-mono text-foreground">+880 1571-423908</p>
           </div>
 
-          {/* Column 4: Contact Info */}
-          <div>
-            <h4 className="font-bold mb-6">Contact Info</h4>
-            <ul className="space-y-4">
-              <li className="flex gap-3">
-                <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-sm text-muted-foreground">Alia Madrasha Market, Ground Floor, Shop No. 20, Mijan Road, Feni</span>
-              </li>
-              <li className="flex gap-3 items-center">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href="tel:+8801571423908" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +880 1571-423908
-                </a>
-              </li>
-              <li className="flex gap-3 items-center">
-                <MessageCircle className="w-5 h-5 text-[#25D366] shrink-0" />
-                <a href="https://wa.me/8801571423908" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[#25D366] transition-colors">
-                  WhatsApp Us
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground text-center md:text-left">
-            &copy; {new Date().getFullYear()} AZTEK CARE. All Rights Reserved.
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</a>
-          </div>
+        {/* Bottom Minimal Copyright */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted-foreground gap-4">
+          <p>© {currentYear} AZTEK CARE. All rights reserved.</p>
+          <p className="text-[11px]">Designed with precision in Feni, Bangladesh.</p>
         </div>
+
       </div>
     </footer>
   )

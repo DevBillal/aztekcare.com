@@ -1,182 +1,173 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { motion } from "framer-motion"
 import { 
-  Smartphone, 
   Cpu, 
-  Battery, 
-  MonitorSmartphone, 
-  CircuitBoard, 
-  Microchip, 
-  HardDrive, 
-  Settings, 
-  Unlock, 
-  Zap, 
-  Wifi, 
-  Camera, 
-  Volume2, 
-  PowerOff, 
+  Smartphone, 
+  BatteryCharging, 
   Droplets, 
-  Bug, 
-  PlusCircle,
-  ScanFace
+  Wifi, 
+  Volume2, 
+  RotateCcw, 
+  Zap, 
+  ShieldCheck, 
+  Camera, 
+  ScanFace, 
+  Lock, 
+  Layers,
+  ArrowUpRight
 } from "lucide-react"
 
-const services = [
+interface ServiceItem {
+  icon: React.ReactNode
+  title: string
+  description: string
+  tag?: string
+}
+
+const flagshipServices: ServiceItem[] = [
   {
-    title: "Android Repair",
-    description: "Hardware and software repair for Android smartphones.",
-    icon: <Smartphone className="h-6 w-6 text-primary" />,
+    icon: <Cpu className="w-6 h-6 text-primary" />,
+    title: "Motherboard & IC Micro-Soldering",
+    description: "Component-level diagnostics and micro-soldering under microscope. Repairing shorted power ICs, charging ICs, audio ICs, and baseband issues.",
+    tag: "Core Specialty"
   },
   {
-    title: "iPhone Repair",
-    description: "Professional iPhone hardware and software servicing.",
-    icon: <Smartphone className="h-6 w-6 text-primary" />,
+    icon: <Smartphone className="w-6 h-6 text-primary" />,
+    title: "Screen & OLED Replacement",
+    description: "Original and premium OLED/LCD replacement with 120Hz refresh rate, TrueTone transfer, and touch calibration across iPhone and flagship Android devices.",
+    tag: "Same-Day Fix"
   },
   {
-    title: "Face ID Repair",
-    description: "Advanced Face ID diagnostics and repair.",
-    icon: <ScanFace className="h-6 w-6 text-primary" />,
+    icon: <ScanFace className="w-6 h-6 text-primary" />,
+    title: "Face ID & TrueDepth Repair",
+    description: "Micro-soldering repair for iPhone Face ID dot projectors and infrared sensors without losing original biometric security.",
+    tag: "iPhone Lab"
+  }
+]
+
+const standardServices: ServiceItem[] = [
+  {
+    icon: <BatteryCharging className="w-5 h-5 text-foreground" />,
+    title: "Battery Health Replacement",
+    description: "Safe 100% battery capacity replacement with genuine grade cells."
   },
   {
-    title: "Battery Replacement",
-    description: "Android and iPhone battery replacement.",
-    icon: <Battery className="h-6 w-6 text-primary" />,
+    icon: <Droplets className="w-5 h-5 text-foreground" />,
+    title: "Water Damage Ultrasonic Cleaning",
+    description: "Corrosion removal, thermal diagnosis, and PCB moisture treatment."
   },
   {
-    title: "Display Replacement",
-    description: "Including flagship-level devices.",
-    icon: <MonitorSmartphone className="h-6 w-6 text-primary" />,
+    icon: <Layers className="w-5 h-5 text-foreground" />,
+    title: "CPU Reballing & eMMC Data Fix",
+    description: "Restoring dead boot smartphones while keeping 100% user data safe."
   },
   {
-    title: "Motherboard Repair",
-    description: "Advanced motherboard-level troubleshooting and repair.",
-    icon: <CircuitBoard className="h-6 w-6 text-primary" />,
+    icon: <Camera className="w-5 h-5 text-foreground" />,
+    title: "Camera & Optical Stabilization",
+    description: "Fixing shaking cameras, lens damage, and sensor focus errors."
   },
   {
-    title: "IC-Level Repair",
-    description: "Microsoldering and IC-level repair services.",
-    icon: <Microchip className="h-6 w-6 text-primary" />,
+    icon: <Wifi className="w-5 h-5 text-foreground" />,
+    title: "Network & Baseband IC Repair",
+    description: "Fixing searching for service, no SIM detected, and Wi-Fi grayed out."
   },
   {
-    title: "eMMC Programming",
-    description: "eMMC programming, servicing, related software solutions.",
-    icon: <HardDrive className="h-6 w-6 text-primary" />,
+    icon: <Zap className="w-5 h-5 text-foreground" />,
+    title: "Charging Port & Flex Cable",
+    description: "Fast-charging restoration, Type-C and Lightning port replacement."
   },
   {
-    title: "Flashing & Software",
-    description: "Firmware flashing and system repair.",
-    icon: <Settings className="h-6 w-6 text-primary" />,
+    icon: <Volume2 className="w-5 h-5 text-foreground" />,
+    title: "Speaker, Mic & Audio IC",
+    description: "Crystal clear call audio restoration and earpiece replacement."
   },
   {
-    title: "Bootloader Unlock",
-    description: "Where supported on specific devices.",
-    icon: <Unlock className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Charging Problem",
-    description: "Charging port and related troubleshooting.",
-    icon: <Zap className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Network Repair",
-    description: "Diagnosis and repair of network/signal hardware issues.",
-    icon: <Wifi className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Camera Repair",
-    description: "Hardware troubleshooting and replacement.",
-    icon: <Camera className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Speaker & Mic",
-    description: "Audio-related repairs and replacements.",
-    icon: <Volume2 className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Dead Phone Repair",
-    description: "For phones that don't power on.",
-    icon: <PowerOff className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Water Damage",
-    description: "Inspection and repair assessment.",
-    icon: <Droplets className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "Software Issues",
-    description: "Boot loops, crashes, system errors.",
-    icon: <Bug className="h-6 w-6 text-primary" />,
-  },
-  {
-    title: "And More...",
-    description: "Additional in-store professional services.",
-    icon: <PlusCircle className="h-6 w-6 text-primary" />,
+    icon: <Lock className="w-5 h-5 text-foreground" />,
+    title: "Firmware Flashing & OS Recovery",
+    description: "Unbricking bootlooped phones, official stock ROM restoration."
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 }
-  },
-}
-
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Our Professional <span className="text-primary">Services</span>
+    <section id="services" className="py-20 sm:py-28 bg-secondary/30 relative border-t border-border/60">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        {/* Apple-style Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
+            Engineered Capabilities
+          </p>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+            Precision Servicing. <br />
+            <span className="font-normal text-muted-foreground">Every Major Brand.</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Comprehensive mobile repair solutions using advanced equipment and original quality parts.
+          <p className="text-sm sm:text-base text-muted-foreground mt-4 leading-relaxed">
+            From everyday screen and battery swaps to complex microscopic micro-soldering, our certified technicians provide transparent same-day solutions.
           </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
-          {services.map((service, index) => (
-            <motion.div 
-              key={index} 
-              variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        {/* Flagship Bento Cards (Top Row) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+          {flagshipServices.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between hover:border-foreground/30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)] group text-left"
             >
-              <Card className="h-full border-border/50 hover:border-primary/50 transition-all duration-300 bg-card hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(33,150,243,0.15)] overflow-hidden group">
-                <CardHeader className="pb-3 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -z-10 transition-transform duration-500 group-hover:scale-150" />
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center">
                     {service.icon}
                   </div>
-                  <CardTitle className="text-xl group-hover:text-primary transition-colors">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </CardContent>
-              </Card>
+                  {service.tag && (
+                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                      {service.tag}
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              <div className="pt-5 mt-5 border-t border-border/50 flex items-center justify-between text-xs font-semibold text-primary">
+                <span>Same-day diagnosis</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Standard Clean Grid (Bottom Grid) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {standardServices.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="rounded-xl bg-card/60 border border-border/70 p-4 sm:p-5 hover:bg-card hover:border-foreground/20 transition-all text-left group"
+            >
+              <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center mb-3 text-foreground group-hover:text-primary transition-colors">
+                {service.icon}
+              </div>
+              <h4 className="font-bold text-sm text-foreground mb-1">
+                {service.title}
+              </h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {service.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   )
