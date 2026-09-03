@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Phone, MessageCircle, Mail, MapPin } from "lucide-react"
 
 export default function Footer() {
@@ -11,32 +12,32 @@ export default function Footer() {
           
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg bg-foreground text-background flex items-center justify-center font-black text-xs">
-                AZ
+                az
               </div>
               <span className="text-lg font-bold tracking-tight text-foreground">
-                AZTEK<span className="text-muted-foreground font-medium ml-1">CARE</span>
+                aztek<span className="text-muted-foreground font-medium ml-0.5">care</span>
               </span>
-            </div>
+            </Link>
             <p className="text-xs font-medium text-muted-foreground italic">
               "Problems Today. Fixed Today."
             </p>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
-              Certified smartphone and iPhone repair lab in Feni, Bangladesh. Dedicated to component-level motherboard micro-soldering, Face ID recovery, and precision servicing.
+              Certified smartphone and iPhone repair lab in Feni, Bangladesh. Specializing in component-level motherboard micro-soldering, Face ID recovery, and precision servicing.
             </p>
           </div>
 
           {/* Directory Column 1: Services */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Core Services
+              Core Capabilities
             </h4>
             <ul className="space-y-2 text-xs text-muted-foreground">
               <li>Motherboard & IC Micro-Soldering</li>
               <li>iPhone Screen & OLED Replacement</li>
               <li>Face ID & TrueDepth Repair</li>
-              <li>Battery Replacement & Health</li>
+              <li>Battery Health Replacement</li>
               <li>Dead Boot CPU Reballing</li>
               <li>Water Damage Ultrasonic Cleaning</li>
             </ul>
@@ -45,17 +46,24 @@ export default function Footer() {
           {/* Directory Column 2: Quick Links */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Navigation
+              Pages
             </h4>
             <ul className="space-y-2 text-xs text-muted-foreground">
-              {['Services', 'About', 'Repair Process', 'Reviews', 'Videos', 'FAQ', 'Contact', 'Location'].map((link) => (
-                <li key={link}>
-                  <a 
-                    href={`#${link.toLowerCase().replace(' ', '-')}`} 
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Services', path: '/services' },
+                { name: 'About Lab', path: '/about' },
+                { name: 'Reviews', path: '/reviews' },
+                { name: 'Videos', path: '/videos' },
+                { name: 'Contact & Map', path: '/contact' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    to={link.path} 
                     className="hover:text-foreground transition-colors"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>

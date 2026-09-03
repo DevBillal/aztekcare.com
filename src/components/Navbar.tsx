@@ -1,59 +1,38 @@
 import { useState, useEffect } from "react"
+import { Link, useLocation } from "react-router-dom"
 import { Menu, Moon, Sun, MessageCircle, X, ArrowRight } from "lucide-react"
 import { useTheme } from "./ThemeProvider"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const { theme, setTheme } = useTheme()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 25)
-
-      const sections = ["home", "services", "about", "reviews", "social", "faq", "contact"]
-      const scrollPos = window.scrollY + 140
-
-      for (const section of sections) {
-        const el = document.getElementById(section)
-        if (el) {
-          const top = el.offsetTop
-          const height = el.offsetHeight
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navLinks = [
-    { name: "Services", href: "#services", id: "services" },
-    { name: "About", href: "#about", id: "about" },
-    { name: "Reviews", href: "#reviews", id: "reviews" },
-    { name: "Videos", href: "#social", id: "social" },
-    { name: "FAQ", href: "#faq", id: "faq" },
-    { name: "Contact", href: "#contact", id: "contact" },
-  ]
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
+  // Auto-scroll to top on route navigation
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
     setIsMobileOpen(false)
-    if (href === "#" || href === "#home") {
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    } else {
-      const target = document.querySelector(href)
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" })
-      }
-    }
-  }
+  }, [location.pathname])
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "About", href: "/about" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "Videos", href: "/videos" },
+    { name: "Contact", href: "/contact" },
+  ]
 
   return (
     <>
@@ -75,14 +54,13 @@ export default function Navbar() {
           <div
             className={`pointer-events-auto flex items-center justify-between transition-all duration-300 ${
               isScrolled
-                ? "py-1.5 px-3 rounded-full bg-card/85 dark:bg-black/70 backdrop-blur-2xl border border-border/80 shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.6)]"
+                ? "py-1.5 px-3 rounded-full bg-card/85 dark:bg-black/75 backdrop-blur-2xl border border-border/80 shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.6)]"
                 : "py-2 px-1 bg-transparent"
             }`}
           >
-            {/* Left: Serene Minimal Monogram & Brand Logo */}
-            <a
-              href="#home"
-              onClick={(e) => handleNavClick(e, "#home")}
+            {/* Brand Logo & Monogram */}
+            <Link
+              to="/"
               className="flex items-center gap-2 group cursor-pointer select-none pl-1"
             >
               <div className="w-7 h-7 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-xs tracking-tight transition-transform group-hover:scale-95 shadow-xs">
@@ -91,18 +69,17 @@ export default function Navbar() {
               <span className="text-sm sm:text-base font-bold tracking-tight text-foreground">
                 aztek<span className="text-muted-foreground font-light ml-0.5">care</span>
               </span>
-            </a>
+            </Link>
 
-            {/* Right: Soothing Floating Pill Menu (Matching Screenshot) */}
+            {/* Desktop Navigation Links Pill (Matching Screenshot) */}
             <div className="hidden md:flex items-center gap-2">
               <nav className="p-1 rounded-full bg-secondary/80 dark:bg-white/[0.05] backdrop-blur-xl border border-border/70 flex items-center gap-0.5">
                 {navLinks.map((link) => {
-                  const isActive = activeSection === link.id
+                  const isActive = location.pathname === link.href
                   return (
-                    <a
+                    <Link
                       key={link.name}
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
+                      to={link.href}
                       className={`relative text-xs font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer select-none ${
                         isActive
                           ? "text-foreground font-semibold"
@@ -117,12 +94,12 @@ export default function Navbar() {
                         />
                       )}
                       <span className="relative z-10">{link.name}</span>
-                    </a>
+                    </Link>
                   )
                 })}
               </nav>
 
-              {/* Soothing Theme Switcher */}
+              {/* Theme Switcher */}
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 aria-label="Toggle theme"
@@ -132,7 +109,7 @@ export default function Navbar() {
                 <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </button>
 
-              {/* Minimal Get Quote CTA */}
+              {/* Instant WhatsApp Quote CTA */}
               <a
                 href="https://wa.me/8801571423908"
                 target="_blank"
@@ -182,12 +159,12 @@ export default function Navbar() {
           >
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.id
+                const isActive = location.pathname === link.href
                 return (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    to={link.href}
+                    onClick={() => setIsMobileOpen(false)}
                     className={`py-2 px-3.5 rounded-xl text-sm font-medium transition-colors flex items-center justify-between ${
                       isActive
                         ? "bg-secondary text-foreground font-semibold"
@@ -196,7 +173,7 @@ export default function Navbar() {
                   >
                     <span>{link.name}</span>
                     <ArrowRight className="w-3.5 h-3.5 opacity-40" />
-                  </a>
+                  </Link>
                 )
               })}
             </nav>
@@ -209,7 +186,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileOpen(false)}
                 className="block"
               >
-                <button className="w-full bg-foreground text-background font-semibold h-10 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                <button className="w-full bg-foreground text-background font-semibold h-10 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer">
                   <MessageCircle className="w-3.5 h-3.5 text-primary" />
                   <span>Instant WhatsApp Quote</span>
                 </button>
