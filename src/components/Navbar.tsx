@@ -106,40 +106,28 @@ export default function Navbar() {
             </nav>
 
             <div className="flex items-center gap-2 pl-2 border-l border-border/60 dark:border-white/10 ml-2">
-              {/* Theme Switcher */}
+              {/* Theme Switcher (Rounded-full, matching button height) */}
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 aria-label="Toggle theme"
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer hover:bg-secondary/60"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer hover:bg-secondary/80"
               >
                 <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </button>
 
-              {/* Redesigned Luxury Glowing Aurora "Get Quote" Pill */}
+              {/* Clean Minimalist Quiet-Luxury "Get Quote" Pill */}
               <motion.a
                 href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="relative group inline-flex items-center select-none"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center select-none"
               >
-                {/* Ambient Neon Glow Aura behind button */}
-                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 opacity-50 blur-[7px] group-hover:opacity-100 group-hover:blur-[10px] transition-all duration-300" />
-
-                {/* Tactile Pill Body */}
-                <div className="relative h-9 px-4.5 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-xs sm:text-[13px] tracking-tight flex items-center gap-2 border border-white/25 shadow-sm shadow-blue-500/30 transition-all duration-300 cursor-pointer">
-                  {/* Live Pulse Indicator Dot */}
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-                  </span>
-
+                <div className="h-8 px-4 rounded-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-medium text-xs tracking-normal transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs">
+                  <MessageCircle className="w-3.5 h-3.5 text-white/90" />
                   <span>Get Quote</span>
-
-                  {/* Micro Dynamic Directional Arrow */}
-                  <ArrowUpRight className="w-3.5 h-3.5 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                 </div>
               </motion.a>
             </div>
