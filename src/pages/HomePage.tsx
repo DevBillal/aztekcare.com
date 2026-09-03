@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { 
   MessageCircle, 
   ArrowRight, 
@@ -11,19 +11,53 @@ import {
   Zap, 
   Smartphone, 
   Wrench, 
-  CheckCircle2, 
   Sparkles,
-  ChevronDown
+  ChevronDown,
+  Search,
+  Globe
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const deviceBrands = [
+const topBrands = [
   { id: "iphone", name: "Apple iPhone" },
   { id: "samsung", name: "Samsung Galaxy" },
-  { id: "xiaomi", name: "Xiaomi / Redmi" },
+  { id: "xiaomi", name: "Xiaomi / POCO" },
   { id: "pixel", name: "Google Pixel" },
   { id: "oneplus", name: "OnePlus" },
-  { id: "others", name: "Vivo / Oppo / Realme" },
+]
+
+// All major global mobile phone brands across the world
+const worldBrands = [
+  "Vivo",
+  "Oppo",
+  "Realme",
+  "Motorola (Moto)",
+  "Nothing Phone / CMF",
+  "Huawei",
+  "Honor",
+  "Infinix",
+  "Tecno",
+  "iQOO",
+  "Sony Xperia",
+  "Asus (ROG / Zenfone)",
+  "Nokia (HMD)",
+  "ZTE (Nubia / RedMagic)",
+  "Itel",
+  "Symphony",
+  "Walton",
+  "Lenovo (Legion)",
+  "TCL",
+  "Meizu",
+  "Sharp Aquos",
+  "Fairphone",
+  "Blackview (Rugged)",
+  "Ulefone",
+  "Doogee",
+  "HTC",
+  "LG",
+  "Micromax",
+  "Lava",
+  "Other / Custom Smartphone"
 ]
 
 const issueTypes = [
@@ -36,8 +70,29 @@ const issueTypes = [
 ]
 
 export default function HomePage() {
-  const [selectedBrand, setSelectedBrand] = useState(deviceBrands[0].name)
+  const [selectedBrand, setSelectedBrand] = useState(topBrands[0].name)
   const [selectedIssue, setSelectedIssue] = useState(issueTypes[0])
+  const [isOtherOpen, setIsOtherOpen] = useState(false)
+  const [brandSearch, setBrandSearch] = useState("")
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOtherOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  const isTopBrandSelected = topBrands.some((b) => b.name === selectedBrand)
+
+  // Filtered world brands based on search
+  const filteredBrands = worldBrands.filter((b) => 
+    b.toLowerCase().includes(brandSearch.toLowerCase())
+  )
 
   // General greeting for Hero CTA (no device or issue specified)
   const generalWaMessage = encodeURIComponent(
@@ -54,7 +109,7 @@ export default function HomePage() {
   return (
     <div className="w-full relative overflow-x-hidden">
       
-      {/* 1. CINEMATIC WELCOMING HERO SECTION (Matching Reference Screenshot Atmosphere) */}
+      {/* 1. CINEMATIC WELCOMING HERO SECTION */}
       <section className="relative min-h-[90vh] sm:min-h-[94vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 sm:px-6 text-center overflow-hidden">
         
         {/* Ambient Volumetric Lighting (Electric Blue Marketing Glow) */}
@@ -77,7 +132,7 @@ export default function HomePage() {
             <span className="text-blue-700 dark:text-blue-300">FENI SMARTPHONE LAB</span>
           </motion.div>
 
-          {/* Grand Welcoming Headline (Ultra-crisp in Light Mode + Vibrant Marketing Blue) */}
+          {/* Grand Welcoming Headline */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -111,7 +166,6 @@ export default function HomePage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 w-full sm:w-auto"
           >
-            {/* Vibrant High-Converting Royal Blue Capsule Button */}
             <a
               href={generalWaLink}
               target="_blank"
@@ -124,7 +178,6 @@ export default function HomePage() {
               </Button>
             </a>
 
-            {/* Translucent Frosted Capsule Button */}
             <Link to="/services" className="w-full sm:w-auto">
               <Button
                 variant="outline"
@@ -158,7 +211,7 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Scroll Down Indicator (Matching Screenshot 'SCROLL ↓') */}
+          {/* Scroll Down Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -181,13 +234,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. INTERACTIVE DIAGNOSIS & REPAIR TIME ESTIMATOR (Elevated Bento) */}
+      {/* 2. UNIFIED INTERACTIVE DIAGNOSIS CONSOLE (Combined Single Box with World Brands Dropdown) */}
       <section id="estimator" className="py-20 sm:py-28 relative border-t border-border/60 bg-secondary/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 text-[11px] font-semibold tracking-wider uppercase border border-blue-200/60 dark:border-blue-800/60 mb-3">
-              Smart Hardware Estimator
+              Smart Hardware Terminal
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
               Select device & issue. <br />
@@ -198,121 +251,234 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left: Interactive Control Box */}
-            <div className="lg:col-span-7 rounded-3xl bg-card border border-border/80 p-6 sm:p-8 shadow-xs text-left space-y-6">
+          {/* Unified Apple-Style Hardware Diagnostic Console (One Combined Seamless Card) */}
+          <div className="rounded-3xl bg-card border border-border/80 shadow-lg overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border/60">
               
-              {/* Device Selector */}
-              <div className="space-y-2">
-                <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
-                  <Smartphone className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                  1. Choose Your Brand
-                </label>
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1 bg-secondary rounded-2xl border border-border/60">
-                  {deviceBrands.map((b) => (
+              {/* Left Column: Selectors (7 cols) */}
+              <div className="lg:col-span-7 p-6 sm:p-8 space-y-6">
+                
+                {/* 1. Brand Selector */}
+                <div className="space-y-2 relative" ref={dropdownRef}>
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
+                      <Smartphone className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                      1. Choose Your Brand
+                    </label>
+                    <span className="text-[11px] text-muted-foreground">
+                      Selected: <strong className="text-blue-600 dark:text-blue-400">{selectedBrand}</strong>
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1.5 bg-secondary rounded-2xl border border-border/60">
+                    {topBrands.map((b) => (
+                      <button
+                        key={b.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedBrand(b.name)
+                          setIsOtherOpen(false)
+                        }}
+                        className={`py-2 px-2 text-xs font-medium rounded-xl transition-all text-center truncate cursor-pointer ${
+                          selectedBrand === b.name
+                            ? "bg-blue-600 text-white shadow-xs font-semibold"
+                            : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                        }`}
+                      >
+                        {b.name}
+                      </button>
+                    ))}
+
+                    {/* "Others" Dropdown Button */}
                     <button
-                      key={b.id}
                       type="button"
-                      onClick={() => setSelectedBrand(b.name)}
-                      className={`py-2 px-2 text-xs font-medium rounded-xl transition-all text-center truncate cursor-pointer ${
-                        selectedBrand === b.name
-                          ? "bg-blue-600 text-white shadow-xs font-semibold"
-                          : "text-muted-foreground hover:text-foreground"
+                      onClick={() => setIsOtherOpen(!isOtherOpen)}
+                      className={`py-2 px-2 text-xs font-medium rounded-xl transition-all flex items-center justify-center gap-1 text-center truncate cursor-pointer border ${
+                        !isTopBrandSelected
+                          ? "bg-blue-600 text-white border-blue-600 font-semibold shadow-xs"
+                          : isOtherOpen
+                          ? "bg-background text-foreground border-blue-500 font-semibold"
+                          : "text-muted-foreground hover:text-foreground border-transparent hover:bg-background/50"
                       }`}
                     >
-                      {b.name}
+                      <span className="truncate">{!isTopBrandSelected ? selectedBrand : "Others"}</span>
+                      <ChevronDown className={`w-3 h-3 shrink-0 transition-transform duration-200 ${isOtherOpen ? "rotate-180" : ""}`} />
                     </button>
-                  ))}
+                  </div>
+
+                  {/* World Mobile Brands Dropdown Menu */}
+                  <AnimatePresence>
+                    {isOtherOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-0 right-0 top-full mt-2 z-30 p-3 rounded-2xl bg-card border border-border/80 shadow-2xl backdrop-blur-2xl space-y-3"
+                      >
+                        <div className="flex items-center justify-between pb-2 border-b border-border/60">
+                          <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
+                            <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                            <span>Select Any Global Brand ({worldBrands.length} brands)</span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setIsOtherOpen(false)}
+                            className="text-[11px] text-muted-foreground hover:text-foreground"
+                          >
+                            Close ✕
+                          </button>
+                        </div>
+
+                        {/* Search Input for Brands */}
+                        <div className="relative">
+                          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                          <input
+                            type="text"
+                            value={brandSearch}
+                            onChange={(e) => setBrandSearch(e.target.value)}
+                            placeholder="Type brand name (e.g. Vivo, Infinix, Nothing, Tecno)..."
+                            className="w-full pl-8 pr-3 py-2 text-xs rounded-xl bg-secondary/80 border border-border/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            autoFocus
+                          />
+                        </div>
+
+                        {/* Brand Chips Grid */}
+                        <div className="max-h-52 overflow-y-auto pr-1 grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs">
+                          {filteredBrands.map((brand) => (
+                            <button
+                              key={brand}
+                              type="button"
+                              onClick={() => {
+                                setSelectedBrand(brand)
+                                setIsOtherOpen(false)
+                                setBrandSearch("")
+                              }}
+                              className={`p-2 rounded-xl text-left truncate transition-all text-[11px] cursor-pointer ${
+                                selectedBrand === brand
+                                  ? "bg-blue-600 text-white font-semibold"
+                                  : "bg-secondary/40 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-foreground"
+                              }`}
+                            >
+                              {brand}
+                            </button>
+                          ))}
+
+                          {/* Custom Brand If Search has no direct match */}
+                          {brandSearch && !filteredBrands.some((b) => b.toLowerCase() === brandSearch.toLowerCase()) && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSelectedBrand(brandSearch)
+                                setIsOtherOpen(false)
+                                setBrandSearch("")
+                              }}
+                              className="col-span-2 sm:col-span-3 p-2 rounded-xl text-left bg-blue-50 dark:bg-blue-950/40 border border-blue-300 dark:border-blue-800 text-blue-600 dark:text-blue-400 font-medium text-[11px] cursor-pointer"
+                            >
+                              Use custom brand: <strong>"{brandSearch}"</strong>
+                            </button>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
+
+                {/* 2. Issue Selector */}
+                <div className="space-y-2">
+                  <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
+                    <Cpu className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                    2. Select Hardware Symptom
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {issueTypes.map((issue) => (
+                      <button
+                        key={issue.id}
+                        type="button"
+                        onClick={() => setSelectedIssue(issue)}
+                        className={`p-3.5 rounded-2xl border text-left transition-all flex items-center justify-between cursor-pointer ${
+                          selectedIssue.id === issue.id
+                            ? "bg-blue-50/80 dark:bg-blue-950/30 border-blue-500 text-foreground font-semibold shadow-xs"
+                            : "bg-secondary/40 hover:bg-secondary/70 border-border/70 text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        <span className="text-xs font-medium text-foreground">{issue.label}</span>
+                        <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/80">
+                          {issue.est}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
               </div>
 
-              {/* Issue Selector */}
-              <div className="space-y-2">
-                <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
-                  <Cpu className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                  2. Select Hardware Symptom
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {issueTypes.map((issue) => (
-                    <button
-                      key={issue.id}
-                      type="button"
-                      onClick={() => setSelectedIssue(issue)}
-                      className={`p-3.5 rounded-2xl border text-left transition-all flex items-center justify-between cursor-pointer ${
-                        selectedIssue.id === issue.id
-                          ? "bg-blue-50/80 dark:bg-blue-950/30 border-blue-500 text-foreground font-semibold shadow-xs"
-                          : "bg-secondary/40 hover:bg-secondary/70 border-border/70 text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      <span className="text-xs font-medium text-foreground">{issue.label}</span>
-                      <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/80">
-                        {issue.est}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right: Live Quote Summary Card */}
-            <div className="lg:col-span-5 rounded-3xl bg-card border border-border/80 p-6 sm:p-8 shadow-xs text-left space-y-5">
-              <div className="flex items-center justify-between border-b border-border/60 pb-4">
+              {/* Right Column: Live Diagnosis Summary (Integrated Seamlessly in the Same Box) */}
+              <div className="lg:col-span-5 p-6 sm:p-8 bg-secondary/30 dark:bg-white/[0.02] flex flex-col justify-between space-y-6">
                 <div>
-                  <h3 className="font-bold text-base text-foreground">Live Diagnosis Summary</h3>
-                  <p className="text-xs text-muted-foreground">Feni Main Branch · Alia Madrasha Market</p>
+                  <div className="flex items-center justify-between border-b border-border/60 pb-4">
+                    <div>
+                      <h3 className="font-bold text-base text-foreground">Live Diagnosis Summary</h3>
+                      <p className="text-xs text-muted-foreground">Feni Main Branch · Alia Madrasha Market</p>
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3.5 text-xs pt-4">
+                    <div className="flex items-center justify-between py-1">
+                      <span className="text-muted-foreground">Device Brand:</span>
+                      <span className="font-semibold text-foreground px-2 py-0.5 rounded-md bg-background border border-border/60">
+                        {selectedBrand}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="text-muted-foreground">Component Issue:</span>
+                      <span className="font-semibold text-blue-600 dark:text-blue-400 text-right">{selectedIssue.label}</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1">
+                      <span className="text-muted-foreground">Initial Inspection:</span>
+                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">100% Free</span>
+                    </div>
+                    <div className="flex items-center justify-between py-1 border-t border-border/50 pt-2.5">
+                      <span className="text-muted-foreground">Est. Fix Duration:</span>
+                      <span className="font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        {selectedIssue.est}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                  <Zap className="w-4 h-4" />
+
+                <div className="space-y-3 pt-2">
+                  <a
+                    href={estimatorWaLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <Button className="w-full h-12 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm rounded-2xl shadow-md shadow-blue-500/25 flex items-center justify-center gap-2">
+                      <MessageCircle className="w-4 h-4 text-white" />
+                      <span>Confirm Booking via WhatsApp</span>
+                      <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                    </Button>
+                  </a>
+
+                  <div className="flex items-center justify-center gap-3 text-[11px] text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> Genuine Parts
+                    </span>
+                    <span>·</span>
+                    <span>Zero Advance Payment</span>
+                  </div>
                 </div>
+
               </div>
 
-              <div className="space-y-3 text-xs">
-                <div className="flex items-center justify-between py-1">
-                  <span className="text-muted-foreground">Device Brand:</span>
-                  <span className="font-semibold text-foreground">{selectedBrand}</span>
-                </div>
-                <div className="flex items-center justify-between py-1">
-                  <span className="text-muted-foreground">Component Issue:</span>
-                  <span className="font-semibold text-blue-600 dark:text-blue-400 text-right">{selectedIssue.label}</span>
-                </div>
-                <div className="flex items-center justify-between py-1">
-                  <span className="text-muted-foreground">Initial Inspection:</span>
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">100% Free</span>
-                </div>
-                <div className="flex items-center justify-between py-1 border-t border-border/50 pt-2">
-                  <span className="text-muted-foreground">Est. Fix Duration:</span>
-                  <span className="font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {selectedIssue.est}
-                  </span>
-                </div>
-              </div>
-
-              <a
-                href={estimatorWaLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block pt-2"
-              >
-                <Button className="w-full h-12 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm rounded-2xl shadow-md shadow-blue-500/25 flex items-center justify-center gap-2">
-                  <MessageCircle className="w-4 h-4 text-white" />
-                  <span>Confirm Booking via WhatsApp</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </Button>
-              </a>
-
-              <div className="pt-2 flex items-center justify-center gap-3 text-[11px] text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> Genuine Parts
-                </span>
-                <span>·</span>
-                <span>Zero Advance Payment</span>
-              </div>
             </div>
-
           </div>
+
         </div>
       </section>
 
