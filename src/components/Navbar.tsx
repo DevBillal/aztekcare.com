@@ -39,7 +39,7 @@ export default function Navbar() {
       <header className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center">
         {/* Buttery Smooth Metamorphosis Bar (Pure GPU-accelerated cubic-bezier transition) */}
         <div
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`pointer-events-auto flex items-center justify-between border-0 border-none outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
               ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl apple-liquid-glass"
               : "mt-0 w-full max-w-6xl pt-6 sm:pt-8 px-6 sm:px-10 bg-transparent shadow-none"
