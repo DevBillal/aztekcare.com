@@ -12,7 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      setIsScrolled(window.scrollY > 30)
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -36,148 +36,151 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
+      <header className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center">
+        {/* Metamorphosis Navbar: Shapes-shifts between Full-Width Luxury Header & Centered Dynamic Island Capsule */}
         <motion.div
           layout
           transition={{
             type: "spring",
-            stiffness: 170,
-            damping: 24,
-            mass: 0.85
+            stiffness: 220,
+            damping: 25,
+            mass: 0.8
           }}
-          className={`mx-auto ${
+          className={`pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "max-w-5xl pt-3 px-4 sm:px-6"
-              : "max-w-6xl pt-5 sm:pt-6 px-4 sm:px-8"
+              ? "mt-3.5 mx-4 sm:mx-auto max-w-fit px-4 sm:px-5 py-2 rounded-full liquid-glass shadow-[0_20px_50px_rgba(0,0,0,0.18)] dark:shadow-[0_25px_70px_rgba(0,0,0,0.75)] border border-border/80 flex items-center gap-3 sm:gap-4.5"
+              : "mt-0 w-full max-w-7xl px-6 sm:px-10 lg:px-14 py-4 sm:py-5 bg-background/70 dark:bg-black/55 backdrop-blur-2xl border-b border-border/40 shadow-xs flex items-center justify-between"
           }`}
         >
-          <motion.div
-            layout
-            transition={{
-              type: "spring",
-              stiffness: 170,
-              damping: 24,
-              mass: 0.85
-            }}
-            className={`pointer-events-auto flex items-center justify-between rounded-full border transition-colors duration-500 ${
-              isScrolled
-                ? "h-14 sm:h-15 px-4 sm:px-6 liquid-glass shadow-[0_15px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.65)] border-border/80"
-                : "h-16 sm:h-18 px-5 sm:px-7 bg-card/80 dark:bg-black/60 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] border-border/60"
-            }`}
+          {/* Brand Logo Area (Metamorphoses between Grand Editorial Brand & Compact Dynamic Island Icon) */}
+          <Link
+            to="/"
+            className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer select-none"
           >
-            {/* Brand Logo & Monogram (Larger & More Authoritative) */}
-            <Link
-              to="/"
-              className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer select-none"
+            <motion.div 
+              layout
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              className={`${
+                isScrolled ? "w-8 h-8 rounded-full" : "w-10 h-10 sm:w-11 sm:h-11 rounded-2xl"
+              } bg-blue-600 text-white flex items-center justify-center font-black text-xs sm:text-sm tracking-tight shadow-md shadow-blue-500/30 transition-all duration-300 shrink-0`}
             >
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`${
-                  isScrolled ? "w-8 h-8 sm:w-9 sm:h-9" : "w-9 h-9 sm:w-10 sm:h-10"
-                } rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-xs sm:text-sm tracking-tight shadow-md shadow-blue-500/30 transition-all duration-300`}
-              >
-                az
-              </motion.div>
-              <div className="flex flex-col text-left">
-                <span className={`${
-                  isScrolled ? "text-sm sm:text-base" : "text-base sm:text-lg"
-                } font-bold tracking-tight text-foreground transition-all duration-300`}>
-                  aztek<span className="text-blue-600 dark:text-blue-400 font-semibold ml-0.5">care</span>
-                </span>
-                {!isScrolled && (
-                  <span className="hidden sm:block text-[10px] text-muted-foreground -mt-1 font-medium tracking-wide">
-                    Smartphone Lab · Feni
+              az
+            </motion.div>
+
+            <AnimatePresence>
+              {!isScrolled ? (
+                <motion.div
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -8 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex flex-col text-left"
+                >
+                  <span className="text-lg sm:text-xl font-black tracking-tight text-foreground">
+                    aztek<span className="text-blue-600 dark:text-blue-400 font-semibold ml-0.5">care</span>
                   </span>
-                )}
-              </div>
-            </Link>
+                  <span className="hidden sm:block text-[11px] text-muted-foreground -mt-0.5 font-medium tracking-wide">
+                    Smartphone Hardware Lab · Feni
+                  </span>
+                </motion.div>
+              ) : (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="hidden lg:inline font-bold text-sm text-foreground tracking-tight"
+                >
+                  aztek<span className="text-blue-600 dark:text-blue-400">care</span>
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </Link>
 
-            {/* Desktop Navigation Links Pill (Larger, Roomier & Silky Smooth) */}
-            <div className="hidden md:flex items-center gap-3">
-              <nav className="p-1 sm:p-1.5 rounded-full bg-secondary/80 dark:bg-white/[0.06] backdrop-blur-xl border border-border/70 flex items-center gap-1 shadow-xs">
-                {navLinks.map((link) => {
-                  const isActive = location.pathname === link.href
-                  return (
-                    <Link
-                      key={link.name}
-                      to={link.href}
-                      className="relative cursor-pointer select-none"
+          {/* Desktop Navigation Links Pill (Metamorphoses between Expansive Island & Compact Tabs) */}
+          <div className="hidden md:flex items-center gap-2">
+            <nav className={`flex items-center gap-1 ${
+              isScrolled 
+                ? "px-0" 
+                : "p-1.5 rounded-full bg-secondary/80 dark:bg-white/[0.06] backdrop-blur-xl border border-border/70 shadow-xs"
+            }`}>
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.href
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="relative cursor-pointer select-none"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`relative ${
+                        isScrolled ? "text-xs px-3.5 py-1.5" : "text-xs sm:text-sm font-medium px-4.5 py-2"
+                      } rounded-full transition-colors duration-200 ${
+                        isActive
+                          ? "text-foreground font-semibold"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
                     >
-                      <motion.div
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.96 }}
-                        className={`relative text-xs sm:text-sm font-medium px-4 sm:px-4.5 py-1.5 sm:py-2 rounded-full transition-colors duration-200 ${
-                          isActive
-                            ? "text-foreground font-semibold"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeNavPill"
-                            transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                            className="absolute inset-0 rounded-full bg-background dark:bg-white/10 shadow-sm border border-border/60"
-                          />
-                        )}
-                        <span className="relative z-10">{link.name}</span>
-                      </motion.div>
-                    </Link>
-                  )
-                })}
-              </nav>
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeNavPill"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                          className="absolute inset-0 rounded-full bg-background dark:bg-white/10 shadow-sm border border-border/60"
+                        />
+                      )}
+                      <span className="relative z-10">{link.name}</span>
+                    </motion.div>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
 
-              {/* Theme Switcher (Roomier) */}
-              <motion.button
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                aria-label="Toggle theme"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/70 dark:bg-white/[0.05] hover:bg-secondary border border-border/60 shadow-xs"
-              >
-                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              </motion.button>
+          {/* Right Action Suite (Theme Toggle + Instant Quote + Mobile Drawer) */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Theme Switcher */}
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              aria-label="Toggle theme"
+              className={`${
+                isScrolled ? "w-8 h-8" : "w-9 h-9 sm:w-10 sm:h-10"
+              } rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/70 dark:bg-white/[0.05] hover:bg-secondary border border-border/60 shadow-xs`}
+            >
+              <Sun className="h-3.5 w-3.5 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-3.5 w-3.5 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </motion.button>
 
-              {/* Instant WhatsApp Quote CTA (Larger & Magnetic) */}
-              <motion.a
-                href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="inline-flex"
-              >
-                <button className={`${
-                  isScrolled ? "h-9 px-4 text-xs" : "h-10 sm:h-11 px-5 sm:px-6 text-xs sm:text-sm"
-                } rounded-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold shadow-md shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 cursor-pointer`}>
-                  <MessageCircle className="w-3.5 h-3.5 text-white" />
-                  <span>Get Quote</span>
-                </button>
-              </motion.a>
-            </div>
+            {/* Instant WhatsApp Quote CTA Button */}
+            <motion.a
+              href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="hidden sm:inline-flex"
+            >
+              <button className={`${
+                isScrolled ? "h-8.5 px-3.5 text-xs" : "h-11 px-6 text-xs sm:text-sm"
+              } rounded-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold shadow-md shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 cursor-pointer`}>
+                <MessageCircle className="w-3.5 h-3.5 text-white" />
+                <span>{isScrolled ? "Quote" : "Get Quote"}</span>
+              </button>
+            </motion.a>
 
             {/* Mobile Controls */}
-            <div className="flex md:hidden items-center gap-2 pr-1">
-              <button
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                aria-label="Toggle theme"
-                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/60 border border-border/50"
-              >
-                <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              </button>
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              className="w-8 h-8 md:hidden rounded-full bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors cursor-pointer border border-border/60"
+              aria-label="Toggle menu"
+            >
+              {isMobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
 
-              <button
-                onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors cursor-pointer border border-border/60"
-                aria-label="Toggle menu"
-              >
-                {isMobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-              </button>
-            </div>
-
-          </motion.div>
         </motion.div>
       </header>
 
