@@ -5,6 +5,7 @@ import SplashScreen from "./components/SplashScreen"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import MobileBottomBar from "./components/MobileBottomBar"
+import CursorGlow from "./components/CursorGlow"
 
 import HomePage from "./pages/HomePage"
 import ServicesPage from "./pages/ServicesPage"
@@ -65,6 +66,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <CursorGlow />
       <div className="min-h-screen w-full overflow-x-hidden bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground relative pb-16 lg:pb-0 flex flex-col justify-between">
         <AnimatePresence>
           {isLoading && <SplashScreen key="splash" />}
