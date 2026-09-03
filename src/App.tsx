@@ -72,7 +72,7 @@ function App() {
     const timer = setTimeout(() => {
       setIsLoading(false)
       sessionStorage.setItem("aztek_has_loaded", "true")
-    }, 1700)
+    }, 950)
 
     return () => clearTimeout(timer)
   }, [isLoading])
