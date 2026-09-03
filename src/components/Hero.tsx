@@ -42,7 +42,7 @@ export default function Hero() {
   const waLink = `https://wa.me/8801571423908?text=${waMessage}`
 
   return (
-    <section id="home" className="relative pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-28 lg:pb-20 overflow-hidden bg-background">
+    <section id="home" className="relative pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 overflow-hidden bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
