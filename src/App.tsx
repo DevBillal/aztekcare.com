@@ -54,15 +54,28 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
+  // Only show splash loading screen on the very first opening of the browser session!
+  // Consecutive reloads or navigation will load instantly without showing the splash screen again.
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window !== "undefined") {
+      const hasLoaded = sessionStorage.getItem("aztek_has_loaded")
+      // Allow testing/previewing anytime via ?splash=1 query parameter
+      const forceSplash = new URLSearchParams(window.location.search).has("splash")
+      return forceSplash || !hasLoaded
+    }
+    return false
+  })
 
   useEffect(() => {
+    if (!isLoading) return
+
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 1000)
+      sessionStorage.setItem("aztek_has_loaded", "true")
+    }, 1700)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [isLoading])
 
   return (
     <BrowserRouter>
