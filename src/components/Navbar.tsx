@@ -41,7 +41,7 @@ export default function Navbar() {
         <div
           className={`pointer-events-auto flex items-center justify-between border-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-card/85 dark:bg-[#0c1021]/85 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.18)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
+              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl navbar-glass-scrolled"
               : "mt-0 w-full max-w-6xl pt-6 sm:pt-8 px-6 sm:px-10 bg-transparent shadow-none"
           }`}
         >
