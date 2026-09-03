@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Menu, Moon, Sun, MessageCircle, X, ArrowRight, Wrench } from "lucide-react"
+import { Menu, Moon, Sun, MessageCircle, X, ArrowRight, ArrowUpRight, Wrench } from "lucide-react"
 import { useTheme } from "./ThemeProvider"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -116,19 +116,31 @@ export default function Navbar() {
                 <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </button>
 
-              {/* Get Quote Button */}
+              {/* Redesigned Luxury Glowing Aurora "Get Quote" Pill */}
               <motion.a
                 href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="inline-flex"
+                className="relative group inline-flex items-center select-none"
               >
-                <button className="h-8.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold text-xs shadow-xs shadow-blue-500/25 transition-all flex items-center gap-1.5 cursor-pointer">
-                  <MessageCircle className="w-3.5 h-3.5 text-white" />
+                {/* Ambient Neon Glow Aura behind button */}
+                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 opacity-50 blur-[7px] group-hover:opacity-100 group-hover:blur-[10px] transition-all duration-300" />
+
+                {/* Tactile Pill Body */}
+                <div className="relative h-9 px-4.5 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-xs sm:text-[13px] tracking-tight flex items-center gap-2 border border-white/25 shadow-sm shadow-blue-500/30 transition-all duration-300 cursor-pointer">
+                  {/* Live Pulse Indicator Dot */}
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+                  </span>
+
                   <span>Get Quote</span>
-                </button>
+
+                  {/* Micro Dynamic Directional Arrow */}
+                  <ArrowUpRight className="w-3.5 h-3.5 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                </div>
               </motion.a>
             </div>
           </div>
