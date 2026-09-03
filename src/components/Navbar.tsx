@@ -63,11 +63,11 @@ export default function Navbar() {
               to="/"
               className="flex items-center gap-2 group cursor-pointer select-none pl-1"
             >
-              <div className="w-7 h-7 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-xs tracking-tight transition-transform group-hover:scale-95 shadow-xs">
+              <div className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs tracking-tight transition-transform group-hover:scale-95 shadow-xs shadow-blue-500/25">
                 az
               </div>
               <span className="text-sm sm:text-base font-bold tracking-tight text-foreground">
-                aztek<span className="text-muted-foreground font-light ml-0.5">care</span>
+                aztek<span className="text-blue-600 dark:text-blue-400 font-semibold ml-0.5">care</span>
               </span>
             </Link>
 
@@ -116,8 +116,8 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="inline-flex"
               >
-                <button className="h-8 px-4 rounded-full bg-foreground text-background hover:bg-foreground/90 font-medium text-xs shadow-xs transition-all hover:scale-102 flex items-center gap-1.5 cursor-pointer">
-                  <MessageCircle className="w-3 h-3 text-primary" />
+                <button className="h-8 px-4 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium text-xs shadow-xs shadow-blue-500/25 transition-all hover:scale-102 flex items-center gap-1.5 cursor-pointer">
+                  <MessageCircle className="w-3 h-3 text-white" />
                   <span>Get Quote</span>
                 </button>
               </a>
@@ -186,8 +186,8 @@ export default function Navbar() {
                 onClick={() => setIsMobileOpen(false)}
                 className="block"
               >
-                <button className="w-full bg-foreground text-background font-semibold h-10 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer">
-                  <MessageCircle className="w-3.5 h-3.5 text-primary" />
+                <button className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold h-10 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer shadow-sm shadow-blue-500/25">
+                  <MessageCircle className="w-3.5 h-3.5 text-white" />
                   <span>Instant WhatsApp Quote</span>
                 </button>
               </a>
