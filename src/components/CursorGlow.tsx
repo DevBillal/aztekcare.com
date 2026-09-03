@@ -14,34 +14,38 @@ export default function CursorGlow() {
   const mouseX = useMotionValue(-500)
   const mouseY = useMotionValue(-500)
 
-  // Gaze direction motion values (xAI eye pupil look direction)
+  // Gaze tracking for the two capsule eyes
   const gazeX = useMotionValue(0)
   const gazeY = useMotionValue(0)
-  const springGazeX = useSpring(gazeX, { damping: 18, stiffness: 240 })
-  const springGazeY = useSpring(gazeY, { damping: 18, stiffness: 240 })
+  const springGazeX = useSpring(gazeX, { damping: 18, stiffness: 260 })
+  const springGazeY = useSpring(gazeY, { damping: 18, stiffness: 260 })
+
+  // Head tilt angle tracking (dynamic head rotation based on movement)
+  const headTilt = useMotionValue(0)
+  const springHeadTilt = useSpring(headTilt, { damping: 20, stiffness: 220 })
 
   // Ambient Blue Spotlight Spring
   const ambientSpring = { damping: 32, stiffness: 170, mass: 0.6 }
   const glowX = useSpring(mouseX, ambientSpring)
   const glowY = useSpring(mouseY, ambientSpring)
 
-  // Robot Drone Follower Spring (Silky Smooth Floating Companion)
-  const droneSpring = { damping: 24, stiffness: 260, mass: 0.35 }
+  // Robot Head Follower Spring (Silky Smooth Floating Companion)
+  const droneSpring = { damping: 24, stiffness: 270, mass: 0.3 }
   const droneX = useSpring(mouseX, droneSpring)
   const droneY = useSpring(mouseY, droneSpring)
 
-  // Periodic organic robotic blink (like xAI / Grok robot companion)
+  // Periodic organic eye blinking (like real AI robot bot)
   useEffect(() => {
     const triggerBlink = () => {
       setIsBlinking(true)
       setTimeout(() => {
         setIsBlinking(false)
-      }, 140)
+      }, 130)
     }
 
     const interval = setInterval(() => {
       triggerBlink()
-    }, 3600)
+    }, 3800)
 
     return () => clearInterval(interval)
   }, [])
@@ -65,18 +69,23 @@ export default function CursorGlow() {
       const dy = e.clientY - lastMousePos.current.y
       lastMousePos.current = { x: e.clientX, y: e.clientY }
 
-      // Clamp pupil look displacement between -3.5px and +3.5px
-      const targetGazeX = Math.max(-3.5, Math.min(3.5, dx * 0.45))
-      const targetGazeY = Math.max(-2.5, Math.min(2.5, dy * 0.45))
+      // Clamp pupil look displacement
+      const targetGazeX = Math.max(-2.5, Math.min(2.5, dx * 0.35))
+      const targetGazeY = Math.max(-2, Math.min(2, dy * 0.35))
       gazeX.set(targetGazeX)
       gazeY.set(targetGazeY)
 
-      // Re-center pupils smoothly when mouse stops moving
+      // Slight head tilt towards movement direction (-12deg to +12deg)
+      const targetTilt = Math.max(-10, Math.min(10, dx * 0.5))
+      headTilt.set(targetTilt)
+
+      // Re-center pupils and head tilt smoothly when mouse stops moving
       clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
         gazeX.set(0)
         gazeY.set(0)
-      }, 180)
+        headTilt.set(0)
+      }, 160)
 
       mouseX.set(e.clientX)
       mouseY.set(e.clientY)
@@ -87,7 +96,7 @@ export default function CursorGlow() {
       setIsVisible(false)
     }
 
-    // Check if hovering clickable interactive targets
+    // Detect if hovering over clickable interactive targets
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null
       const shouldHover = Boolean(
@@ -114,13 +123,13 @@ export default function CursorGlow() {
       document.removeEventListener("mouseleave", handleMouseLeave)
       document.removeEventListener("mouseover", handleMouseOver)
     }
-  }, [mouseX, mouseY, gazeX, gazeY])
+  }, [mouseX, mouseY, gazeX, gazeY, headTilt])
 
   if (!isSupported) return null
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
-      {/* 1. Ambient Luminous Blue Spotlight Orb (Illuminates entire page underneath) */}
+      {/* 1. Ambient Luminous Blue Spotlight Orb (Smooth page illumination) */}
       <motion.div
         style={{
           x: glowX,
@@ -133,16 +142,17 @@ export default function CursorGlow() {
           scale: isHovered ? 1.25 : 1,
         }}
         transition={{ opacity: { duration: 0.35, ease: "easeOut" } }}
-        className="w-[460px] h-[460px] rounded-full blur-[80px] bg-[radial-gradient(circle,rgba(37,99,235,0.32)_0%,rgba(2,132,199,0.16)_45%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(59,130,246,0.28)_0%,rgba(14,165,233,0.14)_45%,transparent_70%)] will-change-transform mix-blend-multiply dark:mix-blend-screen"
+        className="w-[450px] h-[450px] rounded-full blur-[80px] bg-[radial-gradient(circle,rgba(37,99,235,0.30)_0%,rgba(2,132,199,0.15)_45%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(59,130,246,0.28)_0%,rgba(14,165,233,0.14)_45%,transparent_70%)] will-change-transform mix-blend-multiply dark:mix-blend-screen"
       />
 
-      {/* 2. xAI Robotic Cybernetic Eyes Pod (Floating Mouse Drone Companion) */}
+      {/* 2. Round Spherical Robot Head Bot (1:1 Exact Match to Reference Image) */}
       <motion.div
         style={{
           x: droneX,
           y: droneY,
-          translateX: "18px", // Clean ergonomic trailing offset next to pointer
-          translateY: "18px",
+          translateX: "14px", // Clean compact trailing position beside pointer
+          translateY: "14px",
+          rotate: springHeadTilt,
         }}
         animate={{
           opacity: isVisible ? 1 : 0,
@@ -150,87 +160,52 @@ export default function CursorGlow() {
         }}
         transition={{
           opacity: { duration: 0.2 },
-          scale: { type: "spring", stiffness: 350, damping: 22 },
+          scale: { type: "spring", stiffness: 380, damping: 24 },
         }}
         className="relative will-change-transform select-none"
       >
-        {/* Robotic Visor Capsule Shell */}
-        <div className={`relative px-2.5 py-1.5 rounded-full flex items-center gap-1.5 transition-all duration-300 ${
+        {/* Cute Spherical Robot Head (Smooth 3D Pearl-White Ceramic Orb) */}
+        <div className={`relative w-10 h-10 rounded-full bg-gradient-to-b from-[#ffffff] via-[#f3f5f8] to-[#d6dde6] flex items-center justify-center overflow-hidden transition-all duration-300 ${
           isHovered
-            ? "bg-slate-950 dark:bg-black border-[1.5px] border-cyan-400 shadow-[0_0_22px_rgba(34,211,238,0.7),0_0_45px_rgba(37,99,235,0.5)]"
-            : "bg-slate-900/95 dark:bg-[#080d1a]/95 backdrop-blur-xl border border-blue-500/40 dark:border-cyan-400/35 shadow-[0_4px_16px_rgba(0,0,0,0.35),0_0_15px_rgba(37,99,235,0.35)]"
+            ? "shadow-[0_0_20px_rgba(37,99,235,0.45),0_8px_20px_rgba(0,0,0,0.2),inset_0_2px_4px_rgba(255,255,255,1),inset_0_-2px_4px_rgba(0,0,0,0.12)] border border-blue-400/50"
+            : "shadow-[0_6px_16px_rgba(0,0,0,0.18),0_1px_3px_rgba(0,0,0,0.08),inset_0_2px_4px_rgba(255,255,255,1),inset_0_-2px_4px_rgba(0,0,0,0.1)] border border-black/5 dark:border-white/20"
         }`}>
 
-          {/* Micro Status Radar Antenna Dot */}
-          <span className="absolute -top-1 right-2 flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-300" />
-          </span>
+          {/* 3D Specular Curved Light Reflection on Sphere Surface */}
+          <div className="absolute top-1 left-2 w-4 h-2.5 rounded-full bg-white/95 blur-[0.8px] pointer-events-none" />
 
-          {/* Left Robotic Eye */}
-          <div className="relative w-3.5 h-4.5 rounded-full bg-slate-950 flex items-center justify-center overflow-hidden border border-cyan-500/30">
+          {/* Two Diagonal Pill Capsule Eyes (Exact Match to Screenshot) */}
+          <motion.div
+            style={{
+              x: springGazeX,
+              y: springGazeY,
+            }}
+            className="flex items-center gap-1.5 transform -rotate-[28deg]"
+          >
+            {/* Left Pill Capsule Eye */}
             <motion.div
               animate={{
-                scaleY: isBlinking ? 0.1 : isHovered ? 1.2 : 1,
-                height: isHovered ? "14px" : "12px",
+                scaleY: isBlinking ? 0.08 : isHovered ? 1.25 : 1,
+                scaleX: isHovered ? 1.1 : 1,
               }}
               transition={{ duration: 0.12 }}
-              className="w-2.5 rounded-full bg-gradient-to-b from-cyan-300 via-blue-400 to-blue-600 shadow-[0_0_8px_#38bdf8] flex items-center justify-center"
-            >
-              {/* Dynamic Pupil (Glances in cursor movement direction) */}
-              <motion.div
-                style={{
-                  x: springGazeX,
-                  y: springGazeY,
-                }}
-                className="w-1.5 h-2 rounded-full bg-slate-950 shadow-inner flex items-center justify-center"
-              >
-                {/* Specular White Eye Glint */}
-                <div className="w-0.5 h-0.5 rounded-full bg-white self-start ml-0.5 mt-0.5 opacity-90" />
-              </motion.div>
-            </motion.div>
-          </div>
+              className="w-2 h-4.5 rounded-full bg-[#111317] shadow-inner will-change-transform"
+            />
 
-          {/* Right Robotic Eye */}
-          <div className="relative w-3.5 h-4.5 rounded-full bg-slate-950 flex items-center justify-center overflow-hidden border border-cyan-500/30">
+            {/* Right Pill Capsule Eye */}
             <motion.div
               animate={{
-                scaleY: isBlinking ? 0.1 : isHovered ? 1.2 : 1,
-                height: isHovered ? "14px" : "12px",
+                scaleY: isBlinking ? 0.08 : isHovered ? 1.25 : 1,
+                scaleX: isHovered ? 1.1 : 1,
               }}
               transition={{ duration: 0.12 }}
-              className="w-2.5 rounded-full bg-gradient-to-b from-cyan-300 via-blue-400 to-blue-600 shadow-[0_0_8px_#38bdf8] flex items-center justify-center"
-            >
-              {/* Dynamic Pupil (Glances in cursor movement direction) */}
-              <motion.div
-                style={{
-                  x: springGazeX,
-                  y: springGazeY,
-                }}
-                className="w-1.5 h-2 rounded-full bg-slate-950 shadow-inner flex items-center justify-center"
-              >
-                {/* Specular White Eye Glint */}
-                <div className="w-0.5 h-0.5 rounded-full bg-white self-start ml-0.5 mt-0.5 opacity-90" />
-              </motion.div>
-            </motion.div>
-          </div>
-
+              className="w-2 h-4.5 rounded-full bg-[#111317] shadow-inner will-change-transform"
+            />
+          </motion.div>
         </div>
-
-        {/* Hover Micro Badge Tag "AZTEK AI" */}
-        <motion.div
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            y: isHovered ? 2 : -2,
-          }}
-          transition={{ duration: 0.15 }}
-          className="text-[9px] font-black tracking-widest text-cyan-500 dark:text-cyan-300 text-center uppercase drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
-        >
-          SCAN
-        </motion.div>
       </motion.div>
 
-      {/* 3. Sleek Precision Center Micro-Dot */}
+      {/* 3. Center Precision Point Micro-Dot */}
       <motion.div
         style={{
           x: mouseX,
