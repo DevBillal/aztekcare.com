@@ -39,10 +39,10 @@ export default function Navbar() {
       <header className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center">
         {/* Buttery Smooth Metamorphosis Bar (Pure GPU-accelerated cubic-bezier transition) */}
         <div
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`pointer-events-auto flex items-center justify-between border-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-card/85 dark:bg-[#0c1021]/85 backdrop-blur-2xl border border-border/80 dark:border-white/[0.12] shadow-[0_20px_50px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
-              : "mt-0 w-full max-w-6xl pt-6 sm:pt-8 px-6 sm:px-10 bg-transparent border border-transparent shadow-none"
+              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-card/85 dark:bg-[#0c1021]/85 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.18)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
+              : "mt-0 w-full max-w-6xl pt-6 sm:pt-8 px-6 sm:px-10 bg-transparent shadow-none"
           }`}
         >
           {/* Left: Brand Icon Box + Text (Exact Match to Screenshot) */}
@@ -98,7 +98,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            <div className="flex items-center gap-2 pl-2 border-l border-border/60 dark:border-white/10 ml-2">
+            <div className="flex items-center gap-2.5 ml-2">
               {/* Theme Switcher (Rounded-full, matching button height) */}
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
