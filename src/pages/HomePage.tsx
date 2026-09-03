@@ -111,7 +111,7 @@ export default function HomePage() {
     <div className="w-full relative overflow-x-hidden">
       
       {/* 1. CINEMATIC WELCOMING HERO SECTION WITH DYNAMIC AMBIENT MOTIONS */}
-      <section className="relative min-h-[90vh] sm:min-h-[94vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 sm:px-6 text-center overflow-hidden">
+      <section className="relative min-h-[92vh] sm:min-h-[96vh] flex flex-col items-center justify-center pt-36 sm:pt-44 pb-20 px-4 sm:px-6 text-center overflow-hidden">
         
         {/* Dynamic Pulsing Ambient Mesh */}
         <div className="absolute inset-0 ambient-cinematic-glow pointer-events-none" />

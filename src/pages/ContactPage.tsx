@@ -85,7 +85,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="w-full pt-28 pb-20 px-4 sm:px-6 relative">
+    <div className="w-full pt-36 sm:pt-40 pb-24 px-4 sm:px-6 relative">
       <div className="max-w-6xl mx-auto space-y-20">
         
         {/* Page Header */}
