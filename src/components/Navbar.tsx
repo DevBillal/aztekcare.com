@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Menu, Moon, Sun, MessageCircle, X, ArrowRight, ArrowUpRight, Wrench } from "lucide-react"
+import { Menu, Moon, Sun, MessageCircle, X, ArrowRight, ArrowUpRight, Wrench, Search } from "lucide-react"
 import { useTheme } from "./ThemeProvider"
 import { motion, AnimatePresence } from "framer-motion"
+import RepairTrackerModal from "./RepairTrackerModal"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [isTrackerOpen, setIsTrackerOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const location = useLocation()
 
@@ -109,20 +111,20 @@ export default function Navbar() {
                 <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </button>
 
-              {/* Apple Cupertino Royal Blue "Get Quote" Pill */}
-              <motion.a
-                href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center select-none"
+              {/* Creative Customer-Focused "Track Repair" Capsule Pill */}
+              <motion.button
+                onClick={() => setIsTrackerOpen(true)}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="h-8 px-3.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium text-xs tracking-normal transition-all flex items-center gap-2 cursor-pointer shadow-[0_2px_8px_rgba(0,113,227,0.35)] select-none border border-white/20"
               >
-                <div className="h-8 px-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium text-xs tracking-normal transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_2px_8px_rgba(0,113,227,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] border border-white/20">
-                  <MessageCircle className="w-3.5 h-3.5 text-white/95" />
-                  <span>Get Quote</span>
-                </div>
-              </motion.a>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <Search className="w-3.5 h-3.5 text-white/95" />
+                <span>Track Repair</span>
+              </motion.button>
             </div>
           </div>
 
@@ -180,7 +182,22 @@ export default function Navbar() {
               })}
             </nav>
 
-            <div className="pt-3 border-t border-border/60 dark:border-white/10">
+            <div className="pt-3 border-t border-border/60 dark:border-white/10 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  setIsMobileOpen(false)
+                  setIsTrackerOpen(true)
+                }}
+                className="w-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold h-11 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <Search className="w-4 h-4 text-white" />
+                <span>Track Repair Status</span>
+              </button>
+
               <a
                 href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
                 target="_blank"
@@ -188,15 +205,21 @@ export default function Navbar() {
                 onClick={() => setIsMobileOpen(false)}
                 className="block"
               >
-                <button className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold h-11 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-blue-500/25">
-                  <MessageCircle className="w-4 h-4 text-white" />
-                  <span>Instant WhatsApp Quote</span>
+                <button className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-semibold h-10 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer border border-border/60">
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>WhatsApp Support</span>
                 </button>
               </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Interactive Customer Repair Tracker & Instant Booking Portal */}
+      <RepairTrackerModal 
+        isOpen={isTrackerOpen} 
+        onClose={() => setIsTrackerOpen(false)} 
+      />
     </>
   )
 }
