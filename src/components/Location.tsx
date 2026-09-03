@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { MapPin, Navigation } from "lucide-react"
 import { Button } from "./ui/button"
 
@@ -6,8 +7,14 @@ export default function Location() {
     <section id="location" className="py-20 sm:py-28 bg-secondary/30 relative border-t border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="max-w-2xl mb-14 text-left">
+        {/* Section Header with Scroll Reveal */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-14 text-left"
+        >
           <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
             Store Directions
           </p>
@@ -17,9 +24,15 @@ export default function Location() {
           <p className="text-sm sm:text-base text-muted-foreground mt-2">
             Alia Madrasha Market, Ground Floor, Shop No. 20, Mijan Road, Feni, Bangladesh.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-6 bg-card rounded-2xl overflow-hidden border border-border/80 shadow-xs">
+        <motion.div 
+          initial={{ opacity: 0, y: 35, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="grid lg:grid-cols-12 gap-6 bg-card rounded-2xl overflow-hidden border border-border/80 shadow-lg"
+        >
           
           {/* Address Details */}
           <div className="p-6 sm:p-8 lg:col-span-4 flex flex-col justify-between text-left space-y-6">
@@ -62,7 +75,7 @@ export default function Location() {
             />
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   )

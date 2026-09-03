@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import {
   Accordion,
   AccordionContent,
@@ -37,8 +38,14 @@ export default function FAQ() {
     <section id="faq" className="py-20 sm:py-28 bg-secondary/30 relative border-t border-border/60">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="max-w-2xl mb-14 text-left">
+        {/* Section Header with Scroll Reveal */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-14 text-left"
+        >
           <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
             Frequently Asked Questions
           </p>
@@ -46,25 +53,32 @@ export default function FAQ() {
             Answers to common <br />
             <span className="font-normal text-muted-foreground">repair inquiries.</span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Minimal iOS Accordion */}
-        <Accordion className="w-full space-y-3">
-          {faqs.map((faq, index) => (
-            <AccordionItem 
-              key={index} 
-              value={`item-${index}`}
-              className="bg-card border border-border/80 rounded-2xl px-5 sm:px-6 py-1 transition-all text-left shadow-xs"
-            >
-              <AccordionTrigger className="text-left font-semibold text-sm sm:text-base hover:text-foreground hover:no-underline py-4 text-foreground">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed text-xs sm:text-sm pb-4 pt-1 border-t border-border/40 mt-1">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        {/* Minimal iOS Accordion with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Accordion className="w-full space-y-3">
+            {faqs.map((faq, index) => (
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`}
+                className="bg-card border border-border/80 rounded-2xl px-5 sm:px-6 py-1 transition-all text-left shadow-xs hover:border-primary/30"
+              >
+                <AccordionTrigger className="text-left font-semibold text-sm sm:text-base hover:text-foreground hover:no-underline py-4 text-foreground">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed text-xs sm:text-sm pb-4 pt-1 border-t border-border/40 mt-1">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
 
       </div>
     </section>

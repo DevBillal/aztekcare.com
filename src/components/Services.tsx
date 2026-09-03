@@ -92,8 +92,14 @@ export default function Services() {
     <section id="services" className="py-20 sm:py-28 bg-secondary/30 relative border-t border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        {/* Apple-style Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        {/* Apple-style Section Header with Scroll Reveal */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-70px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-2xl mx-auto mb-14"
+        >
           <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
             Engineered Capabilities
           </p>
@@ -104,22 +110,23 @@ export default function Services() {
           <p className="text-sm sm:text-base text-muted-foreground mt-4 leading-relaxed">
             From everyday screen and battery swaps to complex microscopic micro-soldering, our certified technicians provide transparent same-day solutions.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Flagship Bento Cards (Top Row) */}
+        {/* Flagship Bento Cards (Top Row) with Staggered Scroll-In */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
           {flagshipServices.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between hover:border-foreground/30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)] group text-left"
+              initial={{ opacity: 0, y: 35, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.65, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.12)] transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)] group text-left cursor-default"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center">
+                  <div className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center group-hover:scale-105 transition-transform">
                     {service.icon}
                   </div>
                   {service.tag && (
@@ -144,21 +151,22 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Standard Clean Grid (Bottom Grid) */}
+        {/* Standard Clean Grid (Bottom Grid) with Staggered Scroll-In */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {standardServices.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="rounded-xl bg-card/60 border border-border/70 p-4 sm:p-5 hover:bg-card hover:border-foreground/20 transition-all text-left group"
+              initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.55, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4, transition: { duration: 0.25 } }}
+              className="rounded-xl bg-card/60 border border-border/70 p-4 sm:p-5 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all text-left group cursor-default"
             >
-              <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center mb-3 text-foreground group-hover:text-primary transition-colors">
+              <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center mb-3 text-foreground group-hover:text-primary group-hover:scale-105 transition-all">
                 {service.icon}
               </div>
-              <h4 className="font-bold text-sm text-foreground mb-1">
+              <h4 className="font-bold text-sm text-foreground mb-1 group-hover:text-primary transition-colors">
                 {service.title}
               </h4>
               <p className="text-xs text-muted-foreground leading-relaxed">

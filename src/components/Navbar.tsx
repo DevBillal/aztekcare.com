@@ -38,7 +38,12 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center">
+      <motion.header
+        initial={{ y: -35, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center"
+      >
         {/* Buttery Smooth Metamorphosis Bar (Pure GPU-accelerated cubic-bezier transition) */}
         <div
           className={`pointer-events-auto flex items-center justify-between border-0 border-none outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -149,7 +154,7 @@ export default function Navbar() {
           </div>
 
         </div>
-      </header>
+      </motion.header>
 
       {/* Floating Minimal Mobile Drawer */}
       <AnimatePresence>

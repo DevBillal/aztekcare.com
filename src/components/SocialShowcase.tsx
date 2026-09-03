@@ -118,8 +118,14 @@ export default function SocialShowcase() {
     <section id="social" className="py-20 sm:py-28 bg-background relative border-t border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        {/* Apple-style Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left">
+        {/* Apple-style Section Header with Scroll Reveal */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left"
+        >
           <div>
             <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
               Media & Live Demonstrations
@@ -145,7 +151,7 @@ export default function SocialShowcase() {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Video Cards Grid */}
         <motion.div 

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { 
   MessageCircle, 
   ArrowRight, 
@@ -70,6 +70,30 @@ const issueTypes = [
   { id: "water", label: "Water / Liquid Damage", est: "3 - 5 Hours" },
 ]
 
+const heroStaggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const heroStaggerItem: Variants = {
+  hidden: { opacity: 0, y: 35, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.75,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+}
+
 export default function HomePage() {
   const [selectedBrand, setSelectedBrand] = useState(topBrands[0].name)
   const [selectedIssue, setSelectedIssue] = useState(issueTypes[0])
@@ -128,8 +152,9 @@ export default function HomePage() {
 
         {/* Floating Interactive Micro-Badges (Apple Keynote Hologram Feel) */}
         <motion.div
-          animate={{ y: [-8, 8, -8], rotate: [-1, 1.5, -1] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+          initial={{ opacity: 0, x: -60, filter: "blur(8px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ scale: 1.08 }}
           className="hidden xl:flex items-center gap-2.5 absolute left-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(37,99,235,0.15)] border border-blue-500/20 text-xs select-none cursor-default"
         >
@@ -146,8 +171,9 @@ export default function HomePage() {
         </motion.div>
 
         <motion.div
-          animate={{ y: [8, -8, 8], rotate: [1, -1.5, 1] }}
-          transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
+          initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ scale: 1.08 }}
           className="hidden xl:flex items-center gap-2.5 absolute right-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(37,99,235,0.15)] border border-blue-500/20 text-xs select-none cursor-default"
         >
@@ -160,14 +186,18 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8">
+        {/* Master Orchestrated Stagger Container */}
+        <motion.div 
+          variants={heroStaggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8"
+        >
           
           {/* Top Pill Badge with Interactive Spring Hover */}
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={heroStaggerItem}
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 backdrop-blur-xl border border-blue-200/80 dark:border-blue-800/60 text-[11px] sm:text-xs font-semibold tracking-wide text-blue-950 dark:text-blue-200 shadow-sm select-none cursor-pointer"
           >
             <span className="relative flex h-2 w-2">
@@ -181,36 +211,22 @@ export default function HomePage() {
 
           {/* Grand Welcoming Headline with Stagger Animation */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            variants={heroStaggerItem}
             className="space-y-2 select-none"
           >
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black tracking-[-0.03em] leading-[1.05] uppercase">
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="block text-foreground dark:text-metallic-cinematic drop-shadow-sm"
-              >
+              <span className="block text-foreground dark:text-metallic-cinematic drop-shadow-sm">
                 PROBLEMS TODAY.
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.25 }}
-                className="block text-blue-gradient drop-shadow-sm"
-              >
+              </span>
+              <span className="block text-blue-gradient drop-shadow-sm">
                 FIXED TODAY.
-              </motion.span>
+              </span>
             </h1>
           </motion.div>
 
           {/* Welcoming Narrative Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            variants={heroStaggerItem}
             className="max-w-2xl text-sm sm:text-base lg:text-lg text-muted-foreground font-normal leading-relaxed px-2"
           >
             Turning broken displays, shorted circuits, and dead smartphones into precision engineering — with microscopic mastery, genuine parts, and same-day care.
@@ -218,9 +234,7 @@ export default function HomePage() {
 
           {/* Two Signature iOS Capsule CTAs with Magnetic Spring Tap */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
+            variants={heroStaggerItem}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 w-full sm:w-auto"
           >
             <motion.a
@@ -256,9 +270,7 @@ export default function HomePage() {
 
           {/* iOS 26 Dynamic Island Live Status Pill */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            variants={heroStaggerItem}
             className="pt-4"
           >
             <div className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 px-5 py-2.5 rounded-full liquid-glass text-xs text-muted-foreground select-none shadow-md">
@@ -278,9 +290,7 @@ export default function HomePage() {
 
           {/* Scroll Down Indicator with Bouncing Motion */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
+            variants={heroStaggerItem}
             className="pt-6 select-none"
           >
             <a
@@ -302,7 +312,7 @@ export default function HomePage() {
             </a>
           </motion.div>
 
-        </div>
+        </motion.div>
       </section>
 
       {/* 2. UNIFIED INTERACTIVE DIAGNOSIS CONSOLE (One Combined Card with Rich Micro-Animations) */}

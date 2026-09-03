@@ -80,8 +80,14 @@ export default function Reviews() {
     <section id="reviews" className="py-20 sm:py-28 bg-secondary/30 relative border-t border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="max-w-2xl mb-14 text-left">
+        {/* Section Header with Scroll Reveal */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-14 text-left"
+        >
           <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase mb-2">
             Verified Experiences
           </p>
@@ -89,18 +95,19 @@ export default function Reviews() {
             Trusted by clients <br />
             <span className="font-normal text-muted-foreground">across Feni.</span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Minimal Testimonials Grid */}
+        {/* Minimal Testimonials Grid with Staggered Scroll-In */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {reviews.map((review, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: index * 0.05 }}
-              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between hover:border-foreground/30 transition-all text-left"
+              initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -5, transition: { duration: 0.25 } }}
+              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between hover:border-primary/40 hover:shadow-[0_10px_30px_rgba(37,99,235,0.08)] transition-all text-left cursor-default group"
             >
               <div className="space-y-3">
                 {/* Rating & Highlight */}
