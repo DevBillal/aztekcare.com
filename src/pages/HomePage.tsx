@@ -40,7 +40,7 @@ export default function HomePage() {
   const [selectedIssue, setSelectedIssue] = useState(issueTypes[0])
 
   const waMessage = encodeURIComponent(
-    `Hello AZTEK CARE! I would like to get a live repair estimate for my ${selectedBrand} (${selectedIssue.label}). Are technicians available today?`
+    "Hello AZTEK CARE! I would like to inquire about a device repair. Is a technician currently available today?"
   )
   const waLink = `https://wa.me/8801571423908?text=${waMessage}`
 

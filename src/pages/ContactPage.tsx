@@ -278,7 +278,7 @@ export default function ContactPage() {
 
               <div className="space-y-2">
                 <a
-                  href="https://wa.me/8801571423908"
+                  href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3.5 rounded-2xl bg-secondary/50 hover:bg-secondary border border-border/60 transition-all"
