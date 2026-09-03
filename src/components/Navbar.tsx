@@ -39,9 +39,9 @@ export default function Navbar() {
       <header className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center">
         {/* Buttery Smooth Metamorphosis Bar (Pure GPU-accelerated cubic-bezier transition) */}
         <div
-          className={`pointer-events-auto flex items-center justify-between border-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`pointer-events-auto flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl navbar-glass-scrolled"
+              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl apple-liquid-glass"
               : "mt-0 w-full max-w-6xl pt-6 sm:pt-8 px-6 sm:px-10 bg-transparent shadow-none"
           }`}
         >
@@ -80,7 +80,7 @@ export default function Navbar() {
                       whileTap={{ scale: 0.95 }}
                       className={`relative px-4 py-1.5 rounded-full text-xs sm:text-sm transition-colors duration-200 ${
                         isActive
-                          ? "bg-secondary/90 dark:bg-white/[0.12] text-foreground font-semibold shadow-xs border border-border/60 dark:border-white/[0.1]"
+                          ? "text-foreground font-semibold"
                           : "text-muted-foreground hover:text-foreground font-normal"
                       }`}
                     >
@@ -88,7 +88,7 @@ export default function Navbar() {
                         <motion.div
                           layoutId="activeNavTabPill"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          className="absolute inset-0 rounded-full bg-secondary/90 dark:bg-white/[0.12] border border-border/60 dark:border-white/[0.1] -z-10"
+                          className="absolute inset-0 rounded-full bg-white/85 dark:bg-white/[0.14] shadow-[0_2px_8px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] border border-white/60 dark:border-white/[0.15] -z-10"
                         />
                       )}
                       <span>{link.name}</span>
@@ -103,13 +103,13 @@ export default function Navbar() {
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 aria-label="Toggle theme"
-                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer hover:bg-secondary/80"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer hover:bg-black/5 dark:hover:bg-white/10"
               >
                 <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </button>
 
-              {/* Clean Minimalist Quiet-Luxury "Get Quote" Pill */}
+              {/* Apple Cupertino Royal Blue "Get Quote" Pill */}
               <motion.a
                 href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
                 target="_blank"
@@ -118,8 +118,8 @@ export default function Navbar() {
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center select-none"
               >
-                <div className="h-8 px-4 rounded-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-medium text-xs tracking-normal transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs">
-                  <MessageCircle className="w-3.5 h-3.5 text-white/90" />
+                <div className="h-8 px-4 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium text-xs tracking-normal transition-all flex items-center gap-1.5 cursor-pointer shadow-[0_2px_8px_rgba(0,113,227,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] border border-white/20">
+                  <MessageCircle className="w-3.5 h-3.5 text-white/95" />
                   <span>Get Quote</span>
                 </div>
               </motion.a>
