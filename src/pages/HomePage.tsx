@@ -39,10 +39,17 @@ export default function HomePage() {
   const [selectedBrand, setSelectedBrand] = useState(deviceBrands[0].name)
   const [selectedIssue, setSelectedIssue] = useState(issueTypes[0])
 
-  const waMessage = encodeURIComponent(
+  // General greeting for Hero CTA (no device or issue specified)
+  const generalWaMessage = encodeURIComponent(
     "Hello AZTEK CARE! I would like to inquire about a device repair. Is a technician currently available today?"
   )
-  const waLink = `https://wa.me/8801571423908?text=${waMessage}`
+  const generalWaLink = `https://wa.me/8801571423908?text=${generalWaMessage}`
+
+  // Dynamic booking link for Estimator section (includes selected brand & issue)
+  const estimatorWaMessage = encodeURIComponent(
+    `Hello AZTEK CARE! I would like to book a repair for my ${selectedBrand} (${selectedIssue.label}). Estimated duration: ${selectedIssue.est}. Are technicians available today?`
+  )
+  const estimatorWaLink = `https://wa.me/8801571423908?text=${estimatorWaMessage}`
 
   return (
     <div className="w-full relative overflow-x-hidden">
@@ -106,7 +113,7 @@ export default function HomePage() {
           >
             {/* Luminous Solid Capsule Button (like 'View Work' in screenshot) */}
             <a
-              href={waLink}
+              href={generalWaLink}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
@@ -286,7 +293,7 @@ export default function HomePage() {
               </div>
 
               <a
-                href={waLink}
+                href={estimatorWaLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block pt-2"
