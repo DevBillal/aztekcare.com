@@ -82,13 +82,13 @@ const heroStaggerContainer: Variants = {
 }
 
 const heroStaggerItem: Variants = {
-  hidden: { opacity: 0, y: 35, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 0.75,
+      duration: 0.7,
       ease: [0.16, 1, 0.3, 1] as const,
     },
   },
@@ -135,50 +135,100 @@ export default function HomePage() {
     <div className="w-full relative overflow-x-hidden">
       
       {/* 1. CINEMATIC WELCOMING HERO SECTION WITH DYNAMIC AMBIENT MOTIONS */}
-      <section className="relative min-h-[92vh] sm:min-h-[96vh] flex flex-col items-center justify-center pt-36 sm:pt-44 pb-20 px-4 sm:px-6 text-center overflow-hidden">
+      <section className="relative min-h-[90vh] sm:min-h-[94vh] flex flex-col items-center justify-center pt-32 sm:pt-40 pb-20 px-4 sm:px-6 text-center overflow-hidden">
         
         {/* Dynamic Pulsing Ambient Mesh */}
         <div className="absolute inset-0 ambient-cinematic-glow pointer-events-none" />
         <motion.div 
-          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.25, 0.15] }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
           transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-blue-600/20 dark:bg-blue-500/25 blur-[140px] rounded-full pointer-events-none" 
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-primary/20 blur-[130px] rounded-full pointer-events-none" 
         />
         <motion.div 
-          animate={{ scale: [1.1, 0.95, 1.1], opacity: [0.1, 0.2, 0.1] }}
+          animate={{ scale: [1.1, 0.95, 1.1], opacity: [0.08, 0.18, 0.08] }}
           transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[240px] bg-sky-500/15 dark:bg-sky-400/20 blur-[100px] rounded-full pointer-events-none" 
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[420px] h-[260px] bg-sky-400/15 dark:bg-sky-400/20 blur-[100px] rounded-full pointer-events-none" 
         />
 
-        {/* Floating Interactive Micro-Badges (Apple Keynote Hologram Feel) */}
+        {/* Visual Anchor: Precision Circuit Board & Motherboard Schematic Background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+          <svg 
+            className="hidden md:block absolute top-12 left-1/2 -translate-x-1/2 w-[1280px] h-[720px] opacity-[0.22] dark:opacity-[0.32]"
+            viewBox="0 0 1280 720"
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Smartphone Chassis Wireframe */}
+            <rect x="520" y="40" width="340" height="640" rx="44" stroke="currentColor" strokeWidth="1.5" className="text-primary/40" />
+            <rect x="540" y="60" width="300" height="600" rx="32" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/20" />
+            <path d="M640 50 H740" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary/60" />
+
+            {/* Central CPU / SoC Microchip */}
+            <rect x="620" y="240" width="140" height="140" rx="16" fill="currentColor" className="text-primary/10" stroke="currentColor" strokeWidth="2" />
+            <rect x="635" y="255" width="110" height="110" rx="10" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-amber-500/50" />
+            <text x="690" y="315" textAnchor="middle" fill="currentColor" className="text-primary font-mono text-[10px] font-bold tracking-widest uppercase">
+              BGA REBALL LAB
+            </text>
+
+            {/* Circuit Traces Radiating from Chip */}
+            <g stroke="currentColor" strokeWidth="1.5" className="text-primary/50">
+              {/* Left Traces */}
+              <path d="M620 270 H480 L440 230 H260" strokeDasharray="6 4" />
+              <path d="M620 310 H450 L400 360 H220" />
+              <path d="M620 350 H470 L420 410 H280" strokeDasharray="8 6" />
+
+              {/* Right Traces */}
+              <path d="M760 270 H900 L950 220 H1120" />
+              <path d="M760 310 H920 L970 360 H1140" strokeDasharray="6 4" />
+              <path d="M760 350 H890 L940 420 H1080" />
+
+              {/* Top / Bottom Traces */}
+              <path d="M660 240 V160 L620 120 V80" />
+              <path d="M720 240 V170 L760 130 V80" strokeDasharray="4 4" />
+              <path d="M660 380 V480 L620 520 V620" />
+              <path d="M720 380 V470 L780 530 V620" strokeDasharray="6 4" />
+            </g>
+
+            {/* Glowing IC Node Pulse Dots */}
+            <circle cx="260" cy="230" r="4" fill="currentColor" className="text-primary animate-ping" style={{ animationDuration: "3s" }} />
+            <circle cx="260" cy="230" r="3" fill="currentColor" className="text-primary" />
+            
+            <circle cx="1120" cy="220" r="4" fill="currentColor" className="text-amber-500 animate-ping" style={{ animationDuration: "2.5s" }} />
+            <circle cx="1120" cy="220" r="3" fill="currentColor" className="text-amber-500" />
+
+            <circle cx="400" cy="360" r="3" fill="currentColor" className="text-primary" />
+            <circle cx="970" cy="360" r="3" fill="currentColor" className="text-primary" />
+            <circle cx="780" cy="530" r="3" fill="currentColor" className="text-amber-500" />
+          </svg>
+        </div>
+
+        {/* Floating Interactive Micro-Badges */}
         <motion.div
-          initial={{ opacity: 0, x: -60, filter: "blur(8px)" }}
+          initial={{ opacity: 0, x: -50, filter: "blur(6px)" }}
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={{ scale: 1.08 }}
-          className="hidden xl:flex items-center gap-2.5 absolute left-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(37,99,235,0.15)] border border-blue-500/20 text-xs select-none cursor-default"
+          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden xl:flex items-center gap-2.5 absolute left-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(2,132,199,0.12)] border border-primary/25 text-xs select-none cursor-default"
         >
-          <div className="w-9 h-9 rounded-xl bg-blue-600/15 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-xs">
+          <div className="w-9 h-9 rounded-xl bg-primary/15 text-primary flex items-center justify-center shadow-xs">
             <Cpu className="w-4 h-4" />
           </div>
           <div className="text-left">
             <p className="font-bold text-foreground">Stereo Microscope</p>
             <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
               0.02mm Jumper Precision
             </p>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
+          initial={{ opacity: 0, x: 50, filter: "blur(6px)" }}
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.85, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={{ scale: 1.08 }}
-          className="hidden xl:flex items-center gap-2.5 absolute right-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(37,99,235,0.15)] border border-blue-500/20 text-xs select-none cursor-default"
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden xl:flex items-center gap-2.5 absolute right-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(2,132,199,0.12)] border border-primary/25 text-xs select-none cursor-default"
         >
-          <div className="w-9 h-9 rounded-xl bg-blue-600/15 text-blue-600 dark:text-blue-400 flex items-center justify-center shadow-xs">
-            <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+          <div className="w-9 h-9 rounded-xl bg-primary/15 text-primary flex items-center justify-center shadow-xs">
+            <ShieldCheck className="w-4 h-4 text-primary" />
           </div>
           <div className="text-left">
             <p className="font-bold text-foreground">100% Genuine Care</p>
@@ -194,28 +244,27 @@ export default function HomePage() {
           className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8"
         >
           
-          {/* Top Pill Badge with Interactive Spring Hover */}
+          {/* Top Pill Badge with Electric Primary Dot */}
           <motion.div
             variants={heroStaggerItem}
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 backdrop-blur-xl border border-blue-200/80 dark:border-blue-800/60 text-[11px] sm:text-xs font-semibold tracking-wide text-blue-950 dark:text-blue-200 shadow-sm select-none cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/25 text-[11px] sm:text-xs font-semibold tracking-wide text-foreground shadow-xs select-none"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600 dark:bg-blue-400" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
             <span>AVAILABLE TODAY</span>
             <span className="opacity-40">·</span>
-            <span className="text-blue-700 dark:text-blue-300">FENI SMARTPHONE LAB</span>
+            <span className="text-primary font-bold">FENI SMARTPHONE LAB</span>
           </motion.div>
 
-          {/* Grand Welcoming Headline with Stagger Animation */}
+          {/* Grand Welcoming Headline */}
           <motion.div
             variants={heroStaggerItem}
             className="space-y-2 select-none"
           >
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black tracking-[-0.03em] leading-[1.05] uppercase">
-              <span className="block text-foreground dark:text-metallic-cinematic drop-shadow-sm">
+              <span className="block text-foreground drop-shadow-sm">
                 PROBLEMS TODAY.
               </span>
               <span className="block text-blue-gradient drop-shadow-sm">
@@ -232,63 +281,55 @@ export default function HomePage() {
             Turning broken displays, shorted circuits, and dead smartphones into precision engineering — with microscopic mastery, genuine parts, and same-day care.
           </motion.p>
 
-          {/* Two Signature iOS Capsule CTAs with Magnetic Spring Tap */}
+          {/* Two Action CTAs: Electric Primary WhatsApp + Explore Services */}
           <motion.div
             variants={heroStaggerItem}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 w-full sm:w-auto"
           >
-            <motion.a
+            <a
               href={generalWaLink}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
               className="w-full sm:w-auto"
             >
-              <Button className="w-full sm:w-auto h-12 px-7 rounded-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-blue-500/25 transition-shadow hover:shadow-blue-500/40 flex items-center justify-center gap-2">
-                <MessageCircle className="w-4 h-4 text-white animate-bounce" style={{ animationDuration: "2s" }} />
+              <Button className="w-full sm:w-auto h-12 px-7 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xs sm:text-sm shadow-[0_4px_18px_rgba(2,132,199,0.35)] transition-all hover:scale-[1.02] active:scale-98 flex items-center justify-center gap-2">
+                <MessageCircle className="w-4 h-4 text-primary-foreground animate-bounce" style={{ animationDuration: "2s" }} />
                 <span>Instant WhatsApp Quote</span>
               </Button>
-            </motion.a>
+            </a>
 
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="w-full sm:w-auto"
-            >
-              <Link to="/services" className="w-full sm:w-auto block">
-                <Button
-                  variant="outline"
-                  className="w-full sm:w-auto h-12 px-7 rounded-full bg-secondary/50 dark:bg-white/[0.04] hover:bg-secondary border-border/80 text-foreground font-medium text-xs sm:text-sm transition-all"
-                >
-                  <span>Explore All Services</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1.5 opacity-60 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </motion.div>
+            <Link to="/services" className="w-full sm:w-auto block">
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto h-12 px-7 rounded-full bg-secondary/50 dark:bg-white/[0.04] hover:bg-secondary border-border/80 text-foreground font-medium text-xs sm:text-sm transition-all"
+              >
+                <span>Explore All Services</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5 opacity-60 text-primary group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </motion.div>
 
-          {/* iOS 26 Dynamic Island Live Status Pill */}
+          {/* Dynamic Island Live Status Pill with New Primary Checkmarks */}
           <motion.div
             variants={heroStaggerItem}
             className="pt-4"
           >
             <div className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 px-5 py-2.5 rounded-full liquid-glass text-xs text-muted-foreground select-none shadow-md">
               <span className="flex items-center gap-1.5 text-foreground font-medium">
-                <Check className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 stroke-[3]" /> Same-Day Turnaround
+                <Check className="w-3.5 h-3.5 text-primary stroke-[3]" /> Same-Day Turnaround
               </span>
               <span className="hidden sm:inline text-border">·</span>
               <span className="flex items-center gap-1.5 text-foreground font-medium">
-                <Cpu className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> Motherboard Specialist
+                <Cpu className="w-3.5 h-3.5 text-primary" /> Motherboard Specialist
               </span>
               <span className="hidden sm:inline text-border">·</span>
               <span className="flex items-center gap-1.5 text-foreground font-medium">
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> 100% Data Confidential
+                <ShieldCheck className="w-3.5 h-3.5 text-primary" /> 100% Data Confidential
               </span>
             </div>
           </motion.div>
 
-          {/* Scroll Down Indicator with Bouncing Motion */}
+          {/* Scroll Down Indicator */}
           <motion.div
             variants={heroStaggerItem}
             className="pt-6 select-none"
@@ -305,7 +346,7 @@ export default function HomePage() {
               <motion.span 
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-                className="text-blue-600 dark:text-blue-400 text-sm"
+                className="text-primary text-sm font-bold"
               >
                 ↓
               </motion.span>
@@ -315,7 +356,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* 2. UNIFIED INTERACTIVE DIAGNOSIS CONSOLE (One Combined Card with Rich Micro-Animations) */}
+      {/* 2. UNIFIED INTERACTIVE DIAGNOSIS CONSOLE */}
       <section id="estimator" className="py-20 sm:py-28 relative border-t border-border/60 bg-secondary/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           
@@ -326,26 +367,26 @@ export default function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 text-[11px] font-semibold tracking-wider uppercase border border-blue-200/60 dark:border-blue-800/60 mb-3">
-              <Radio className="w-3 h-3 text-blue-600 dark:text-blue-400 animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-semibold tracking-wider uppercase border border-primary/25 mb-3">
+              <Radio className="w-3 h-3 text-primary animate-pulse" />
               Smart Hardware Terminal
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
               Select device & issue. <br />
-              <span className="font-normal text-blue-600 dark:text-blue-400">Get live fix duration.</span>
+              <span className="font-normal text-blue-gradient">Get live fix duration.</span>
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-lg mx-auto mt-2">
               Choose your device brand and hardware fault below to see our typical turnaround time.
             </p>
           </motion.div>
 
-          {/* Unified Apple-Style Hardware Diagnostic Console (One Combined Seamless Card) */}
+          {/* Diagnostic Console Card with New Palette Border & Glow */}
           <motion.div 
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-3xl bg-card border border-border/80 shadow-xl overflow-hidden"
+            className="rounded-3xl bg-card border border-border/80 dark:border-primary/25 shadow-xl dark:shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_24px_rgba(14,165,233,0.08)] overflow-hidden"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border/60">
               
@@ -356,62 +397,58 @@ export default function HomePage() {
                 <div className="space-y-2 relative" ref={dropdownRef}>
                   <div className="flex items-center justify-between">
                     <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
-                      <Smartphone className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                      <Smartphone className="w-3.5 h-3.5 text-primary" />
                       1. Choose Your Brand
                     </label>
                     <span className="text-[11px] text-muted-foreground">
-                      Selected: <strong className="text-blue-600 dark:text-blue-400">{selectedBrand}</strong>
+                      Selected: <strong className="text-primary font-bold">{selectedBrand}</strong>
                     </span>
                   </div>
 
                   <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 p-1.5 bg-secondary rounded-2xl border border-border/60">
                     {topBrands.map((b) => (
-                      <motion.button
+                      <button
                         key={b.id}
                         type="button"
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.95 }}
                         onClick={() => {
                           setSelectedBrand(b.name)
                           setIsOtherOpen(false)
                         }}
                         className={`py-2 px-2 text-xs font-medium rounded-xl transition-colors text-center truncate cursor-pointer relative ${
                           selectedBrand === b.name
-                            ? "bg-blue-600 text-white shadow-sm font-semibold"
+                            ? "bg-primary text-primary-foreground shadow-sm font-semibold"
                             : "text-muted-foreground hover:text-foreground hover:bg-background/50"
                         }`}
                       >
                         {selectedBrand === b.name && (
                           <motion.div
                             layoutId="activeBrandPill"
-                            className="absolute inset-0 bg-blue-600 rounded-xl -z-10 shadow-md shadow-blue-500/30"
+                            className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-md shadow-primary/30"
                             transition={{ type: "spring", stiffness: 450, damping: 30 }}
                           />
                         )}
                         <span className="relative z-10">{b.name}</span>
-                      </motion.button>
+                      </button>
                     ))}
 
                     {/* "Others" Dropdown Button */}
-                    <motion.button
+                    <button
                       type="button"
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.95 }}
                       onClick={() => setIsOtherOpen(!isOtherOpen)}
                       className={`py-2 px-2 text-xs font-medium rounded-xl transition-all flex items-center justify-center gap-1 text-center truncate cursor-pointer border ${
                         !isTopBrandSelected
-                          ? "bg-blue-600 text-white border-blue-600 font-semibold shadow-sm shadow-blue-500/30"
+                          ? "bg-primary text-primary-foreground border-primary font-semibold shadow-sm shadow-primary/30"
                           : isOtherOpen
-                          ? "bg-background text-foreground border-blue-500 font-semibold shadow-xs"
+                          ? "bg-background text-foreground border-primary font-semibold shadow-xs"
                           : "text-muted-foreground hover:text-foreground border-transparent hover:bg-background/50"
                       }`}
                     >
                       <span className="truncate">{!isTopBrandSelected ? selectedBrand : "Others"}</span>
                       <ChevronDown className={`w-3 h-3 shrink-0 transition-transform duration-200 ${isOtherOpen ? "rotate-180" : ""}`} />
-                    </motion.button>
+                    </button>
                   </div>
 
-                  {/* World Mobile Brands Dropdown Menu with Spring Entrance */}
+                  {/* World Mobile Brands Dropdown Menu */}
                   <AnimatePresence>
                     {isOtherOpen && (
                       <motion.div
@@ -423,7 +460,7 @@ export default function HomePage() {
                       >
                         <div className="flex items-center justify-between pb-2 border-b border-border/60">
                           <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
-                            <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 animate-spin" style={{ animationDuration: "10s" }} />
+                            <Globe className="w-3.5 h-3.5 text-primary animate-spin" style={{ animationDuration: "10s" }} />
                             <span>Select Any Global Brand ({worldBrands.length} brands)</span>
                           </div>
                           <button
@@ -443,19 +480,17 @@ export default function HomePage() {
                             value={brandSearch}
                             onChange={(e) => setBrandSearch(e.target.value)}
                             placeholder="Search (e.g. Vivo, Infinix, Nothing, Tecno, Symphony)..."
-                            className="w-full pl-8 pr-3 py-2 text-xs rounded-xl bg-secondary/80 border border-border/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                            className="w-full pl-8 pr-3 py-2 text-xs rounded-xl bg-secondary/80 border border-border/70 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                             autoFocus
                           />
                         </div>
 
-                        {/* Brand Chips Grid with Spring Hover */}
+                        {/* Brand Chips Grid */}
                         <div className="max-h-52 overflow-y-auto pr-1 grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs">
                           {filteredBrands.map((brand) => (
-                            <motion.button
+                            <button
                               key={brand}
                               type="button"
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.97 }}
                               onClick={() => {
                                 setSelectedBrand(brand)
                                 setIsOtherOpen(false)
@@ -463,32 +498,30 @@ export default function HomePage() {
                               }}
                               className={`p-2 rounded-xl text-left truncate transition-colors text-[11px] cursor-pointer flex items-center justify-between ${
                                 selectedBrand === brand
-                                  ? "bg-blue-600 text-white font-semibold shadow-xs"
-                                  : "bg-secondary/40 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-foreground"
+                                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
+                                  : "bg-secondary/40 hover:bg-primary/10 text-foreground"
                               }`}
                             >
                               <span className="truncate">{brand}</span>
                               {selectedBrand === brand && (
-                                <Check className="w-3 h-3 text-white shrink-0 ml-1" />
+                                <Check className="w-3 h-3 text-primary-foreground shrink-0 ml-1" />
                               )}
-                            </motion.button>
+                            </button>
                           ))}
 
                           {/* Custom Brand If Search has no direct match */}
                           {brandSearch && !filteredBrands.some((b) => b.toLowerCase() === brandSearch.toLowerCase()) && (
-                            <motion.button
+                            <button
                               type="button"
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.97 }}
                               onClick={() => {
                                 setSelectedBrand(brandSearch)
                                 setIsOtherOpen(false)
                                 setBrandSearch("")
                               }}
-                              className="col-span-2 sm:col-span-3 p-2.5 rounded-xl text-left bg-blue-50 dark:bg-blue-950/40 border border-blue-300 dark:border-blue-800 text-blue-600 dark:text-blue-400 font-medium text-[11px] cursor-pointer"
+                              className="col-span-2 sm:col-span-3 p-2.5 rounded-xl text-left bg-primary/10 border border-primary/30 text-primary font-medium text-[11px] cursor-pointer"
                             >
                               Use custom brand: <strong>"{brandSearch}"</strong>
-                            </motion.button>
+                            </button>
                           )}
                         </div>
                       </motion.div>
@@ -496,52 +529,45 @@ export default function HomePage() {
                   </AnimatePresence>
                 </div>
 
-                {/* 2. Issue Selector with Micro-Interactions */}
+                {/* 2. Issue Selector */}
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 uppercase tracking-wide">
-                    <Cpu className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                    <Cpu className="w-3.5 h-3.5 text-primary" />
                     2. Select Hardware Symptom
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {issueTypes.map((issue) => (
-                      <motion.button
+                      <button
                         key={issue.id}
                         type="button"
-                        whileHover={{ scale: 1.015, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
                         onClick={() => setSelectedIssue(issue)}
                         className={`p-3.5 rounded-2xl border text-left transition-all flex items-center justify-between cursor-pointer ${
                           selectedIssue.id === issue.id
-                            ? "bg-blue-50/90 dark:bg-blue-950/40 border-blue-500 text-foreground font-semibold shadow-md shadow-blue-500/10 ring-1 ring-blue-500/30"
+                            ? "bg-primary/10 border-primary text-foreground font-semibold shadow-md shadow-primary/10 ring-1 ring-primary/30"
                             : "bg-secondary/40 hover:bg-secondary/70 border-border/70 text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         <div className="flex items-center gap-2">
                           {selectedIssue.id === issue.id ? (
-                            <motion.div
-                              initial={{ scale: 0, rotate: -20 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              transition={{ type: "spring", stiffness: 450, damping: 25 }}
-                              className="w-4 h-4 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0"
-                            >
+                            <div className="w-4 h-4 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
                               <Check className="w-2.5 h-2.5 stroke-[3]" />
-                            </motion.div>
+                            </div>
                           ) : (
                             <div className="w-4 h-4 rounded-full border border-border/80 shrink-0" />
                           )}
                           <span className="text-xs font-medium text-foreground">{issue.label}</span>
                         </div>
-                        <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/80">
+                        <span className="text-[10px] font-semibold text-primary px-2 py-0.5 rounded-full bg-primary/15">
                           {issue.est}
                         </span>
-                      </motion.button>
+                      </button>
                     ))}
                   </div>
                 </div>
 
               </div>
 
-              {/* Right Column: Live Reactive Flight-Board Summary (Smooth Data Flip Animation) */}
+              {/* Right Column: Live Reactive Flight-Board Summary */}
               <div className="lg:col-span-5 p-6 sm:p-8 bg-secondary/30 dark:bg-white/[0.02] flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center justify-between border-b border-border/60 pb-4">
@@ -549,13 +575,10 @@ export default function HomePage() {
                       <h3 className="font-bold text-base text-foreground">Live Diagnosis Summary</h3>
                       <p className="text-xs text-muted-foreground">Feni Main Branch · Alia Madrasha Market</p>
                     </div>
-                    <motion.div 
-                      whileHover={{ rotate: 180 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-8 h-8 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center cursor-pointer"
-                    >
+                    {/* Amber accent pulse badge */}
+                    <div className="w-8 h-8 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center border border-amber-500/20">
                       <Zap className="w-4 h-4" />
-                    </motion.div>
+                    </div>
                   </div>
 
                   <div className="space-y-3.5 text-xs pt-4">
@@ -563,35 +586,17 @@ export default function HomePage() {
                     {/* Reactive Animated Brand */}
                     <div className="flex items-center justify-between py-1">
                       <span className="text-muted-foreground">Device Brand:</span>
-                      <AnimatePresence mode="wait">
-                        <motion.span
-                          key={selectedBrand}
-                          initial={{ opacity: 0, x: 8 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -8 }}
-                          transition={{ duration: 0.2 }}
-                          className="font-semibold text-foreground px-2 py-0.5 rounded-md bg-background border border-border/60 shadow-xs"
-                        >
-                          {selectedBrand}
-                        </motion.span>
-                      </AnimatePresence>
+                      <span className="font-semibold text-foreground px-2 py-0.5 rounded-md bg-background border border-border/60 shadow-xs">
+                        {selectedBrand}
+                      </span>
                     </div>
 
                     {/* Reactive Animated Issue */}
                     <div className="flex items-center justify-between py-1">
                       <span className="text-muted-foreground">Component Issue:</span>
-                      <AnimatePresence mode="wait">
-                        <motion.span
-                          key={selectedIssue.id}
-                          initial={{ opacity: 0, x: 8 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -8 }}
-                          transition={{ duration: 0.2 }}
-                          className="font-semibold text-blue-600 dark:text-blue-400 text-right"
-                        >
-                          {selectedIssue.label}
-                        </motion.span>
-                      </AnimatePresence>
+                      <span className="font-semibold text-primary text-right">
+                        {selectedIssue.label}
+                      </span>
                     </div>
 
                     <div className="flex items-center justify-between py-1">
@@ -605,43 +610,33 @@ export default function HomePage() {
                     {/* Reactive Animated Est Duration */}
                     <div className="flex items-center justify-between py-1 border-t border-border/50 pt-2.5">
                       <span className="text-muted-foreground">Est. Fix Duration:</span>
-                      <AnimatePresence mode="wait">
-                        <motion.span
-                          key={selectedIssue.est}
-                          initial={{ scale: 1.15, color: "#2563eb" }}
-                          animate={{ scale: 1, color: "inherit" }}
-                          transition={{ duration: 0.3 }}
-                          className="font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1"
-                        >
-                          <Clock className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "12s" }} />
-                          {selectedIssue.est}
-                        </motion.span>
-                      </AnimatePresence>
+                      <span className="font-bold text-primary flex items-center gap-1 text-sm">
+                        <Clock className="w-3.5 h-3.5" />
+                        {selectedIssue.est}
+                      </span>
                     </div>
 
                   </div>
                 </div>
 
-                {/* Animated Confirm Booking Button */}
+                {/* Confirm Booking Button with High-Conversion CTA */}
                 <div className="space-y-3 pt-2">
-                  <motion.a
+                  <a
                     href={estimatorWaLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
                     className="block"
                   >
-                    <Button className="w-full h-12 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm rounded-2xl shadow-lg shadow-blue-500/25 transition-shadow hover:shadow-blue-500/40 flex items-center justify-center gap-2 group">
-                      <MessageCircle className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
+                    <Button className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xs sm:text-sm rounded-2xl shadow-lg shadow-primary/25 transition-all hover:scale-[1.01] active:scale-98 flex items-center justify-center gap-2 group">
+                      <MessageCircle className="w-4 h-4 text-primary-foreground group-hover:scale-110 transition-transform" />
                       <span>Confirm Booking via WhatsApp</span>
                       <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
                     </Button>
-                  </motion.a>
+                  </a>
 
                   <div className="flex items-center justify-center gap-3 text-[11px] text-muted-foreground">
                     <span className="flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" /> Genuine Parts
+                      <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Genuine Parts
                     </span>
                     <span>·</span>
                     <span>Zero Advance Payment</span>
@@ -656,17 +651,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. FLAGSHIP SPECIALTY PREVIEWS WITH SMOOTH HOVER ELEVATIONS */}
+      {/* 3. FLAGSHIP SPECIALTY PREVIEWS */}
       <section className="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
-        >
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <p className="text-xs font-semibold tracking-wider text-blue-600 dark:text-blue-400 uppercase mb-2">
+            <p className="text-xs font-semibold tracking-wider text-primary uppercase mb-2">
               Microscopic Hardware
             </p>
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
@@ -675,105 +664,71 @@ export default function HomePage() {
           </div>
           <Link
             to="/services"
-            className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 group"
+            className="text-xs font-semibold text-primary hover:underline flex items-center gap-1 group"
           >
             <span>View all 11 repair services</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -8, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-blue-500/40 hover:shadow-[0_15px_30px_rgba(37,99,235,0.12)] transition-colors"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-5 shadow-xs">
+          <div className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-primary/40 hover:shadow-[0_12px_30px_rgba(2,132,199,0.1)] transition-all">
+            <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-xs">
               <Cpu className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-base text-foreground mb-2">Micro-Soldering & IC Level</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Repairing damaged motherboards, short circuits, audio ICs, and power anomalies under stereo microscopes.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -8, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 350, damping: 25, delay: 0.1 }}
-            className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-blue-500/40 hover:shadow-[0_15px_30px_rgba(37,99,235,0.12)] transition-colors"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-5 shadow-xs">
+          <div className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-primary/40 hover:shadow-[0_12px_30px_rgba(2,132,199,0.1)] transition-all">
+            <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-xs">
               <Sparkles className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-base text-foreground mb-2">OLED & Glass Lamination</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Dust-free chamber refurbishing with factory OCA lamination preserving original 120Hz ProMotion displays.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -8, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 350, damping: 25, delay: 0.2 }}
-            className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-blue-500/40 hover:shadow-[0_15px_30px_rgba(37,99,235,0.12)] transition-colors"
-          >
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-5 shadow-xs">
+          <div className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-primary/40 hover:shadow-[0_12px_30px_rgba(2,132,199,0.1)] transition-all">
+            <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-xs">
               <Wrench className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-base text-foreground mb-2">Face ID & Biometrics</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Precision dot projector alignment and flex re-soldering to fully restore Apple Face ID functionality.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* 4. LAB INVITATION FOOTER BANNER */}
+      {/* 4. LAB INVITATION FOOTER BANNER WITH AMBER ACCENT CTA */}
       <section className="pb-16 px-4 sm:px-6 max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-500/20"
-        >
+        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-primary/20">
           <div className="space-y-2 text-center md:text-left">
             <h3 className="text-xl sm:text-2xl font-bold">Have a device emergency in Feni?</h3>
-            <p className="text-xs sm:text-sm text-blue-100 max-w-md">
+            <p className="text-xs sm:text-sm text-primary-foreground/90 max-w-md">
               Visit our lab directly at Shop No. 20, Alia Madrasha Market or reach out for immediate assistance.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <motion.a
+            <a
               href="tel:+8801571423908"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="h-11 px-6 rounded-full bg-white text-blue-900 font-semibold text-xs flex items-center justify-center gap-2 hover:bg-white/90 transition-all shadow-xs"
+              className="h-11 px-6 rounded-full bg-white text-slate-900 font-bold text-xs flex items-center justify-center gap-2 hover:bg-white/95 transition-all shadow-xs"
             >
               <span>Call Hotline</span>
-            </motion.a>
-            <motion.div
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+            </a>
+            <Link
+              to="/contact"
+              className="h-11 px-6 rounded-full bg-primary-foreground/15 hover:bg-primary-foreground/25 text-primary-foreground font-semibold text-xs flex items-center justify-center border border-white/20 transition-all"
             >
-              <Link
-                to="/contact"
-                className="h-11 px-6 rounded-full bg-blue-800/60 hover:bg-blue-800 text-white font-medium text-xs flex items-center justify-center border border-white/20 transition-all"
-              >
-                <span>View Map & Desk</span>
-              </Link>
-            </motion.div>
+              <span>View Map & Desk</span>
+            </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
 
     </div>

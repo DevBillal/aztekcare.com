@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 import SplashScreen from "./components/SplashScreen"
@@ -8,12 +8,21 @@ import MobileBottomBar from "./components/MobileBottomBar"
 import CursorGlow from "./components/CursorGlow"
 import SmoothScroll from "./components/SmoothScroll"
 
-import HomePage from "./pages/HomePage"
-import ServicesPage from "./pages/ServicesPage"
-import AboutPage from "./pages/AboutPage"
-import ReviewsPage from "./pages/ReviewsPage"
-import VideosPage from "./pages/VideosPage"
-import ContactPage from "./pages/ContactPage"
+// Route-level code splitting so pages load on demand, reducing initial bundle size
+const HomePage = lazy(() => import("./pages/HomePage"))
+const ServicesPage = lazy(() => import("./pages/ServicesPage"))
+const AboutPage = lazy(() => import("./pages/AboutPage"))
+const ReviewsPage = lazy(() => import("./pages/ReviewsPage"))
+const VideosPage = lazy(() => import("./pages/VideosPage"))
+const ContactPage = lazy(() => import("./pages/ContactPage"))
+
+function PageFallback() {
+  return (
+    <div className="min-h-[60vh] w-full flex items-center justify-center">
+      <div className="w-6 h-6 rounded-full border-2 border-primary/25 border-t-primary animate-spin" />
+    </div>
+  )
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -38,16 +47,18 @@ function AnimatedRoutes() {
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
         className="w-full"
       >
-        <Routes location={location}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
-          <Route path="/videos" element={<VideosPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          {/* Fallback to Home */}
-          <Route path="*" element={<HomePage />} />
-        </Routes>
+        <Suspense fallback={<PageFallback />}>
+          <Routes location={location}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/videos" element={<VideosPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </Suspense>
       </motion.div>
     </AnimatePresence>
   )

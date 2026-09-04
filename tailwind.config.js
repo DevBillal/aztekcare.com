@@ -55,8 +55,8 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Outfit', '"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['Outfit', '"Hind Siliguri"', '"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['Outfit', '"Hind Siliguri"', '"Plus Jakarta Sans"', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

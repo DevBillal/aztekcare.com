@@ -131,7 +131,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
             {/* Header */}
             <div className="flex items-center justify-between p-5 sm:p-6 border-b border-border/60 dark:border-white/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-blue-600/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
@@ -159,7 +159,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                 onClick={() => setActiveTab("track")}
                 className={`flex-1 py-2 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                   activeTab === "track"
-                    ? "bg-white dark:bg-white/10 text-blue-600 dark:text-cyan-400 shadow-xs"
+                    ? "bg-white dark:bg-white/10 text-primary shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -170,7 +170,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                 onClick={() => setActiveTab("book")}
                 className={`flex-1 py-2 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                   activeTab === "book"
-                    ? "bg-white dark:bg-white/10 text-blue-600 dark:text-cyan-400 shadow-xs"
+                    ? "bg-white dark:bg-white/10 text-primary shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -190,11 +190,11 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                       value={ticketInput}
                       onChange={(e) => setTicketInput(e.target.value)}
                       placeholder="Enter Ticket ID (e.g. AZ-8924) or Phone"
-                      className="w-full h-11 pl-4 pr-24 rounded-xl bg-secondary/60 dark:bg-white/[0.05] border border-border/60 dark:border-white/10 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-cyan-400"
+                      className="w-full h-11 pl-4 pr-24 rounded-xl bg-secondary/60 dark:bg-white/[0.05] border border-border/60 dark:border-white/10 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <button
                       type="submit"
-                      className="absolute right-1.5 h-8 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs transition-colors flex items-center gap-1 shadow-xs"
+                      className="absolute right-1.5 h-8 px-4 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs transition-colors flex items-center gap-1 shadow-xs"
                     >
                       <Search className="w-3.5 h-3.5" />
                       <span>Track</span>
@@ -210,7 +210,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                         setTicketInput("AZ-8924")
                         setActiveTicket(DEMO_TICKETS["AZ-8924"])
                       }}
-                      className="px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-medium hover:underline text-[11px]"
+                      className="px-2.5 py-1 rounded-md bg-primary/10 text-primary font-medium hover:underline text-[11px]"
                     >
                       MacBook M1 (AZ-8924)
                     </button>
@@ -243,7 +243,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                             <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
                               activeTicket.progress === 100
                                 ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
-                                : "bg-blue-500/15 text-blue-600 dark:text-blue-400"
+                                : "bg-primary/15 text-primary"
                             }`}>
                               {activeTicket.status}
                             </span>
@@ -259,7 +259,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                         <div className="text-right shrink-0">
                           <span className="text-[10px] text-muted-foreground block">Estimated</span>
                           <span className="text-xs font-bold text-foreground flex items-center gap-1 justify-end">
-                            <Clock className="w-3 h-3 text-blue-600 dark:text-cyan-400" />
+                            <Clock className="w-3 h-3 text-primary" />
                             {activeTicket.estimatedTime}
                           </span>
                         </div>
@@ -269,7 +269,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                       <div>
                         <div className="flex justify-between text-xs font-medium mb-1.5">
                           <span className="text-muted-foreground">Repair Completion</span>
-                          <span className="font-bold text-blue-600 dark:text-cyan-400">
+                          <span className="font-bold text-primary">
                             {activeTicket.progress}%
                           </span>
                         </div>
@@ -278,7 +278,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                             initial={{ width: 0 }}
                             animate={{ width: `${activeTicket.progress}%` }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"
+                            className="h-full bg-gradient-to-r from-primary to-cyan-400 rounded-full"
                           />
                         </div>
                       </div>
@@ -290,13 +290,13 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                             {step.done ? (
                               <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                             ) : step.current ? (
-                              <div className="w-4 h-4 rounded-full border-2 border-blue-600 dark:border-cyan-400 flex items-center justify-center shrink-0">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-cyan-400 animate-ping" />
+                              <div className="w-4 h-4 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
                               </div>
                             ) : (
                               <div className="w-4 h-4 rounded-full border border-border/80 dark:border-white/20 shrink-0" />
                             )}
-                            <span className={step.done ? "text-foreground font-medium" : step.current ? "text-blue-600 dark:text-cyan-400 font-semibold" : "text-muted-foreground"}>
+                            <span className={step.done ? "text-foreground font-medium" : step.current ? "text-primary font-semibold" : "text-muted-foreground"}>
                               {step.label}
                             </span>
                           </div>
@@ -346,7 +346,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                             onClick={() => setSelectedDevice(item.name)}
                             className={`p-2.5 rounded-xl border text-xs font-medium flex flex-col items-center gap-1.5 transition-all ${
                               isSel
-                                ? "bg-blue-50 dark:bg-blue-950/40 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-bold"
+                                ? "bg-primary/10 border-primary text-primary font-bold"
                                 : "border-border/60 dark:border-white/10 text-muted-foreground hover:text-foreground"
                             }`}
                           >
@@ -377,7 +377,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                           onClick={() => setSelectedIssue(issue)}
                           className={`p-2 rounded-lg border text-[11px] text-left transition-all ${
                             selectedIssue === issue
-                              ? "bg-blue-50 dark:bg-blue-950/40 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 font-semibold"
+                              ? "bg-primary/10 border-primary text-primary font-semibold"
                               : "border-border/60 dark:border-white/10 text-muted-foreground hover:text-foreground"
                           }`}
                         >
@@ -412,7 +412,7 @@ export default function RepairTrackerModal({ isOpen, onClose }: RepairTrackerMod
                   <button
                     type="button"
                     onClick={handleWhatsAppBooking}
-                    className="w-full mt-2 h-11 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors shadow-sm"
+                    className="w-full mt-2 h-11 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm flex items-center justify-center gap-2 transition-colors shadow-sm"
                   >
                     <span>Instant Booking Confirmation</span>
                     <ArrowRight className="w-4 h-4" />

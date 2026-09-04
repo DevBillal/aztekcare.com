@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Menu, Moon, Sun, MessageCircle, X, ArrowRight, ArrowUpRight, Wrench, Search } from "lucide-react"
+import { Menu, Moon, Sun, MessageCircle, X, ArrowRight, Wrench, Search } from "lucide-react"
 import { useTheme } from "./ThemeProvider"
 import { motion, AnimatePresence } from "framer-motion"
 import RepairTrackerModal from "./RepairTrackerModal"
@@ -14,7 +14,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25)
+      setIsScrolled(window.scrollY > 20)
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -39,39 +39,37 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -35, opacity: 0 }}
+        initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center"
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center px-4 sm:px-6"
       >
-        {/* Buttery Smooth Metamorphosis Bar (Pure GPU-accelerated cubic-bezier transition) */}
+        {/* Metamorphosis Floating App Bar with zero layout jump */}
         <div
-          className={`pointer-events-auto flex items-center justify-between border-0 border-none outline-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`pointer-events-auto flex items-center justify-between transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "mt-3 sm:mt-4 mx-4 sm:mx-auto max-w-5xl w-full px-5 sm:px-7 py-2.5 sm:py-3 rounded-2xl apple-liquid-glass"
-              : "mt-0 w-full max-w-6xl pt-6 sm:pt-8 px-6 sm:px-10 bg-transparent shadow-none"
+              ? "mt-2 sm:mt-3 max-w-5xl w-full px-4 sm:px-6 h-14 sm:h-16 rounded-2xl apple-liquid-glass"
+              : "mt-0 max-w-6xl w-full px-3 sm:px-6 h-16 sm:h-20 bg-transparent shadow-none"
           }`}
         >
-          {/* Left: Brand Icon Box + Text (Exact Match to Screenshot) */}
+          {/* Left: Brand Icon Box + Text */}
           <Link
             to="/"
-            className="flex items-center gap-3 group cursor-pointer select-none shrink-0"
+            className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer select-none shrink-0 min-h-[44px]"
           >
-            {/* Square rounded icon box with clapper / hardware icon (like screenshot) */}
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-xl bg-blue-600/10 dark:bg-white/[0.08] border border-blue-500/20 dark:border-white/[0.14] text-blue-600 dark:text-white flex items-center justify-center font-bold text-sm shadow-xs transition-transform"
+            {/* Square rounded icon box with wrench hardware icon in new electric palette */}
+            <div 
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 dark:bg-primary/15 border border-primary/20 text-primary flex items-center justify-center font-bold text-sm shadow-xs transition-transform group-hover:scale-105"
             >
-              <Wrench className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-            </motion.div>
+              <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            </div>
 
             <span className="text-base sm:text-lg font-bold tracking-tight text-foreground">
-              aztek<span className="text-blue-600 dark:text-blue-400">care</span>
+              aztek<span className="text-primary">care</span>
             </span>
           </Link>
 
-          {/* Right: Clean Minimalist Nav Links (Exact Match to Screenshot) */}
+          {/* Right: Clean Minimalist Nav Links */}
           <div className="hidden md:flex items-center gap-1 sm:gap-2">
             <nav className="flex items-center gap-1">
               {navLinks.map((link) => {
@@ -80,14 +78,12 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     to={link.href}
-                    className="relative cursor-pointer select-none"
+                    className="relative cursor-pointer select-none min-h-[44px] flex items-center"
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`relative px-4 py-1.5 rounded-full text-xs sm:text-sm transition-colors duration-200 ${
+                    <div
+                      className={`relative px-3.5 py-1.5 rounded-full text-xs sm:text-sm transition-colors duration-200 ${
                         isActive
-                          ? "text-foreground font-semibold"
+                          ? "text-primary font-semibold"
                           : "text-muted-foreground hover:text-foreground font-normal"
                       }`}
                     >
@@ -95,76 +91,74 @@ export default function Navbar() {
                         <motion.div
                           layoutId="activeNavTabPill"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          className="absolute inset-0 rounded-full bg-white/85 dark:bg-white/[0.14] shadow-[0_2px_8px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] border border-white/60 dark:border-white/[0.15] -z-10"
+                          className="absolute inset-0 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/25 -z-10 shadow-xs"
                         />
                       )}
                       <span>{link.name}</span>
-                    </motion.div>
+                    </div>
                   </Link>
                 )
               })}
             </nav>
 
             <div className="flex items-center gap-2.5 ml-2">
-              {/* Theme Switcher (Rounded-full, matching button height) */}
+              {/* Theme Switcher (Accessible 44px touch-target) */}
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 aria-label="Toggle theme"
-                className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer hover:bg-black/5 dark:hover:bg-white/10"
+                className="w-9 h-9 sm:w-9 sm:h-9 min-h-[44px] min-w-[44px] rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer hover:bg-secondary"
               >
-                <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </button>
 
-              {/* Creative Customer-Focused "Track Repair" Capsule Pill */}
-              <motion.button
+              {/* High-Conversion "Track Repair" Capsule Pill with Energetic Amber Accent */}
+              <button
                 onClick={() => setIsTrackerOpen(true)}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="h-8 px-3.5 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-medium text-xs tracking-normal transition-all flex items-center gap-2 cursor-pointer shadow-[0_2px_8px_rgba(0,113,227,0.35)] select-none border border-white/20"
+                className="h-9 px-4 rounded-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold text-xs tracking-tight transition-all flex items-center gap-2 cursor-pointer shadow-[0_2px_12px_rgba(245,158,11,0.35)] select-none border border-amber-400/40 min-h-[44px] active:scale-95"
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-80" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
                 </span>
-                <Search className="w-3.5 h-3.5 text-white/95" />
+                <Search className="w-3.5 h-3.5 text-slate-950" />
                 <span>Track Repair</span>
-              </motion.button>
+              </button>
             </div>
           </div>
 
-          {/* Mobile Controls */}
+          {/* Mobile Controls (Fully accessible min 44x44px touch targets) */}
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               aria-label="Toggle theme"
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/60 border border-border/50"
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/70 border border-border/60 active:scale-95"
             >
-              <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </button>
 
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors cursor-pointer border border-border/60"
-              aria-label="Toggle menu"
+              className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors cursor-pointer border border-border/70 active:scale-95"
+              aria-label="Toggle navigation menu"
             >
-              {isMobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
 
         </div>
       </motion.header>
 
-      {/* Floating Minimal Mobile Drawer */}
+      {/* Floating Minimal Mobile Drawer (12px blur, battery & GPU efficient) */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -15, scale: 0.96 }}
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -15, scale: 0.96 }}
-            transition={{ type: "spring", stiffness: 350, damping: 28 }}
-            className="fixed top-20 inset-x-4 z-40 md:hidden bg-card/95 dark:bg-[#0c1021]/95 backdrop-blur-2xl border border-border/80 dark:border-white/10 rounded-2xl p-5 shadow-[0_25px_60px_rgba(0,0,0,0.35)] flex flex-col gap-3"
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed top-18 sm:top-20 inset-x-4 z-40 md:hidden bg-card/95 dark:bg-card/95 backdrop-blur-md border border-border/80 rounded-2xl p-4 shadow-xl flex flex-col gap-2"
           >
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => {
@@ -174,32 +168,33 @@ export default function Navbar() {
                     key={link.name}
                     to={link.href}
                     onClick={() => setIsMobileOpen(false)}
-                    className={`py-2.5 px-4 rounded-xl text-sm font-medium transition-colors flex items-center justify-between ${
+                    className={`min-h-[48px] px-4 rounded-xl text-sm font-medium transition-colors flex items-center justify-between ${
                       isActive
-                        ? "bg-blue-50 dark:bg-white/10 text-blue-600 dark:text-white font-semibold"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "bg-primary/10 text-primary font-semibold border border-primary/20"
+                        : "text-muted-foreground hover:text-foreground active:bg-secondary/50"
                     }`}
                   >
                     <span>{link.name}</span>
-                    <ArrowRight className="w-3.5 h-3.5 opacity-40" />
+                    <ArrowRight className="w-4 h-4 opacity-40" />
                   </Link>
                 )
               })}
             </nav>
 
-            <div className="pt-3 border-t border-border/60 dark:border-white/10 flex flex-col gap-2">
+            <div className="pt-3 border-t border-border/60 flex flex-col gap-2.5">
+              {/* High-Impact Amber "Track Repair Status" */}
               <button
                 onClick={() => {
                   setIsMobileOpen(false)
                   setIsTrackerOpen(true)
                 }}
-                className="w-full bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold h-11 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="w-full min-h-[48px] bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98"
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-80" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
                 </span>
-                <Search className="w-4 h-4 text-white" />
+                <Search className="w-4 h-4 text-slate-950" />
                 <span>Track Repair Status</span>
               </button>
 
@@ -210,8 +205,8 @@ export default function Navbar() {
                 onClick={() => setIsMobileOpen(false)}
                 className="block"
               >
-                <button className="w-full bg-secondary hover:bg-secondary/80 text-foreground font-semibold h-10 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer border border-border/60">
-                  <MessageCircle className="w-3.5 h-3.5 text-emerald-500" />
+                <button className="w-full min-h-[48px] bg-secondary hover:bg-secondary/80 text-foreground font-semibold rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer border border-border/70 active:scale-98">
+                  <MessageCircle className="w-4 h-4 text-emerald-500" />
                   <span>WhatsApp Support</span>
                 </button>
               </a>

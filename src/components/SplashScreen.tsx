@@ -12,8 +12,8 @@ export default function SplashScreen() {
       }}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background text-foreground select-none overflow-hidden"
     >
-      {/* Soft Ambient Radial Blue Glow */}
-      <div className="absolute w-[340px] h-[340px] rounded-full bg-blue-500/10 dark:bg-blue-500/15 blur-[90px] pointer-events-none" />
+      {/* Soft Ambient Radial Electric Primary Glow */}
+      <div className="absolute w-[340px] h-[340px] rounded-full bg-primary/10 blur-[90px] pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center text-center px-4">
         
@@ -24,11 +24,11 @@ export default function SplashScreen() {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-2.5 mb-2.5"
         >
-          <div className="w-9 h-9 rounded-xl bg-blue-600/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/25 flex items-center justify-center font-bold text-sm shadow-xs">
+          <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary border border-primary/25 flex items-center justify-center font-bold text-sm shadow-xs">
             AZ
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-            aztek<span className="text-blue-600 dark:text-blue-400 font-light">care</span>
+            aztek<span className="text-primary font-light">care</span>
           </h1>
         </motion.div>
 
@@ -57,7 +57,7 @@ export default function SplashScreen() {
               duration: 0.85,
               ease: "easeInOut",
             }}
-            className="h-full w-14 bg-gradient-to-r from-transparent via-blue-600 to-transparent dark:via-blue-400 rounded-full"
+            className="h-full w-14 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"
           />
         </motion.div>
 

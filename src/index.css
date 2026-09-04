@@ -4,57 +4,58 @@
 
 @layer base {
   :root {
-    /* Apple Light Mode - Studio White & Slate */
+    /* Aztek Care - Tech Repair Electric Blue-Teal & Warm Slate (Light Mode) */
     --background: 0 0% 100%;
-    --foreground: 240 10% 4%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 4%;
+    --foreground: 222 47% 11%; /* Crisp Slate #0f172a - WCAG AA compliant */
+    --card: 210 20% 98%;       /* Warm slate-white */
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 4%;
-    --primary: 211 100% 45%; /* Apple Royal Blue #0071E3 */
+    --popover-foreground: 222 47% 11%;
+    --primary: 200 98% 39%;     /* Electric Blue-Teal #0284c7 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%; /* #6e6e73 */
-    --accent: 211 100% 45%;
+    --secondary: 214 18% 95%;   /* Warm subtle tech gray */
+    --secondary-foreground: 222 47% 15%;
+    --muted: 214 18% 95%;
+    --muted-foreground: 215 16% 45%;
+    --accent: 38 92% 50%;       /* Energetic Amber-Orange #F59E0B for High-Conversion CTAs */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 211 100% 45%;
+    --border: 214 20% 89%;
+    --input: 214 20% 89%;
+    --ring: 200 98% 39%;
     --radius: 1rem;
   }
  
   .dark {
-    /* Apple Dark Mode - Deep Space Black & Dark Titanium */
-    --background: 0 0% 0%; /* Pure Pitch Black */
-    --foreground: 0 0% 98%;
-    --card: 240 6% 7%; /* #121212 / #161617 */
-    --card-foreground: 0 0% 98%;
-    --popover: 240 6% 7%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 211 100% 58%; /* Apple Bright Blue #2997FF */
-    --primary-foreground: 0 0% 0%;
-    --secondary: 240 5% 13%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 4% 12%;
-    --muted-foreground: 240 5% 55%; /* #86868b */
-    --accent: 211 100% 58%;
+    /* Aztek Care - Deep Tech Obsidian & Electric Blue-Teal (Dark Mode) */
+    --background: 222 47% 4%;   /* Deep Obsidian Tech Black #070b14 */
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;         /* Rich dark tech card #0b1120 */
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;     /* Luminous Electric Blue-Teal #0ea5e9 */
+    --primary-foreground: 222 47% 5%;
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 38 92% 50%;       /* Luminous Amber-Orange #F59E0B */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 211 100% 58%;
+    --border: 217 33% 16%;
+    --input: 217 33% 16%;
+    --ring: 199 89% 48%;
   }
 }
  
 @layer base {
   html {
     scroll-behavior: auto;
-    font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    /* Multilingual Font Stack: Latin uses Outfit / Plus Jakarta Sans, Bengali glyphs auto-fallback to Hind Siliguri */
+    font-family: 'Outfit', 'Hind Siliguri', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -67,11 +68,11 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Outfit', 'Hind Siliguri', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
   }
 }
 
-/* Lenis Butter-Smooth Scrolling Styles */
+/* Lenis Butter-Smooth Scrolling Styles (Desktop Only) */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -92,15 +93,15 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Apple-style clean utility classes */
+/* Glassmorphism Styles (Optimized for 60/120fps GPU performance) */
 .glass-apple {
-  background-color: rgba(255, 255, 255, 0.72);
+  background-color: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .dark .glass-apple {
-  background-color: rgba(18, 18, 18, 0.75);
+  background-color: rgba(11, 17, 32, 0.78);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
@@ -113,43 +114,82 @@ html.lenis, html.lenis body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* iOS 26 Liquid Glass & Specular Glow Utilities */
+/* Liquid Glass & Specular Glow */
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(24px) saturate(190%);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .dark .liquid-glass {
-  background: rgba(18, 18, 22, 0.65);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  background: rgba(11, 17, 32, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12);
 }
 
-/* 100% Borderless Seamless Apple Liquid Glass for App Bar */
+/* 100% Borderless Liquid Glass for App Bar */
 .apple-liquid-glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.76) 0%, rgba(255, 255, 255, 0.52) 100%) !important;
-  backdrop-filter: blur(40px) saturate(210%) contrast(104%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(104%) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.65) 100%) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
   border: none !important;
   outline: none !important;
   box-shadow: 0 18px 45px -8px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.04) !important;
 }
 
 .dark .apple-liquid-glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(10, 14, 26, 0.68) !important;
-  backdrop-filter: blur(40px) saturate(210%) contrast(106%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(106%) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(7, 11, 20, 0.75) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
   border: none !important;
   outline: none !important;
   box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.75), 0 4px 12px -2px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Light Mode Metallic & Blue Gradient Typography */
+/* ==========================================================================
+   MOBILE PERFORMANCE OPTIMIZATION (Eliminate Lag, Stuttering & Heavy Blurs)
+   Reduces GPU compositing overhead during touch momentum scrolling
+   ========================================================================== */
+@media (max-width: 768px) {
+  .glass-apple,
+  .dark .glass-apple,
+  .liquid-glass,
+  .dark .liquid-glass,
+  .apple-liquid-glass,
+  .dark .apple-liquid-glass {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  
+  .glass-apple {
+    background-color: rgba(255, 255, 255, 0.92) !important;
+  }
+  .dark .glass-apple {
+    background-color: rgba(11, 17, 32, 0.92) !important;
+  }
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+  }
+  .dark .liquid-glass {
+    background: rgba(11, 17, 32, 0.9) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  }
+  .apple-liquid-glass {
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06) !important;
+  }
+  .dark .apple-liquid-glass {
+    background: rgba(7, 11, 20, 0.94) !important;
+    box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.6) !important;
+  }
+}
+
+/* Light Mode Metallic & Tech Gradient Typography */
 .text-metallic-cinematic {
   background: linear-gradient(180deg, #0F172A 0%, #1E293B 60%, #334155 100%);
   -webkit-background-clip: text;
@@ -162,21 +202,24 @@ html.lenis, html.lenis body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Vibrant Blue Marketing Gradient (High Conversion) */
+/* Electric Blue-Teal Tech Repair Gradient */
 .text-blue-gradient {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #0284C7 100%);
+  background: linear-gradient(135deg, hsl(200 98% 39%) 0%, hsl(190 95% 38%) 50%, hsl(204 94% 48%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .dark .text-blue-gradient {
-  background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 50%, #818CF8 100%);
+  background: linear-gradient(135deg, hsl(199 89% 52%) 0%, hsl(186 90% 50%) 50%, hsl(210 95% 65%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Ambient Radial Mesh with Rich Blue Focus */
+/* Ambient Radial Mesh with Electric Blue-Teal Focus & Subtle Amber Warmth */
 .ambient-cinematic-glow {
-  background: radial-gradient(circle at 50% 18%, rgba(37, 99, 235, 0.18) 0%, rgba(56, 189, 248, 0.1) 40%, transparent 70%);
+  background: radial-gradient(circle at 50% 18%, rgba(2, 132, 199, 0.15) 0%, rgba(14, 165, 233, 0.08) 35%, rgba(245, 158, 11, 0.03) 60%, transparent 75%);
 }
 
+.dark .ambient-cinematic-glow {
+  background: radial-gradient(circle at 50% 18%, rgba(14, 165, 233, 0.16) 0%, rgba(6, 182, 212, 0.1) 35%, rgba(245, 158, 11, 0.04) 65%, transparent 75%);
+}

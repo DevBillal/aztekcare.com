@@ -9,9 +9,9 @@ export default function MobileBottomBar() {
           href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 bg-blue-600 text-white font-semibold h-10 px-3 rounded-full text-xs transition-transform active:scale-98 shadow-sm shadow-blue-500/25"
+          className="flex-1 flex items-center justify-center gap-1.5 bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-10 px-3 rounded-full text-xs transition-transform active:scale-98 shadow-sm shadow-primary/25"
         >
-          <MessageCircle className="w-3.5 h-3.5 shrink-0 text-white" />
+          <MessageCircle className="w-3.5 h-3.5 shrink-0 text-primary-foreground" />
           <span>WhatsApp Quote</span>
         </a>
 
