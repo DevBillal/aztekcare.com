@@ -31,7 +31,7 @@ export default function Location() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="grid lg:grid-cols-12 gap-6 bg-card rounded-2xl overflow-hidden border border-border/80 shadow-lg"
+          className="grid lg:grid-cols-12 gap-6 bg-card rounded-2xl overflow-hidden border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_12px_32px_rgba(15,23,42,0.04)]"
         >
           
           {/* Address Details */}

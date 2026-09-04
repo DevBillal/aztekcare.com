@@ -106,7 +106,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start text-left">
           
           {/* Email Inquiry Form */}
-          <div className="lg:col-span-7 bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div className="lg:col-span-7 bg-card border border-border dark:border-border/80 rounded-3xl p-6 sm:p-8 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/60">
               <div>
                 <h3 className="text-lg font-bold text-foreground">Direct Technical Inquiry</h3>
@@ -234,16 +234,15 @@ export default function ContactPage() {
 
           {/* Direct Hotlines & Location Card */}
           <div className="lg:col-span-5 space-y-4">
-            
-            {/* Direct Official Email Card */}
-            <div className="bg-card border border-border/80 rounded-3xl p-6 space-y-3">
+            {/* Direct Email Card */}
+            <div className="bg-card border border-border dark:border-border/80 rounded-3xl p-6 space-y-3 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-secondary flex items-center justify-center text-foreground">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground text-sm">Official Mail</h4>
-                  <p className="text-xs text-muted-foreground">General inquiries & feedback</p>
+                  <h4 className="font-bold text-foreground text-sm">Official Inquiries</h4>
+                  <p className="text-xs text-muted-foreground">General & corporate queries</p>
                 </div>
               </div>
 
@@ -252,33 +251,24 @@ export default function ContactPage() {
                   {officialEmail}
                 </span>
 
-                <div className="flex items-center gap-1 shrink-0">
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="p-1.5 rounded-lg bg-card border border-border hover:border-foreground/30 text-foreground text-xs font-medium flex items-center gap-1 transition-colors cursor-pointer"
-                  >
-                    {isCopied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
-                    <span>{isCopied ? "Copied" : "Copy"}</span>
-                  </button>
-
-                  <a 
-                    href={`mailto:${officialEmail}?subject=AZTEK CARE Repair Inquiry`}
-                    className="p-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    <span>Compose</span>
-                  </a>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="px-3 py-1.5 rounded-xl bg-card border border-border hover:border-foreground/30 text-foreground text-xs font-medium flex items-center gap-1.5 transition-colors"
+                >
+                  {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{isCopied ? "Copied" : "Copy"}</span>
+                </button>
               </div>
             </div>
 
-            {/* Instant Hotlines */}
-            <div className="bg-card border border-border/80 rounded-3xl p-6 space-y-3">
+            {/* Direct WhatsApp & Phone Card */}
+            <div className="bg-card border border-border dark:border-border/80 rounded-3xl p-6 space-y-3 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
               <h4 className="font-bold text-foreground text-sm">Immediate Hotline</h4>
 
               <div className="space-y-2">
                 <a
-                  href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
+                  href="https://wa.me/8801571423908"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3.5 rounded-2xl bg-secondary/50 hover:bg-secondary border border-border/60 transition-all"
@@ -288,11 +278,11 @@ export default function ContactPage() {
                       <MessageCircle className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-foreground">WhatsApp Instant Chat</div>
-                      <p className="text-[11px] text-muted-foreground">+880 1571-423908</p>
+                      <div className="text-xs font-bold text-foreground">WhatsApp Hotline</div>
+                      <div className="text-[11px] text-muted-foreground">+880 1571-423908</div>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold text-primary">Chat ↗</span>
+                  <span className="text-xs font-semibold text-[#25D366]">Chat Live ↗</span>
                 </a>
 
                 <a
@@ -300,61 +290,52 @@ export default function ContactPage() {
                   className="flex items-center justify-between p-3.5 rounded-2xl bg-secondary/50 hover:bg-secondary border border-border/60 transition-all"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-secondary text-foreground flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-foreground">
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-foreground">Direct Telephone Call</div>
-                      <p className="text-[11px] text-muted-foreground">+880 1571-423908</p>
+                      <div className="text-xs font-bold text-foreground">Voice Line</div>
+                      <div className="text-[11px] text-muted-foreground">+880 1571-423908</div>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold text-primary">Call ↗</span>
+                  <span className="text-xs font-semibold text-foreground">Call Direct ↗</span>
                 </a>
               </div>
             </div>
 
-            {/* Address & Hours */}
-            <div className="bg-card border border-border/80 rounded-3xl p-6 space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-secondary text-foreground flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4 text-primary" />
+            {/* Operating Hours Card */}
+            <div className="bg-card border border-border dark:border-border/80 rounded-3xl p-6 space-y-4 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-secondary flex items-center justify-center text-foreground">
+                  <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-foreground text-xs sm:text-sm">Lab Address</h4>
-                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                    Alia Madrasha Market, Ground Floor, Shop No. 20, Mijan Road, Feni, Bangladesh
-                  </p>
+                  <h4 className="font-bold text-foreground text-sm">Laboratory Schedule</h4>
+                  <p className="text-xs text-muted-foreground">Everyday Open · 10:00 AM – 9:30 PM</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 pt-3 border-t border-border/40">
-                <div className="w-9 h-9 rounded-xl bg-secondary text-muted-foreground flex items-center justify-center shrink-0 mt-0.5">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-foreground text-xs sm:text-sm">Store Hours</h4>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    Saturday – Thursday: 10:00 AM – 9:30 PM <br />
-                    Friday: 3:00 PM – 9:30 PM
-                  </p>
-                </div>
+                <MapPin className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Alia Madrasha Market, Ground Floor, Shop No. 20, Mijan Road, Feni, Bangladesh
+                </p>
               </div>
             </div>
 
           </div>
-
         </div>
 
-        {/* Interactive Google Map Embed */}
-        <div className="space-y-6">
-          <div className="text-left">
-            <h3 className="text-2xl font-bold text-foreground">Find Us in Feni</h3>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+        {/* Location Map Section */}
+        <div className="space-y-6 text-left">
+          <div>
+            <h3 className="text-xl font-bold text-foreground">Physical Lab Location</h3>
+            <p className="text-xs text-muted-foreground mt-1">
               Located conveniently at Alia Madrasha Market on Mijan Road.
             </p>
           </div>
 
-          <div className="rounded-3xl overflow-hidden border border-border/80 h-[380px] sm:h-[420px] shadow-xs">
+          <div className="rounded-3xl overflow-hidden border border-border dark:border-border/80 h-[380px] sm:h-[420px] shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14713.82998638318!2d91.3931652!3d23.0189914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753683a3f5b721b%3A0xc47efc464ef24483!2sFeni!5e0!3m2!1sen!2sbd!4v1714152567990!5m2!1sen!2sbd"
               width="100%"
@@ -363,26 +344,24 @@ export default function ContactPage() {
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Google Maps Location for AZTEK CARE"
+              title="Google Maps Location for AZTEK CARE Feni"
             />
           </div>
         </div>
 
-        {/* Frequently Asked Questions */}
-        <div className="space-y-8 max-w-4xl mx-auto text-left pt-6">
-          <div>
-            <h3 className="text-2xl font-bold text-foreground">Common Inquiries</h3>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-              Quick answers about repair timelines, parts, and warranties.
-            </p>
+        {/* Quick FAQ Mini Section */}
+        <div className="space-y-6 text-left max-w-3xl mx-auto">
+          <div className="text-center">
+            <h3 className="text-xl font-bold text-foreground">Inquiry Frequently Asked Questions</h3>
+            <p className="text-xs text-muted-foreground mt-1">Quick answers before you visit or get in touch</p>
           </div>
 
           <Accordion className="w-full space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
-                value={`item-${index}`}
-                className="bg-card border border-border/80 rounded-2xl px-5 sm:px-6 py-1 transition-all shadow-xs"
+                value={`faq-${index}`}
+                className="bg-card border border-border dark:border-border/80 rounded-2xl px-5 sm:px-6 py-1 transition-all shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)]"
               >
                 <AccordionTrigger className="text-left font-semibold text-sm sm:text-base hover:text-foreground hover:no-underline py-4 text-foreground">
                   {faq.question}

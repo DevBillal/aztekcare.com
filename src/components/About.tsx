@@ -15,17 +15,17 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-6 relative"
           >
-            <div className="rounded-2xl overflow-hidden border border-border/80 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+            <div className="rounded-2xl overflow-hidden border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
               <img 
                 src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=1200" 
                 alt="Smartphone and iPhone repair workstation at AZTEK CARE" 
-                className="w-full h-auto object-cover aspect-[4/3]"
+                className="w-full h-auto object-cover aspect-[4/3]" 
                 loading="lazy"
               />
             </div>
             
             {/* Minimal Stat Badge */}
-            <div className="absolute -bottom-4 -right-2 sm:right-4 bg-card border border-border/80 rounded-xl px-4 py-2.5 shadow-md flex items-center gap-3 text-left">
+            <div className="absolute -bottom-4 -right-2 sm:right-4 bg-card border border-border dark:border-border/80 rounded-xl px-4 py-2.5 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] flex items-center gap-3 text-left">
               <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                 <Cpu className="w-4 h-4" />
               </div>

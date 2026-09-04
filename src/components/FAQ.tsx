@@ -67,7 +67,7 @@ export default function FAQ() {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="bg-card border border-border/80 rounded-2xl px-5 sm:px-6 py-1 transition-all text-left shadow-xs hover:border-primary/30"
+                className="bg-card border border-border dark:border-border/80 rounded-2xl px-5 sm:px-6 py-1 transition-all text-left shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)]"
               >
                 <AccordionTrigger className="text-left font-semibold text-sm sm:text-base hover:text-foreground hover:no-underline py-4 text-foreground">
                   {faq.question}

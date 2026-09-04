@@ -58,7 +58,7 @@ export default function RepairProcess() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -5, transition: { duration: 0.25 } }}
-              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between text-left hover:border-primary/40 hover:shadow-[0_10px_30px_rgba(37,99,235,0.08)] transition-all cursor-default group"
+              className="rounded-2xl bg-card border border-border dark:border-border/80 p-6 flex flex-col justify-between text-left hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all cursor-default group"
             >
               <div>
                 <span className="text-xs font-mono font-bold text-primary group-hover:scale-105 inline-block tracking-wider mb-4 transition-transform">

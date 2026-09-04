@@ -161,7 +161,7 @@ export default function VideosPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="group rounded-3xl bg-card border border-border/80 overflow-hidden hover:border-foreground/30 transition-all flex flex-col justify-between text-left shadow-xs"
+                className="group rounded-3xl bg-card border border-border dark:border-border/80 overflow-hidden hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all flex flex-col justify-between text-left"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                   <img

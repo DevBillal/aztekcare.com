@@ -121,7 +121,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="rounded-3xl bg-card border border-border/80 p-7 flex flex-col justify-between hover:border-foreground/30 transition-all shadow-xs group"
+              className="rounded-3xl bg-card border border-border dark:border-border/80 p-7 flex flex-col justify-between hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -159,7 +159,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.04 }}
-              className="rounded-2xl bg-card/60 border border-border/70 p-5 hover:bg-card hover:border-foreground/20 transition-all flex flex-col justify-between group"
+              className="rounded-2xl bg-card border border-border dark:border-border/70 p-5 hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all flex flex-col justify-between group"
             >
               <div>
                 <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center mb-4 text-foreground group-hover:text-primary transition-colors">
@@ -168,7 +168,7 @@ export default function ServicesPage() {
                 <h4 className="font-bold text-sm text-foreground mb-1.5">
                   {service.title}
                 </h4>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -180,8 +180,8 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Action Callout Banner */}
-        <div className="rounded-3xl bg-secondary/60 border border-border/80 p-8 sm:p-12 text-center max-w-3xl mx-auto space-y-4">
+        {/* Diagnostic Promise Banner */}
+        <div className="rounded-3xl bg-card border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_12px_32px_rgba(15,23,42,0.04)] p-8 sm:p-12 text-center max-w-3xl mx-auto space-y-4">
           <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
             Don't see your specific device issue listed?
           </h3>

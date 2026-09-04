@@ -71,7 +71,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-6 relative"
           >
-            <div className="rounded-3xl overflow-hidden border border-border/80 shadow-md">
+            <div className="rounded-3xl overflow-hidden border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
               <img 
                 src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=1200" 
                 alt="AZTEK CARE Smartphone & Motherboard Lab in Feni" 
@@ -80,7 +80,7 @@ export default function AboutPage() {
               />
             </div>
 
-            <div className="absolute -bottom-4 -right-2 sm:right-4 bg-card border border-border/80 rounded-2xl px-5 py-3 shadow-lg flex items-center gap-3 text-left">
+            <div className="absolute -bottom-4 -right-2 sm:right-4 bg-card border border-border dark:border-border/80 rounded-2xl px-5 py-3 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] flex items-center gap-3 text-left">
               <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                 <Cpu className="w-5 h-5" />
               </div>
@@ -144,7 +144,7 @@ export default function AboutPage() {
             {pillars.map((pillar, index) => (
               <div
                 key={index}
-                className="rounded-3xl bg-card border border-border/80 p-6 sm:p-7 flex flex-col justify-between hover:border-foreground/30 transition-all shadow-xs"
+                className="rounded-3xl bg-card border border-border dark:border-border/80 p-6 sm:p-7 flex flex-col justify-between hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all"
               >
                 <div>
                   <span className="text-xs font-mono font-bold text-muted-foreground/60 tracking-wider block mb-4">
@@ -177,7 +177,7 @@ export default function AboutPage() {
             {steps.map((item, index) => (
               <div
                 key={index}
-                className="rounded-3xl bg-card border border-border/80 p-6 flex flex-col justify-between shadow-xs hover:border-foreground/30 transition-all"
+                className="rounded-3xl bg-card border border-border dark:border-border/80 p-6 flex flex-col justify-between shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all"
               >
                 <div>
                   <span className="text-xs font-mono font-bold text-primary tracking-wider block mb-4">

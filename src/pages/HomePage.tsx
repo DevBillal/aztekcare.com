@@ -266,7 +266,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-3xl bg-card border border-border/80 dark:border-primary/25 shadow-xl dark:shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_24px_rgba(14,165,233,0.08)] overflow-hidden"
+            className="rounded-3xl bg-card border border-border dark:border-primary/25 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_16px_36px_rgba(15,23,42,0.08)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_24px_rgba(14,165,233,0.08)] overflow-hidden"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border/60">
               
@@ -552,7 +552,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-primary/40 hover:shadow-[0_12px_30px_rgba(2,132,199,0.1)] transition-all">
+          <div className="p-7 rounded-3xl bg-card border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all">
             <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-xs">
               <Cpu className="w-5 h-5" />
             </div>
@@ -562,7 +562,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-primary/40 hover:shadow-[0_12px_30px_rgba(2,132,199,0.1)] transition-all">
+          <div className="p-7 rounded-3xl bg-card border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all">
             <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-xs">
               <Sparkles className="w-5 h-5" />
             </div>
@@ -572,7 +572,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="p-7 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-primary/40 hover:shadow-[0_12px_30px_rgba(2,132,199,0.1)] transition-all">
+          <div className="p-7 rounded-3xl bg-card border border-border dark:border-border/80 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all">
             <div className="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5 shadow-xs">
               <Wrench className="w-5 h-5" />
             </div>

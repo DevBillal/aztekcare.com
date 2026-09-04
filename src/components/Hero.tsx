@@ -202,7 +202,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 w-full"
           >
-            <div className="rounded-2xl bg-card border border-border/80 dark:border-primary/25 p-5 sm:p-6 shadow-[0_12px_40px_rgba(2,132,199,0.06),0_1px_3px_rgba(0,0,0,0.04)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_24px_rgba(14,165,233,0.08)] text-left space-y-4 relative">
+            <div className="rounded-2xl bg-card border border-border dark:border-primary/25 p-5 sm:p-6 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_12px_32px_rgba(2,132,199,0.12)] dark:shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_24px_rgba(14,165,233,0.08)] text-left space-y-4 relative">
               
               {/* Header */}
               <div className="flex items-center justify-between border-b border-border/60 pb-3">

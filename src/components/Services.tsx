@@ -122,7 +122,7 @@ export default function Services() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.65, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="rounded-2xl bg-card border border-border/80 p-6 flex flex-col justify-between hover:border-primary/40 hover:shadow-[0_12px_32px_rgba(37,99,235,0.12)] transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)] group text-left cursor-default"
+              className="rounded-2xl bg-card border border-border dark:border-border/80 p-6 flex flex-col justify-between hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all group text-left cursor-default"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -161,7 +161,7 @@ export default function Services() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="rounded-xl bg-card/60 border border-border/70 p-4 sm:p-5 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all text-left group cursor-default"
+              className="rounded-xl bg-card border border-border dark:border-border/70 p-4 sm:p-5 hover:border-primary/40 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_32px_rgba(2,132,199,0.14)] transition-all text-left group cursor-default"
             >
               <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center mb-3 text-foreground group-hover:text-primary group-hover:scale-105 transition-all">
                 {service.icon}

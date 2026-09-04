@@ -7,22 +7,22 @@
     /* Aztek Care - Tech Repair Electric Blue-Teal & Warm Slate (Light Mode) */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%; /* Crisp Slate #0f172a - WCAG AA compliant */
-    --card: 210 20% 98%;       /* Warm slate-white */
+    --card: 210 25% 96%;       /* More visible tint, crisp clean surface */
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
     --primary: 200 98% 39%;     /* Electric Blue-Teal #0284c7 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 214 18% 95%;   /* Warm subtle tech gray */
+    --secondary: 210 20% 94%;   /* Deeper than card for section separation */
     --secondary-foreground: 222 47% 15%;
-    --muted: 214 18% 95%;
+    --muted: 210 20% 94%;
     --muted-foreground: 215 16% 45%;
     --accent: 38 92% 50%;       /* Energetic Amber-Orange #F59E0B for High-Conversion CTAs */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 20% 89%;
-    --input: 214 20% 89%;
+    --border: 214 15% 82%;      /* Visible crisp border against white */
+    --input: 214 15% 82%;
     --ring: 200 98% 39%;
     --radius: 1rem;
   }
@@ -217,7 +217,7 @@ html.lenis, html.lenis body {
 
 /* Ambient Radial Mesh with Electric Blue-Teal Focus & Subtle Amber Warmth */
 .ambient-cinematic-glow {
-  background: radial-gradient(circle at 50% 18%, rgba(2, 132, 199, 0.15) 0%, rgba(14, 165, 233, 0.08) 35%, rgba(245, 158, 11, 0.03) 60%, transparent 75%);
+  background: radial-gradient(circle at 50% 18%, rgba(2, 132, 199, 0.22) 0%, rgba(14, 165, 233, 0.12) 35%, rgba(245, 158, 11, 0.05) 60%, transparent 75%);
 }
 
 .dark .ambient-cinematic-glow {

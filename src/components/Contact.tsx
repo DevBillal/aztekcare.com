@@ -78,7 +78,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* LEFT: Minimal Apple-Style Inquiry Form */}
-          <div className="lg:col-span-7 bg-card border border-border/80 rounded-2xl p-6 sm:p-8 shadow-xs text-left">
+          <div className="lg:col-span-7 bg-card border border-border dark:border-border/80 rounded-2xl p-6 sm:p-8 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)] text-left">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-border/60">
               <div>
                 <h3 className="text-lg font-bold text-foreground">Send an Email Inquiry</h3>
@@ -219,7 +219,7 @@ export default function Contact() {
           <div className="lg:col-span-5 space-y-4 text-left">
             
             {/* Direct Email Card */}
-            <div className="bg-card border border-border/80 rounded-2xl p-5 sm:p-6 space-y-3">
+            <div className="bg-card border border-border dark:border-border/80 rounded-2xl p-5 sm:p-6 space-y-3 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-foreground">
                   <Mail className="w-4 h-4" />
@@ -256,7 +256,7 @@ export default function Contact() {
             </div>
 
             {/* Direct WhatsApp & Phone Card */}
-            <div className="bg-card border border-border/80 rounded-2xl p-5 sm:p-6 space-y-3">
+            <div className="bg-card border border-border dark:border-border/80 rounded-2xl p-5 sm:p-6 space-y-3 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
               <h4 className="font-bold text-foreground text-sm">Immediate Hotline</h4>
 
               <div className="space-y-2">
@@ -297,7 +297,7 @@ export default function Contact() {
             </div>
 
             {/* Location & Hours Card */}
-            <div className="bg-card border border-border/80 rounded-2xl p-5 sm:p-6 space-y-3">
+            <div className="bg-card border border-border dark:border-border/80 rounded-2xl p-5 sm:p-6 space-y-3 shadow-[0_2px_12px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.04)]">
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-lg bg-secondary text-foreground flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-4 h-4" />
