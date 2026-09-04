@@ -134,157 +134,66 @@ export default function HomePage() {
   return (
     <div className="w-full relative overflow-x-hidden">
       
-      {/* 1. CINEMATIC WELCOMING HERO SECTION WITH DYNAMIC AMBIENT MOTIONS */}
-      <section className="relative min-h-[90vh] sm:min-h-[94vh] flex flex-col items-center justify-center pt-32 sm:pt-40 pb-20 px-4 sm:px-6 text-center overflow-hidden">
+      {/* 1. EYE-SOOTHING, SIMPLE & INFORMATIVE WELCOMING HERO SECTION */}
+      <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 px-4 sm:px-6 overflow-hidden">
         
-        {/* Dynamic Pulsing Ambient Mesh */}
-        <div className="absolute inset-0 ambient-cinematic-glow pointer-events-none" />
-        <motion.div 
-          animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
-          transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-primary/20 blur-[130px] rounded-full pointer-events-none" 
-        />
-        <motion.div 
-          animate={{ scale: [1.1, 0.95, 1.1], opacity: [0.08, 0.18, 0.08] }}
-          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[420px] h-[260px] bg-sky-400/15 dark:bg-sky-400/20 blur-[100px] rounded-full pointer-events-none" 
-        />
-
-        {/* Visual Anchor: Precision Circuit Board & Motherboard Schematic Background */}
+        {/* Eye-Soothing Soft Ambient Glow (No visual clutter, gentle on eyes) */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-          <svg 
-            className="hidden md:block absolute top-12 left-1/2 -translate-x-1/2 w-[1280px] h-[720px] opacity-[0.22] dark:opacity-[0.32]"
-            viewBox="0 0 1280 720"
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Smartphone Chassis Wireframe */}
-            <rect x="520" y="40" width="340" height="640" rx="44" stroke="currentColor" strokeWidth="1.5" className="text-primary/40" />
-            <rect x="540" y="60" width="300" height="600" rx="32" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/20" />
-            <path d="M640 50 H740" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary/60" />
-
-            {/* Central CPU / SoC Microchip */}
-            <rect x="620" y="240" width="140" height="140" rx="16" fill="currentColor" className="text-primary/10" stroke="currentColor" strokeWidth="2" />
-            <rect x="635" y="255" width="110" height="110" rx="10" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" className="text-amber-500/50" />
-            <text x="690" y="315" textAnchor="middle" fill="currentColor" className="text-primary font-mono text-[10px] font-bold tracking-widest uppercase">
-              BGA REBALL LAB
-            </text>
-
-            {/* Circuit Traces Radiating from Chip */}
-            <g stroke="currentColor" strokeWidth="1.5" className="text-primary/50">
-              {/* Left Traces */}
-              <path d="M620 270 H480 L440 230 H260" strokeDasharray="6 4" />
-              <path d="M620 310 H450 L400 360 H220" />
-              <path d="M620 350 H470 L420 410 H280" strokeDasharray="8 6" />
-
-              {/* Right Traces */}
-              <path d="M760 270 H900 L950 220 H1120" />
-              <path d="M760 310 H920 L970 360 H1140" strokeDasharray="6 4" />
-              <path d="M760 350 H890 L940 420 H1080" />
-
-              {/* Top / Bottom Traces */}
-              <path d="M660 240 V160 L620 120 V80" />
-              <path d="M720 240 V170 L760 130 V80" strokeDasharray="4 4" />
-              <path d="M660 380 V480 L620 520 V620" />
-              <path d="M720 380 V470 L780 530 V620" strokeDasharray="6 4" />
-            </g>
-
-            {/* Glowing IC Node Pulse Dots */}
-            <circle cx="260" cy="230" r="4" fill="currentColor" className="text-primary animate-ping" style={{ animationDuration: "3s" }} />
-            <circle cx="260" cy="230" r="3" fill="currentColor" className="text-primary" />
-            
-            <circle cx="1120" cy="220" r="4" fill="currentColor" className="text-amber-500 animate-ping" style={{ animationDuration: "2.5s" }} />
-            <circle cx="1120" cy="220" r="3" fill="currentColor" className="text-amber-500" />
-
-            <circle cx="400" cy="360" r="3" fill="currentColor" className="text-primary" />
-            <circle cx="970" cy="360" r="3" fill="currentColor" className="text-primary" />
-            <circle cx="780" cy="530" r="3" fill="currentColor" className="text-amber-500" />
-          </svg>
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] sm:w-[850px] h-[350px] bg-gradient-to-b from-primary/15 via-primary/5 to-transparent blur-[120px] rounded-full" />
+          <div className="absolute top-1/3 right-1/4 w-[350px] h-[220px] bg-amber-500/5 blur-[100px] rounded-full" />
+          
+          {/* Subtle Delicate Grid Overlay for Depth */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(2,132,199,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(2,132,199,0.03)_1px,transparent_1px)] bg-[size:48px_48px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
         </div>
 
-        {/* Floating Interactive Micro-Badges */}
-        <motion.div
-          initial={{ opacity: 0, x: -50, filter: "blur(6px)" }}
-          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden xl:flex items-center gap-2.5 absolute left-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(2,132,199,0.12)] border border-primary/25 text-xs select-none cursor-default"
-        >
-          <div className="w-9 h-9 rounded-xl bg-primary/15 text-primary flex items-center justify-center shadow-xs">
-            <Cpu className="w-4 h-4" />
-          </div>
-          <div className="text-left">
-            <p className="font-bold text-foreground">Stereo Microscope</p>
-            <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
-              0.02mm Jumper Precision
-            </p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 50, filter: "blur(6px)" }}
-          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden xl:flex items-center gap-2.5 absolute right-10 top-1/3 p-3 pr-5 rounded-2xl liquid-glass shadow-[0_15px_35px_rgba(2,132,199,0.12)] border border-primary/25 text-xs select-none cursor-default"
-        >
-          <div className="w-9 h-9 rounded-xl bg-primary/15 text-primary flex items-center justify-center shadow-xs">
-            <ShieldCheck className="w-4 h-4 text-primary" />
-          </div>
-          <div className="text-left">
-            <p className="font-bold text-foreground">100% Genuine Care</p>
-            <p className="text-[10px] text-muted-foreground">Original ICs & OLED Screens</p>
-          </div>
-        </motion.div>
-
-        {/* Master Orchestrated Stagger Container */}
-        <motion.div 
-          variants={heroStaggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8"
-        >
+        <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center space-y-6 sm:space-y-8">
           
-          {/* Top Pill Badge with Electric Primary Dot */}
+          {/* Top Pill Badge: Real-time Lab Availability & Location */}
           <motion.div
-            variants={heroStaggerItem}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/25 text-[11px] sm:text-xs font-semibold tracking-wide text-foreground shadow-xs select-none"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs sm:text-sm font-semibold text-foreground shadow-xs select-none backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span>AVAILABLE TODAY</span>
-            <span className="opacity-40">·</span>
-            <span className="text-primary font-bold">FENI SMARTPHONE LAB</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold">Open Today in Feni</span>
+            <span className="text-border">·</span>
+            <span className="text-muted-foreground font-medium">Walk-Ins & Free Diagnosis Welcome</span>
           </motion.div>
 
-          {/* Grand Welcoming Headline */}
+          {/* Eye-Soothing Welcoming Headline */}
           <motion.div
-            variants={heroStaggerItem}
-            className="space-y-2 select-none"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-2 select-none max-w-4xl"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black tracking-[-0.03em] leading-[1.05] uppercase">
-              <span className="block text-foreground drop-shadow-sm">
-                PROBLEMS TODAY.
-              </span>
-              <span className="block text-blue-gradient drop-shadow-sm">
-                FIXED TODAY.
-              </span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-tight leading-[1.12] text-foreground">
+              Fast, Trusted Smartphone Repair.
+              <br />
+              <span className="text-blue-gradient font-semibold">Fixed Today in Feni.</span>
             </h1>
           </motion.div>
 
-          {/* Welcoming Narrative Subtitle */}
+          {/* Informative & Reassuring Subtitle */}
           <motion.p
-            variants={heroStaggerItem}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl text-sm sm:text-base lg:text-lg text-muted-foreground font-normal leading-relaxed px-2"
           >
-            Turning broken displays, shorted circuits, and dead smartphones into precision engineering — with microscopic mastery, genuine parts, and same-day care.
+            From cracked OLED displays and drained batteries to advanced motherboard micro-soldering — we fix <strong className="text-foreground font-semibold">iPhone, Samsung, Pixel, Xiaomi, OnePlus</strong> and <strong className="text-foreground font-semibold">MacBooks</strong> with genuine parts and 100% free inspection.
           </motion.p>
 
-          {/* Two Action CTAs: Electric Primary WhatsApp + Explore Services */}
+          {/* Primary Action Buttons */}
           <motion.div
-            variants={heroStaggerItem}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 w-full sm:w-auto"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1 w-full sm:w-auto"
           >
             <a
               href={generalWaLink}
@@ -292,68 +201,113 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
-              <Button className="w-full sm:w-auto h-12 px-7 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xs sm:text-sm shadow-[0_4px_18px_rgba(2,132,199,0.35)] transition-all hover:scale-[1.02] active:scale-98 flex items-center justify-center gap-2">
-                <MessageCircle className="w-4 h-4 text-primary-foreground animate-bounce" style={{ animationDuration: "2s" }} />
-                <span>Instant WhatsApp Quote</span>
+              <Button className="w-full sm:w-auto h-12 px-7 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm shadow-[0_4px_20px_rgba(2,132,199,0.3)] transition-all hover:scale-[1.02] active:scale-98 flex items-center justify-center gap-2">
+                <MessageCircle className="w-4 h-4 text-primary-foreground" />
+                <span>Chat on WhatsApp (+880 1571-423908)</span>
               </Button>
             </a>
 
-            <Link to="/services" className="w-full sm:w-auto block">
-              <Button
-                variant="outline"
-                className="w-full sm:w-auto h-12 px-7 rounded-full bg-secondary/50 dark:bg-white/[0.04] hover:bg-secondary border-border/80 text-foreground font-medium text-xs sm:text-sm transition-all"
-              >
-                <span>Explore All Services</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-1.5 opacity-60 text-primary group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </motion.div>
-
-          {/* Dynamic Island Live Status Pill with New Primary Checkmarks */}
-          <motion.div
-            variants={heroStaggerItem}
-            className="pt-4"
-          >
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 px-5 py-2.5 rounded-full liquid-glass text-xs text-muted-foreground select-none shadow-md">
-              <span className="flex items-center gap-1.5 text-foreground font-medium">
-                <Check className="w-3.5 h-3.5 text-primary stroke-[3]" /> Same-Day Turnaround
-              </span>
-              <span className="hidden sm:inline text-border">·</span>
-              <span className="flex items-center gap-1.5 text-foreground font-medium">
-                <Cpu className="w-3.5 h-3.5 text-primary" /> Motherboard Specialist
-              </span>
-              <span className="hidden sm:inline text-border">·</span>
-              <span className="flex items-center gap-1.5 text-foreground font-medium">
-                <ShieldCheck className="w-3.5 h-3.5 text-primary" /> 100% Data Confidential
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Scroll Down Indicator */}
-          <motion.div
-            variants={heroStaggerItem}
-            className="pt-6 select-none"
-          >
             <a
               href="#estimator"
               onClick={(e) => {
                 e.preventDefault()
                 document.querySelector("#estimator")?.scrollIntoView({ behavior: "smooth" })
               }}
-              className="inline-flex flex-col items-center gap-1 text-[11px] font-mono tracking-widest text-muted-foreground/70 hover:text-foreground transition-colors cursor-pointer group"
+              className="w-full sm:w-auto"
             >
-              <span>SCROLL</span>
-              <motion.span 
-                animate={{ y: [0, 5, 0] }}
-                transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-                className="text-primary text-sm font-bold"
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto h-12 px-6 rounded-full bg-secondary/70 hover:bg-secondary border-border/80 text-foreground font-semibold text-sm transition-all flex items-center justify-center gap-2"
               >
-                ↓
-              </motion.span>
+                <span>Check Repair Time & Cost</span>
+                <ArrowRight className="w-3.5 h-3.5 text-primary" />
+              </Button>
             </a>
           </motion.div>
 
-        </motion.div>
+          {/* Supported Devices Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="pt-1 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-muted-foreground select-none"
+          >
+            <span className="font-semibold text-foreground mr-1">Repairs Supported:</span>
+            {["Apple iPhone", "Samsung Galaxy", "Xiaomi & POCO", "Google Pixel", "OnePlus", "MacBook / iPad", "All Androids"].map((brand) => (
+              <span 
+                key={brand}
+                className="px-2.5 py-1 rounded-lg bg-secondary/60 dark:bg-white/[0.04] border border-border/60 text-foreground/80 font-medium"
+              >
+                {brand}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* 4 Reassuring Customer Guarantees - Eye-Soothing Clean Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full pt-4 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left"
+          >
+            {/* Guarantee 1 */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
+                <Clock className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-xs sm:text-sm text-foreground">30-Min Fast Fix</h3>
+              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Screens & batteries replaced while you wait.</p>
+            </div>
+
+            {/* Guarantee 2 */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
+                <Cpu className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-xs sm:text-sm text-foreground">IC Micro-Soldering</h3>
+              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Specialized dead phone & logic board recovery.</p>
+            </div>
+
+            {/* Guarantee 3 */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-xs sm:text-sm text-foreground">Tested Genuine Parts</h3>
+              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Original grade parts with service warranty.</p>
+            </div>
+
+            {/* Guarantee 4 */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
+                <Check className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-xs sm:text-sm text-foreground">100% Free Diagnosis</h3>
+              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Honest quote before starting. No fix, no fee.</p>
+            </div>
+          </motion.div>
+
+          {/* Welcoming Store Details & Social Proof */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-muted-foreground"
+          >
+            <div className="flex items-center gap-1.5">
+              <span className="text-amber-500 font-bold flex items-center">
+                ★★★★★
+              </span>
+              <span className="font-semibold text-foreground">4.9/5 Rating</span>
+              <span>(500+ Verified Customers in Feni)</span>
+            </div>
+            <span className="hidden sm:inline text-border">·</span>
+            <div className="flex items-center gap-1.5">
+              <span>📍 Alia Madrasha Market, Mijan Road, Feni</span>
+            </div>
+          </motion.div>
+
+        </div>
       </section>
 
       {/* 2. UNIFIED INTERACTIVE DIAGNOSIS CONSOLE */}
