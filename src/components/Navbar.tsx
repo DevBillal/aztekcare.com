@@ -167,60 +167,102 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {/* Floating Minimal Mobile Drawer with proper backdrop and non-overlapping clearance */}
+      {/* World-Class Full-Screen iOS-style Mobile Navigation Overlay */}
       <AnimatePresence>
         {isMobileOpen && (
-          <>
-            {/* Backdrop Layer */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setIsMobileOpen(false)}
-              className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xs z-40 md:hidden"
-            />
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-50 md:hidden bg-background/98 dark:bg-[#070b14]/98 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto"
+          >
+            {/* Unified Top Header Bar */}
+            <div className="flex items-center justify-between px-4 sm:px-6 h-16 sm:h-20 border-b border-border/40 shrink-0">
+              <Link
+                to="/"
+                onClick={() => setIsMobileOpen(false)}
+                className="flex items-center gap-2.5 select-none min-h-[44px]"
+              >
+                <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center font-bold text-sm shadow-xs">
+                  <Wrench className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-base font-bold tracking-tight text-foreground">
+                  aztek<span className="text-primary">care</span>
+                </span>
+              </Link>
 
-            {/* Floating Mobile Menu Card: Positioned strictly below the 64px header with 8px clearance */}
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-[70px] sm:top-[78px] inset-x-3 sm:inset-x-6 z-50 md:hidden bg-card/98 dark:bg-[#0c1222]/98 backdrop-blur-xl border border-border/80 dark:border-white/10 rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex flex-col gap-3 max-h-[calc(100vh-86px)] overflow-y-auto"
-            >
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link) => {
+              <div className="flex items-center gap-2">
+                {/* Theme Switcher */}
+                <button
+                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                  aria-label="Toggle theme"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-foreground hover:bg-secondary transition-colors cursor-pointer bg-secondary/80 border border-border/60 active:scale-95"
+                >
+                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                </button>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsMobileOpen(false)}
+                  className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center cursor-pointer shadow-sm shadow-primary/25 active:scale-95 transition-transform"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Menu Links with Staggered Elegance & High Contrast */}
+            <div className="px-5 py-6 flex-1 flex flex-col justify-center max-w-md mx-auto w-full">
+              <nav className="flex flex-col gap-2">
+                {navLinks.map((link, idx) => {
                   const isActive = location.pathname === link.href
                   return (
-                    <Link
+                    <motion.div
                       key={link.name}
-                      to={link.href}
-                      onClick={() => setIsMobileOpen(false)}
-                      className={`min-h-[46px] px-4 rounded-2xl text-sm font-medium transition-all flex items-center justify-between ${
-                        isActive
-                          ? "bg-primary/10 text-primary font-bold border border-primary/25"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/50 active:bg-secondary/70"
-                      }`}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.04 * idx, duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="flex items-center gap-3">
-                        <span className={`w-1.5 h-1.5 rounded-full ${isActive ? "bg-primary" : "bg-muted-foreground/30"}`} />
-                        <span>{link.name}</span>
-                      </div>
-                      <ArrowRight className={`w-4 h-4 ${isActive ? "text-primary opacity-100" : "opacity-35"}`} />
-                    </Link>
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsMobileOpen(false)}
+                        className={`group px-4 py-3 rounded-2xl flex items-center justify-between transition-all ${
+                          isActive
+                            ? "bg-primary/10 border border-primary/25 text-primary"
+                            : "hover:bg-secondary/70 text-foreground active:bg-secondary"
+                        }`}
+                      >
+                        <div className="flex items-center gap-3.5">
+                          <span className="text-xs font-mono font-semibold text-muted-foreground group-hover:text-primary transition-colors">
+                            0{idx + 1}
+                          </span>
+                          <span className={`text-lg tracking-tight transition-colors ${
+                            isActive ? "font-bold text-primary" : "font-semibold text-foreground group-hover:text-primary"
+                          }`}>
+                            {link.name}
+                          </span>
+                        </div>
+                        <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                          isActive ? "text-primary opacity-100" : "text-muted-foreground opacity-40 group-hover:opacity-100"
+                        }`} />
+                      </Link>
+                    </motion.div>
                   )
                 })}
               </nav>
 
-              <div className="pt-3 border-t border-border/60 dark:border-white/10 flex flex-col gap-2.5">
+              {/* Action Buttons */}
+              <div className="mt-8 pt-6 border-t border-border/50 flex flex-col gap-3">
                 {/* High-Impact Amber "Track Repair Status" */}
                 <button
                   onClick={() => {
                     setIsMobileOpen(false)
                     setIsTrackerOpen(true)
                   }}
-                  className="w-full min-h-[46px] bg-amber-500 hover:bg-amber-600 active:scale-98 text-slate-950 font-bold rounded-2xl text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md transition-transform"
+                  className="w-full h-12 rounded-2xl bg-amber-500 hover:bg-amber-600 active:scale-98 text-slate-950 font-bold text-sm flex items-center justify-center gap-2.5 shadow-md shadow-amber-500/20 cursor-pointer transition-all"
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-80" />
@@ -230,21 +272,27 @@ export default function Navbar() {
                   <span>Track Repair Status</span>
                 </button>
 
+                {/* WhatsApp Support */}
                 <a
                   href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMobileOpen(false)}
-                  className="block"
+                  className="w-full h-12 rounded-2xl bg-secondary/80 hover:bg-secondary active:scale-98 text-foreground font-semibold text-sm flex items-center justify-center gap-2 border border-border/70 cursor-pointer transition-all"
                 >
-                  <button className="w-full min-h-[46px] bg-secondary/80 hover:bg-secondary active:scale-98 text-foreground font-semibold rounded-2xl text-sm flex items-center justify-center gap-2 cursor-pointer border border-border/70 transition-transform">
-                    <MessageCircle className="w-4 h-4 text-emerald-500" />
-                    <span>WhatsApp Support</span>
-                  </button>
+                  <MessageCircle className="w-4 h-4 text-emerald-500" />
+                  <span>WhatsApp Support</span>
                 </a>
               </div>
-            </motion.div>
-          </>
+            </div>
+
+            {/* Bottom Lab Quick Info Strip */}
+            <div className="px-5 py-4 border-t border-border/40 bg-secondary/30 text-center shrink-0">
+              <p className="text-xs font-medium text-muted-foreground">
+                📍 SSK Road, Feni · ⚡ 10:00 AM – 9:30 PM (Everyday Open)
+              </p>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
