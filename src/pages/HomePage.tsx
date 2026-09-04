@@ -134,66 +134,54 @@ export default function HomePage() {
   return (
     <div className="w-full relative overflow-x-hidden">
       
-      {/* 1. EYE-SOOTHING, SIMPLE & INFORMATIVE WELCOMING HERO SECTION */}
-      <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 px-4 sm:px-6 overflow-hidden">
+      {/* 1. ULTRA-CLEAN, SIMPLE & EYE-SOOTHING MINIMAL HERO SECTION */}
+      <section className="relative pt-36 sm:pt-44 pb-16 sm:pb-24 px-4 sm:px-6 overflow-hidden flex flex-col items-center justify-center text-center">
         
-        {/* Eye-Soothing Soft Ambient Glow (No visual clutter, gentle on eyes) */}
+        {/* Soft, eye-soothing atmospheric radial glow */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] sm:w-[850px] h-[350px] bg-gradient-to-b from-primary/15 via-primary/5 to-transparent blur-[120px] rounded-full" />
-          <div className="absolute top-1/3 right-1/4 w-[350px] h-[220px] bg-amber-500/5 blur-[100px] rounded-full" />
-          
-          {/* Subtle Delicate Grid Overlay for Depth */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(2,132,199,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(2,132,199,0.03)_1px,transparent_1px)] bg-[size:48px_48px] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[300px] bg-primary/10 dark:bg-primary/15 blur-[120px] rounded-full" />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center space-y-6 sm:space-y-8">
+        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8">
           
-          {/* Top Pill Badge: Real-time Lab Availability & Location */}
+          {/* Minimal Status Pill */}
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs sm:text-sm font-semibold text-foreground shadow-xs select-none backdrop-blur-sm"
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary select-none"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold">Open Today in Feni</span>
-            <span className="text-border">·</span>
-            <span className="text-muted-foreground font-medium">Walk-Ins & Free Diagnosis Welcome</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Open Today · Feni Smartphone Lab</span>
           </motion.div>
 
-          {/* Eye-Soothing Welcoming Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
+          {/* Clean, Confident Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-2 select-none max-w-4xl"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1] select-none"
           >
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-tight leading-[1.12] text-foreground">
-              Fast, Trusted Smartphone Repair.
-              <br />
-              <span className="text-blue-gradient font-semibold">Fixed Today in Feni.</span>
-            </h1>
-          </motion.div>
+            Problems Today. <br />
+            <span className="text-blue-gradient font-light">Fixed Today.</span>
+          </motion.h1>
 
-          {/* Informative & Reassuring Subtitle */}
+          {/* Simple, honest description */}
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl text-sm sm:text-base lg:text-lg text-muted-foreground font-normal leading-relaxed px-2"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="max-w-lg text-base sm:text-lg text-muted-foreground font-normal leading-relaxed"
           >
-            From cracked OLED displays and drained batteries to advanced motherboard micro-soldering — we fix <strong className="text-foreground font-semibold">iPhone, Samsung, Pixel, Xiaomi, OnePlus</strong> and <strong className="text-foreground font-semibold">MacBooks</strong> with genuine parts and 100% free inspection.
+            Specialized repair for iPhone, Samsung, and Android. Screen, battery, and motherboard micro-soldering with 100% free diagnosis.
           </motion.p>
 
-          {/* Primary Action Buttons */}
+          {/* Two Clean, Effortless CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1 w-full sm:w-auto"
+            transition={{ duration: 0.5, delay: 0.22 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 w-full sm:w-auto"
           >
             <a
               href={generalWaLink}
@@ -201,9 +189,9 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
-              <Button className="w-full sm:w-auto h-12 px-7 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm shadow-[0_4px_20px_rgba(2,132,199,0.3)] transition-all hover:scale-[1.02] active:scale-98 flex items-center justify-center gap-2">
+              <Button className="w-full sm:w-auto h-12 px-8 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm shadow-md shadow-primary/20 transition-all hover:scale-[1.02] active:scale-98 flex items-center justify-center gap-2">
                 <MessageCircle className="w-4 h-4 text-primary-foreground" />
-                <span>Chat on WhatsApp (+880 1571-423908)</span>
+                <span>Instant WhatsApp Quote</span>
               </Button>
             </a>
 
@@ -217,94 +205,32 @@ export default function HomePage() {
             >
               <Button
                 variant="outline"
-                className="w-full sm:w-auto h-12 px-6 rounded-full bg-secondary/70 hover:bg-secondary border-border/80 text-foreground font-semibold text-sm transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto h-12 px-7 rounded-full bg-secondary/60 hover:bg-secondary border-border/80 text-foreground font-medium text-sm transition-all flex items-center justify-center gap-2"
               >
-                <span>Check Repair Time & Cost</span>
+                <span>Check Repair Time</span>
                 <ArrowRight className="w-3.5 h-3.5 text-primary" />
               </Button>
             </a>
           </motion.div>
 
-          {/* Supported Devices Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="pt-1 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-muted-foreground select-none"
-          >
-            <span className="font-semibold text-foreground mr-1">Repairs Supported:</span>
-            {["Apple iPhone", "Samsung Galaxy", "Xiaomi & POCO", "Google Pixel", "OnePlus", "MacBook / iPad", "All Androids"].map((brand) => (
-              <span 
-                key={brand}
-                className="px-2.5 py-1 rounded-lg bg-secondary/60 dark:bg-white/[0.04] border border-border/60 text-foreground/80 font-medium"
-              >
-                {brand}
-              </span>
-            ))}
-          </motion.div>
-
-          {/* 4 Reassuring Customer Guarantees - Eye-Soothing Clean Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full pt-4 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left"
-          >
-            {/* Guarantee 1 */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
-                <Clock className="w-4 h-4" />
-              </div>
-              <h3 className="font-bold text-xs sm:text-sm text-foreground">30-Min Fast Fix</h3>
-              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Screens & batteries replaced while you wait.</p>
-            </div>
-
-            {/* Guarantee 2 */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
-                <Cpu className="w-4 h-4" />
-              </div>
-              <h3 className="font-bold text-xs sm:text-sm text-foreground">IC Micro-Soldering</h3>
-              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Specialized dead phone & logic board recovery.</p>
-            </div>
-
-            {/* Guarantee 3 */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <h3 className="font-bold text-xs sm:text-sm text-foreground">Tested Genuine Parts</h3>
-              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Original grade parts with service warranty.</p>
-            </div>
-
-            {/* Guarantee 4 */}
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-card border border-border/70 dark:border-white/10 shadow-xs hover:border-primary/30 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-2.5">
-                <Check className="w-4 h-4" />
-              </div>
-              <h3 className="font-bold text-xs sm:text-sm text-foreground">100% Free Diagnosis</h3>
-              <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">Honest quote before starting. No fix, no fee.</p>
-            </div>
-          </motion.div>
-
-          {/* Welcoming Store Details & Social Proof */}
+          {/* Clean, Subtle 3-Point Guarantee Line */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-muted-foreground"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="pt-4 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-muted-foreground font-medium select-none"
           >
-            <div className="flex items-center gap-1.5">
-              <span className="text-amber-500 font-bold flex items-center">
-                ★★★★★
-              </span>
-              <span className="font-semibold text-foreground">4.9/5 Rating</span>
-              <span>(500+ Verified Customers in Feni)</span>
-            </div>
-            <span className="hidden sm:inline text-border">·</span>
-            <div className="flex items-center gap-1.5">
-              <span>📍 Alia Madrasha Market, Mijan Road, Feni</span>
-            </div>
+            <span className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" /> Same-Day Fix
+            </span>
+            <span className="text-border">·</span>
+            <span className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" /> 100% Free Inspection
+            </span>
+            <span className="text-border">·</span>
+            <span className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" /> Genuine Parts Warranty
+            </span>
           </motion.div>
 
         </div>
