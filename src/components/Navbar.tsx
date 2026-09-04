@@ -21,11 +21,23 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Auto-scroll to top on route navigation
+  // Auto-scroll to top on route navigation & close mobile menu
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
     setIsMobileOpen(false)
   }, [location.pathname])
+
+  // Lock background body scroll while mobile drawer is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMobileOpen])
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -42,19 +54,20 @@ export default function Navbar() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center px-4 sm:px-6"
+        className="fixed top-0 inset-x-0 z-50 pointer-events-none flex justify-center px-3 sm:px-6"
       >
         {/* Metamorphosis Floating App Bar with zero layout jump */}
         <div
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isScrolled
-              ? "mt-2 sm:mt-3 max-w-5xl w-full px-4 sm:px-6 h-14 sm:h-16 rounded-2xl apple-liquid-glass"
+          className={`pointer-events-auto flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isScrolled || isMobileOpen
+              ? "mt-2 sm:mt-3 max-w-5xl w-full px-3.5 sm:px-6 h-14 sm:h-16 rounded-2xl apple-liquid-glass shadow-lg"
               : "mt-0 max-w-6xl w-full px-3 sm:px-6 h-16 sm:h-20 bg-transparent shadow-none"
           }`}
         >
           {/* Left: Brand Icon Box + Text */}
           <Link
             to="/"
+            onClick={() => setIsMobileOpen(false)}
             className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer select-none shrink-0 min-h-[44px]"
           >
             {/* Square rounded icon box with wrench hardware icon in new electric palette */}
@@ -127,12 +140,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Controls (Fully accessible min 44x44px touch targets) */}
+          {/* Mobile Controls (Fully accessible touch targets with active indicators) */}
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               aria-label="Toggle theme"
-              className="w-11 h-11 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/70 border border-border/60 active:scale-95"
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-secondary/80 border border-border/60 active:scale-95"
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -140,8 +153,12 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors cursor-pointer border border-border/70 active:scale-95"
-              aria-label="Toggle navigation menu"
+              className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer border active:scale-95 ${
+                isMobileOpen 
+                  ? "bg-primary text-primary-foreground border-primary shadow-sm shadow-primary/25" 
+                  : "bg-secondary text-foreground hover:bg-secondary/80 border-border/70"
+              }`}
+              aria-label={isMobileOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -150,68 +167,84 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {/* Floating Minimal Mobile Drawer (12px blur, battery & GPU efficient) */}
+      {/* Floating Minimal Mobile Drawer with proper backdrop and non-overlapping clearance */}
       <AnimatePresence>
         {isMobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed top-18 sm:top-20 inset-x-4 z-40 md:hidden bg-card/95 dark:bg-card/95 backdrop-blur-md border border-border/80 rounded-2xl p-4 shadow-xl flex flex-col gap-2"
-          >
-            <nav className="flex flex-col gap-1">
-              {navLinks.map((link) => {
-                const isActive = location.pathname === link.href
-                return (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    onClick={() => setIsMobileOpen(false)}
-                    className={`min-h-[48px] px-4 rounded-xl text-sm font-medium transition-colors flex items-center justify-between ${
-                      isActive
-                        ? "bg-primary/10 text-primary font-semibold border border-primary/20"
-                        : "text-muted-foreground hover:text-foreground active:bg-secondary/50"
-                    }`}
-                  >
-                    <span>{link.name}</span>
-                    <ArrowRight className="w-4 h-4 opacity-40" />
-                  </Link>
-                )
-              })}
-            </nav>
+          <>
+            {/* Backdrop Layer */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsMobileOpen(false)}
+              className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xs z-40 md:hidden"
+            />
 
-            <div className="pt-3 border-t border-border/60 flex flex-col gap-2.5">
-              {/* High-Impact Amber "Track Repair Status" */}
-              <button
-                onClick={() => {
-                  setIsMobileOpen(false)
-                  setIsTrackerOpen(true)
-                }}
-                className="w-full min-h-[48px] bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-80" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
-                </span>
-                <Search className="w-4 h-4 text-slate-950" />
-                <span>Track Repair Status</span>
-              </button>
+            {/* Floating Mobile Menu Card: Positioned strictly below the 64px header with 8px clearance */}
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-[70px] sm:top-[78px] inset-x-3 sm:inset-x-6 z-50 md:hidden bg-card/98 dark:bg-[#0c1222]/98 backdrop-blur-xl border border-border/80 dark:border-white/10 rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.4)] flex flex-col gap-3 max-h-[calc(100vh-86px)] overflow-y-auto"
+            >
+              <nav className="flex flex-col gap-1">
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.href
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.href}
+                      onClick={() => setIsMobileOpen(false)}
+                      className={`min-h-[46px] px-4 rounded-2xl text-sm font-medium transition-all flex items-center justify-between ${
+                        isActive
+                          ? "bg-primary/10 text-primary font-bold border border-primary/25"
+                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/50 active:bg-secondary/70"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className={`w-1.5 h-1.5 rounded-full ${isActive ? "bg-primary" : "bg-muted-foreground/30"}`} />
+                        <span>{link.name}</span>
+                      </div>
+                      <ArrowRight className={`w-4 h-4 ${isActive ? "text-primary opacity-100" : "opacity-35"}`} />
+                    </Link>
+                  )
+                })}
+              </nav>
 
-              <a
-                href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileOpen(false)}
-                className="block"
-              >
-                <button className="w-full min-h-[48px] bg-secondary hover:bg-secondary/80 text-foreground font-semibold rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer border border-border/70 active:scale-98">
-                  <MessageCircle className="w-4 h-4 text-emerald-500" />
-                  <span>WhatsApp Support</span>
+              <div className="pt-3 border-t border-border/60 dark:border-white/10 flex flex-col gap-2.5">
+                {/* High-Impact Amber "Track Repair Status" */}
+                <button
+                  onClick={() => {
+                    setIsMobileOpen(false)
+                    setIsTrackerOpen(true)
+                  }}
+                  className="w-full min-h-[46px] bg-amber-500 hover:bg-amber-600 active:scale-98 text-slate-950 font-bold rounded-2xl text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md transition-transform"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-80" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
+                  </span>
+                  <Search className="w-4 h-4 text-slate-950" />
+                  <span>Track Repair Status</span>
                 </button>
-              </a>
-            </div>
-          </motion.div>
+
+                <a
+                  href="https://wa.me/8801571423908?text=Hello%20AZTEK%20CARE!%20I%20would%20like%20to%20inquire%20about%20a%20device%20repair.%20Is%20a%20technician%20currently%20available%20today%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="block"
+                >
+                  <button className="w-full min-h-[46px] bg-secondary/80 hover:bg-secondary active:scale-98 text-foreground font-semibold rounded-2xl text-sm flex items-center justify-center gap-2 cursor-pointer border border-border/70 transition-transform">
+                    <MessageCircle className="w-4 h-4 text-emerald-500" />
+                    <span>WhatsApp Support</span>
+                  </button>
+                </a>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
