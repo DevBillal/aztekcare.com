@@ -590,7 +590,7 @@ export default function HomePage() {
           <div className="space-y-2 text-center md:text-left">
             <h3 className="text-xl sm:text-2xl font-bold">Have a device emergency in Feni?</h3>
             <p className="text-xs sm:text-sm text-primary-foreground/90 max-w-md">
-              Visit our lab directly at Shop No. 20, Alia Madrasha Market or reach out for immediate assistance.
+              Visit our lab directly at Alia Madrasha Market, Shop No. 20, Mijan Road, Feni or reach out for immediate assistance.
             </p>
           </div>
 

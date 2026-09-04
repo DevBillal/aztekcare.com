@@ -175,7 +175,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 md:hidden bg-background/98 dark:bg-[#070b14]/98 backdrop-blur-2xl flex flex-col justify-between overflow-y-auto"
+            className="fixed inset-0 z-50 md:hidden bg-background/98 dark:bg-[#070b14]/98 backdrop-blur-md flex flex-col justify-between overflow-y-auto"
           >
             {/* Unified Top Header Bar */}
             <div className="flex items-center justify-between px-4 sm:px-6 h-16 sm:h-20 border-b border-border/40 shrink-0">
@@ -289,7 +289,7 @@ export default function Navbar() {
             {/* Bottom Lab Quick Info Strip */}
             <div className="px-5 py-4 border-t border-border/40 bg-secondary/30 text-center shrink-0">
               <p className="text-xs font-medium text-muted-foreground">
-                📍 SSK Road, Feni · ⚡ 10:00 AM – 9:30 PM (Everyday Open)
+                📍 Alia Madrasha Market, Shop No. 20, Mijan Road, Feni · ⚡ 10:00 AM – 9:30 PM (Everyday Open)
               </p>
             </div>
           </motion.div>
